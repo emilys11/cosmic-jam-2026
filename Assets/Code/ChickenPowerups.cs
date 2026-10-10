@@ -10,10 +10,7 @@ public class ChickenPowerups : MonoBehaviour
     private Coroutine decreaseCooldownCoroutine;
     private Coroutine multishotCoroutine;
 
-    //public void DecreaseCooldown()
-    //{
-    //    chickenShooting.DecreaseFireCooldown(cooldownDecreaseMultiplier);
-    //}
+    [SerializeField] PowerupInventory inventory;
 
     public void ActivateCooldownDecrease()
     {
@@ -29,10 +26,6 @@ public class ChickenPowerups : MonoBehaviour
         decreaseCooldownCoroutine = null;
     }
 
-    //public void MultishotUpgrade()
-    //{
-    //    chickenShooting.Multishot();
-    //}
     public void ActivateMultishot()
     {
         if (multishotCoroutine != null) return;
@@ -48,8 +41,30 @@ public class ChickenPowerups : MonoBehaviour
         multishotCoroutine = null;
     }
 
-    public void ReverseControlsUpgrade()
+    public void ActivateEggReverseControls()
     {
         // egg controller reverse controls
+    }
+
+
+    public void UsePowerups()
+    {
+        PowerupInventory.PowerupTypes type = inventory.UseInventoryPowerup();
+
+        switch(type)
+        {
+            case PowerupInventory.PowerupTypes.DecreaseCooldown:
+                ActivateCooldownDecrease();
+                break;
+
+            case PowerupInventory.PowerupTypes.Multishot:
+                ActivateMultishot();
+                break;
+
+            case PowerupInventory.PowerupTypes.EggReverseControls:
+                ActivateEggReverseControls();
+                break;
+
+        }
     }
 }

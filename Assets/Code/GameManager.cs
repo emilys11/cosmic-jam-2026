@@ -1,11 +1,15 @@
 
-using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
+using TMPro;
 
 public enum GameState
 {
+    Countdown,
     Playing,
     Paused,
     ChickenWon,
@@ -16,20 +20,25 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
-    [Header("Game Settings")]
-    [SerializeField] private float roundDuration = 60f;
+    [Header("References")]
+    [SerializeField] private CountdownTimer countdownTimer;
+    [SerializeField] private EggHealth eggHealth;
 
-    [Header("Scene Names")]
-    [SerializeField] private string chickenWinScene = "Chicken_Win";
-    [SerializeField] private string eggWinScene = "Egg_Win";
+    [Header("Starting Countdown")]
+    [SerializeField] private TMP_Text countdownText;
+    [SerializeField] private int countdownDuration = 3;
+
+    [Header("Pause Menu")]
+    [SerializeField] private GameObject pausePanel;
+    [SerializeField] private Button resumeButton;
+
+    [Header("Scenes")]
+    [SerializeField] private string chickenWinScene = "ChickenWin";
+    [SerializeField] private string eggWinScene = "EggWin";
 
     public GameState CurrentState { get; private set; }
-    public float TimeRemaining { get; private set; }
 
     public bool IsPlaying => CurrentState == GameState.Playing;
-
-    public event Action<float> OnTimeChanged;
-    public event Action<GameState> OnStateChanged;
 
     private void Awake()
     {
@@ -40,35 +49,90 @@ public class GameManager : MonoBehaviour
         }
 
         Instance = this;
-        Time.timeScale = 1f;
-        CurrentState = GameState.Playing;
-        TimeRemaining = roundDuration;
+
+        Time.timeScale = 0f;
+        CurrentState = GameState.Countdown;
+    }
+
+    private void OnEnable()
+    {
+        if (countdownTimer != null)
+            countdownTimer.OnTimerFinished += EggWins;
+
+        if (eggHealth != null)
+            eggHealth.OnEggDied += ChickenWins;
+    }
+
+    private void OnDisable()
+    {
+        if (countdownTimer != null)
+            countdownTimer.OnTimerFinished -= EggWins;
+
+        if (eggHealth != null)
+            eggHealth.OnEggDied -= ChickenWins;
     }
 
     private void Start()
     {
-        OnTimeChanged?.Invoke(TimeRemaining);
-        OnStateChanged?.Invoke(CurrentState);
-    }
+        if (pausePanel != null)
+            pausePanel.SetActive(false);
 
-    private void Update()
+        if (countdownTimer != null)
+            countdownTimer.ResetTimer();
+
+        StartCoroutine(StartCountdown());
+    }
+    
+    private IEnumerator StartCountdown()
     {
-        if (Keyboard.current != null &&
-            Keyboard.current.escapeKey.wasPressedThisFrame)
+        Time.timeScale = 0f;
+
+        if (countdownText != null)
+            countdownText.gameObject.SetActive(true);
+
+        for (int i = countdownDuration; i > 0; i--)
         {
-            TogglePause();
+            if (countdownText != null)
+                countdownText.text = i.ToString();
+
+            yield return new WaitForSecondsRealtime(1f);
         }
 
-        if (!IsPlaying)
-            return;
+        if (countdownText != null)
+            countdownText.text = "GO!";
 
-        TimeRemaining = Mathf.Max(
-            0f, TimeRemaining - Time.deltaTime);
+        yield return new WaitForSecondsRealtime(0.5f);
 
-        OnTimeChanged?.Invoke(TimeRemaining);
+        if (countdownText != null)
+            countdownText.gameObject.SetActive(false);
 
-        if (TimeRemaining <= 0f)
-            EggWins();
+        CurrentState = GameState.Playing;
+        Time.timeScale = 1f;
+
+        if (countdownTimer != null)
+            countdownTimer.StartTimer();
+    }
+    
+    private void Update()
+    {
+        bool keyboardPause =
+            Keyboard.current != null &&
+            Keyboard.current.escapeKey.wasPressedThisFrame;
+
+        bool controllerPause = false;
+
+        // Check every connected controller.
+        foreach (Gamepad gamepad in Gamepad.all)
+        {
+            if (gamepad.startButton.wasPressedThisFrame)
+            {
+                controllerPause = true;
+                break;
+            }
+        }
+
+        if (keyboardPause || controllerPause)
+            TogglePause();
     }
 
     public void ChickenWins()
@@ -76,7 +140,8 @@ public class GameManager : MonoBehaviour
         if (!IsPlaying)
             return;
 
-        FinishGame(GameState.ChickenWon, chickenWinScene);
+        CurrentState = GameState.ChickenWon;
+        FinishGame(chickenWinScene);
     }
 
     public void EggWins()
@@ -84,13 +149,14 @@ public class GameManager : MonoBehaviour
         if (!IsPlaying)
             return;
 
-        FinishGame(GameState.EggWon, eggWinScene);
+        CurrentState = GameState.EggWon;
+        FinishGame(eggWinScene);
     }
 
-    private void FinishGame(GameState result, string sceneName)
+    private void FinishGame(string sceneName)
     {
-        CurrentState = result;
-        OnStateChanged?.Invoke(result);
+        if (countdownTimer != null)
+            countdownTimer.PauseTimer();
 
         Time.timeScale = 1f;
         SceneManager.LoadScene(sceneName);
@@ -111,7 +177,20 @@ public class GameManager : MonoBehaviour
 
         CurrentState = GameState.Paused;
         Time.timeScale = 0f;
-        OnStateChanged?.Invoke(CurrentState);
+
+        if (countdownTimer != null)
+            countdownTimer.PauseTimer();
+
+        if (pausePanel != null)
+            pausePanel.SetActive(true);
+
+        // Select Resume for controller navigation.
+        if (resumeButton != null && EventSystem.current != null)
+        {
+            EventSystem.current.SetSelectedGameObject(null);
+            EventSystem.current.SetSelectedGameObject(
+                resumeButton.gameObject);
+        }
     }
 
     public void ResumeGame()
@@ -120,13 +199,24 @@ public class GameManager : MonoBehaviour
             return;
 
         CurrentState = GameState.Playing;
+
+        // Hide pause menu.
+        if (pausePanel != null)
+            pausePanel.SetActive(false);
+
+        if (EventSystem.current != null)
+            EventSystem.current.SetSelectedGameObject(null);
+
         Time.timeScale = 1f;
-        OnStateChanged?.Invoke(CurrentState);
+
+        if (countdownTimer != null)
+            countdownTimer.StartTimer();
     }
 
     public void RestartGame()
     {
         Time.timeScale = 1f;
+
         SceneManager.LoadScene(
             SceneManager.GetActiveScene().buildIndex);
     }
