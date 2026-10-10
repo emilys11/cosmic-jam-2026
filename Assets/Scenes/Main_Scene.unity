@@ -322,7 +322,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.25}
   m_AnchorMax: {x: 1, y: 0.75}
-  m_AnchoredPosition: {x: -4.9999695, y: 0}
+  m_AnchoredPosition: {x: -5.000244, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &191304066
@@ -1675,6 +1675,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09265a46178a2354ca8fa1393a4e3011, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AimGuide
+  targetSpline: {fileID: 0}
 --- !u!120 &768467833
 LineRenderer:
   serializedVersion: 3
@@ -3784,7 +3785,7 @@ RectTransform:
   m_GameObject: {fileID: 1784194774}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4, y: 4, z: 4}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1214871950}
@@ -3792,9 +3793,9 @@ RectTransform:
   - {fileID: 2029735172}
   m_Father: {fileID: 1631582411}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 945.5}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0.000061035156, y: -62.48877}
   m_SizeDelta: {x: 686.4, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1784194776
