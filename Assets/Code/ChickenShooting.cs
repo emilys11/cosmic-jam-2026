@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class ChickenShooting : MonoBehaviour
 {
     public GameObject seedsPrefab;
-    [SerializeField] float seedCooldown = 0.5f;
+    [SerializeField] float seedCooldown = 0.9f;
     private float cooldownTimer = 0f;
 
     // select orbital ring -> shoot seed -> destroy when chicken seed hits the ring collider
@@ -17,7 +17,10 @@ public class ChickenShooting : MonoBehaviour
     private int selectedRingIndex = 0; // default innermost ring
     private float selectedRingRadius;
 
- 
+    // POWERUPS
+    [SerializeField] bool multishotActive = false;
+    [SerializeField] float multishotAngle = 15f;
+
     void Start()
     {
         UpdateSelectedRing();
@@ -62,11 +65,27 @@ public class ChickenShooting : MonoBehaviour
         Vector3 start = lineRenderer.GetPosition(0);
         Vector3 end = lineRenderer.GetPosition(1);
         Vector3 shootDirection = (end - start).normalized;
-        //Debug.Log(
-        //    "FIRING // selected radius = " + selectedRingRadius +
-        //    " // direction = " + shootDirection
-        //);
 
+        if (multishotActive)
+        {
+            SpawnSeed(shootDirection); // center
+            Vector3 leftDirection = Quaternion.AngleAxis(-multishotAngle, Vector3.up) * shootDirection; // left
+            Vector3 rightDirection = Quaternion.AngleAxis(multishotAngle, Vector3.up) * shootDirection; // right
+
+            SpawnSeed(leftDirection);
+            SpawnSeed(rightDirection);
+        }
+        else
+        {
+            SpawnSeed(shootDirection);
+        }
+
+        cooldownTimer = seedCooldown;
+
+    }
+
+    void SpawnSeed(Vector3 direction)
+    {
         GameObject activeSeed = Instantiate(seedsPrefab, transform.position, Quaternion.identity);
         //Debug.Log("SEED CREATED: " + activeSeed.name);
 
@@ -89,10 +108,7 @@ public class ChickenShooting : MonoBehaviour
             //Debug.LogError("Seed prefab does not have Seed.cs!");
             return;
         }
-        seed.LaunchSeed(shootDirection, transform, selectedRingRadius);
-
-        cooldownTimer = seedCooldown;
-
+        seed.LaunchSeed(direction, transform, selectedRingRadius);
     }
 
     void UpdateSelectedRing()
@@ -134,5 +150,18 @@ public class ChickenShooting : MonoBehaviour
         {
             Fire();
         }
+    }
+
+    // POWER UP FUNCTIONS
+    public void IncreaseFireRate(float multiplier)
+    {
+        seedCooldown *= multiplier;
+        seedCooldown = Mathf.Max(seedCooldown, 0.1f);
+    }
+    public void Multishot()
+    {
+        multishotActive = true;
+
+        Debug.Log("Multishot active: 1 -> 3 seeds");
     }
 }
