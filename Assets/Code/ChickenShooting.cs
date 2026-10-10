@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Splines;
+using UnityEngine.InputSystem;
 
 public class ChickenShooting : MonoBehaviour
 {
@@ -36,7 +37,7 @@ public class ChickenShooting : MonoBehaviour
             Fire();
         }
         // left = move inward
-        if (Keyboard.current != null && Keyboard.current.qKey.wasPressedThisFrame)
+        /*if (Keyboard.current != null && Keyboard.current.qKey.wasPressedThisFrame)
         {
             //Debug.Log("pressed Q");
             SelectInwardRing();
@@ -47,7 +48,7 @@ public class ChickenShooting : MonoBehaviour
         {
             //Debug.Log("pressed E");
             SelectOutwardRing();
-        }
+        }*/
     }
 
     void Fire()
@@ -100,30 +101,35 @@ public class ChickenShooting : MonoBehaviour
 
         float ringCircumference = selectedRing.CalculateLength ();
         selectedRingRadius = ringCircumference/(2f * Mathf.PI); // c = 2*pi*r
-
-        //Debug.Log("selected ring = " + selectedRingIndex + " // radius = " + selectedRingRadius);
     }
 
-    void SelectInwardRing()
+    public void SelectInwardRing(InputAction.CallbackContext context)
     {
-        if (selectedRingIndex > 0)
+        if(context.performed)
         {
-            selectedRingIndex--;
-            UpdateSelectedRing();
+            if (selectedRingIndex > 0)
+            {
+                selectedRingIndex--;
+                UpdateSelectedRing();
+            }
         }
+        
     }
-    void SelectOutwardRing()
+    public void SelectOutwardRing(InputAction.CallbackContext context)
     {
-        if (selectedRingIndex < rings.Length - 1)
+        if(context.performed)
         {
-            selectedRingIndex++;
-            UpdateSelectedRing();
+            if (selectedRingIndex < rings.Length - 1)
+            {
+                selectedRingIndex++;
+                UpdateSelectedRing();
+            }
         }
+        
     }
 
     public void OnFire(InputAction.CallbackContext context)
     {
-        Debug.Log("Fire input received: " + context.phase);
         if (context.performed)
         {
             Fire();
