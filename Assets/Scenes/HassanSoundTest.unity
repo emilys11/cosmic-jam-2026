@@ -1749,9 +1749,10 @@ MonoBehaviour:
   lineRenderer: {fileID: 1817084741}
   audioSource: {fileID: 1817084748}
   fireClips:
-  - {fileID: 8300000, guid: 1e5551e6efc4aa347a023709ae7476e1, type: 3}
-  - {fileID: 8300000, guid: 26f2f012dad3a8047b463c2d7d4afb10, type: 3}
-  - {fileID: 8300000, guid: 8c3243e5b262f8841825ee6527fc3b29, type: 3}
+  - {fileID: 8300000, guid: 0b6a53f18a4c00c4bacf401eb9cbd8ad, type: 3}
+  - {fileID: 8300000, guid: 52c706bba1047ff42909ebc410e83cf6, type: 3}
+  - {fileID: 8300000, guid: 04fdd52ac21501e4dba6968c48cada48, type: 3}
+  - {fileID: 8300000, guid: a8981f78dd73bca4aaf14115cbc1e1a4, type: 3}
 --- !u!114 &1817084747
 MonoBehaviour:
   m_ObjectHideFlags: 0
