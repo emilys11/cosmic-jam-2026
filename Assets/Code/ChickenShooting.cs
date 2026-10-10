@@ -10,6 +10,11 @@ public class ChickenShooting : MonoBehaviour
     // select orbital ring -> shoot seed -> destroy when chicken seed hits the ring collider
     [SerializeField] LineRenderer lineRenderer;
 
+    // Hassan's chicken shooting audio (is this correct? :shrug:)
+    [Header("Audio")]
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioClip[] fireClips; // made 3 shooting noise variations
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     //void Start()
     //{
@@ -37,6 +42,16 @@ public class ChickenShooting : MonoBehaviour
     //        Fire();
     //    }
     //}
+
+    void FireSound()
+    {
+        if (audioSource == null || fireClips == null || fireClips.Length == 0)
+        {
+            return;
+        }
+
+        audioSource.PlayOneShot(fireClips[Random.Range(0, fireClips.Length)]);
+    }
 
     void Fire()
     {
@@ -67,6 +82,7 @@ public class ChickenShooting : MonoBehaviour
         // shoot seed
         Seed seed = activeSeed.GetComponent<Seed>();
         seed.LaunchSeed(shootDirection);
+        FireSound();
 
         cooldownTimer = seedCooldown;
 
