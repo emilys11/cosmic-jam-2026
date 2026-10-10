@@ -1,12 +1,11 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Splines;
-using UnityEngine.InputSystem;
 
 public class ChickenShooting : MonoBehaviour
 {
     public GameObject seedsPrefab;
-    [SerializeField] float seedCooldown = 0.9f;
+    [SerializeField] float seedCooldown = 1.0f;
     private float cooldownTimer = 0f;
 
     // select orbital ring -> shoot seed -> destroy when chicken seed hits the ring collider
@@ -18,11 +17,13 @@ public class ChickenShooting : MonoBehaviour
     private float selectedRingRadius;
 
     // POWERUPS
+    private float currentSeedCooldown;
     [SerializeField] bool multishotActive = false;
     [SerializeField] float multishotAngle = 15f;
 
     void Start()
     {
+        currentSeedCooldown = seedCooldown;
         UpdateSelectedRing();
     }
 
@@ -153,15 +154,22 @@ public class ChickenShooting : MonoBehaviour
     }
 
     // POWER UP FUNCTIONS
-    public void IncreaseFireRate(float multiplier)
+    public void ActivateCooldownDecrease(float multiplier)
     {
-        seedCooldown *= multiplier;
-        seedCooldown = Mathf.Max(seedCooldown, 0.1f);
+        currentSeedCooldown = seedCooldown * multiplier;
     }
-    public void Multishot()
+    public void DeactivateCooldownDecrease()
+    {
+        currentSeedCooldown = seedCooldown;
+    }
+    public void ActivateMultishot()
     {
         multishotActive = true;
 
         Debug.Log("Multishot active: 1 -> 3 seeds");
+    }
+    public void DeactivateMultishot()
+    {
+        multishotActive = false;
     }
 }
