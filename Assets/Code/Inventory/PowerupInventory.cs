@@ -31,12 +31,11 @@ public class PowerupInventory : MonoBehaviour
     {
         // replace current held powerup
         currentPowerup = powerup;
-        
-        return true; // CAN pick up
+        return true;
     }
 
     // use powerup
-    public PowerupTypes UsePowerup()
+    public PowerupTypes UseInventoryPowerup()
     {
         if (!HasPowerup()) return PowerupTypes.None;
 
