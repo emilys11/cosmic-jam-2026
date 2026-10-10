@@ -13,6 +13,8 @@ public class EggOnPath : MonoBehaviour
     [Tooltip("The SplineContainers the egg can switch between.")]
     public List<SplineContainer> targetSplines = new List<SplineContainer>();
     public SplineContainer secretSpline; // Please make sure to add Material from DissolverShader/Material/
+    // Hassan - getting defeated flag to stop movement
+    [SerializeField] EggHealth eggHealth;
 
     [Header("Movement Settings")]
     [Range(0f, 1f)]
@@ -40,10 +42,18 @@ public class EggOnPath : MonoBehaviour
     // Index to change Splines.
     private int index = 0;
 
+    void Awake()
+    {
+        if (eggHealth == null)
+        {
+            eggHealth = GetComponent<EggHealth>();
+        }
+    }
+
     void Update()
     {
         // Resolved: Using .Count for List and keeping safety null check
-        if (targetSplines == null || targetSplines.Count == 0) return;
+        if (targetSplines == null || targetSplines.Count == 0 || eggHealth.isDefeated()) return;
 
         UpdateMovementAndProgress();
         ApplyPositionAndRotation();

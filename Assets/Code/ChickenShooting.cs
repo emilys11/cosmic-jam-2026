@@ -11,10 +11,10 @@ public class ChickenShooting : MonoBehaviour
     // select orbital ring -> shoot seed -> destroy when chicken seed hits the ring collider
     [SerializeField] LineRenderer lineRenderer;
 
-    // Hassan's chicken shooting audio (is this correct? :shrug:)
+    // Hassan's chicken shooting audio
     [Header("Audio")]
     [SerializeField] AudioSource audioSource;
-    [SerializeField] AudioClip[] fireClips; // made 3 shooting noise variations
+    [SerializeField] AudioClip[] fireClips;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     //void Start()
@@ -130,8 +130,8 @@ public class ChickenShooting : MonoBehaviour
             //Debug.LogError("Seed prefab does not have Seed.cs!");
             return;
         }
-        seed.LaunchSeed(direction, transform, selectedRingRadius);
         FireSound();
+        seed.LaunchSeed(direction, transform, selectedRingRadius);
     }
 
     void UpdateSelectedRing()
