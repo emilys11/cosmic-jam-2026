@@ -49,6 +49,19 @@ public class EggPowerups : MonoBehaviour
         StartCoroutine(MultiplySpeedRoutine());
     }
 
+    [ContextMenu("Trigger Wormhole")]
+    public void TriggerWormHole()
+    {
+        StartCoroutine(CallWormhole());
+    }
+
+    private IEnumerator CallWormhole()
+    {
+        StartCoroutine(eggOnPath.DissolveCycleRoutine(eggOnPath.gameObject, 0.1f, dissolveDuration, true));
+        yield return new WaitForSeconds(dissolveDuration);
+        eggOnPath.WormHole();
+    }
+
     [ContextMenu("Spawn Decoy")]
     public void SpawnDecoy()
     {

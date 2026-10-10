@@ -191,33 +191,6 @@ public class EggOnPath : MonoBehaviour
         targetMaterial.SetFloat("_CutoffHeight", finalTarget);
     }
 
-    public IEnumerator DissolveOneWayRoutine(GameObject targetObject, float duration, bool toDissolve)
-    {
-        if (targetObject == null) yield break;
-
-        Renderer targetRenderer = targetObject.GetComponent<Renderer>();
-        if (targetRenderer == null) yield break;
-        
-        Material targetMaterial = targetRenderer.material;
-        
-        // toDissolve = true means go from visible (10) to hidden (-5)
-        // toDissolve = false means go from hidden (-5) to visible (10)
-        float startCutoff = toDissolve ? 10f : -5f;
-        float targetCutoff = toDissolve ? -5f : 10f;
-
-        targetMaterial.SetFloat("_CutoffHeight", startCutoff);
-        float elapsed = 0f;
-
-        while (elapsed < duration)
-        {
-            elapsed += Time.deltaTime;
-            float newCutoff = Mathf.Lerp(startCutoff, targetCutoff, elapsed / duration);
-            targetMaterial.SetFloat("_CutoffHeight", newCutoff);
-            yield return null;
-        }
-        targetMaterial.SetFloat("_CutoffHeight", targetCutoff);
-    }
-
     public void SpeedModifier(float speedMultiplier)
     {
         maxMoveSpeed *= speedMultiplier;
@@ -282,6 +255,27 @@ public class EggOnPath : MonoBehaviour
             }
         }
     }
+
+    public void WormHole() 
+    {
+    if (targetSplines == null || targetSplines.Count == 0) return;
+    if (targetSplines.Count > 1)
+    {
+        int startIndex = index;
+        int safetyCounter = 0; // Prevents any accidental infinite hangs
+        
+        while (index == startIndex && safetyCounter < 100)
+        {
+            index = UnityEngine.Random.Range(0, targetSplines.Count);
+            safetyCounter++;
+        }
+    }
+    progress = UnityEngine.Random.Range(0f, 1f);
+    isTransitioning = false;
+    ApplyPositionAndRotation();
+    Debug.Log($"Wormhole activated! Teleported to Track {index} at Progress {progress:F2}");
+    }
+
     public void SwitchToRandomSpline()
     {
         if (targetSplines == null || targetSplines.Count <= 1) return;
