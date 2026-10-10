@@ -20,15 +20,17 @@ public class BeadOnPath : MonoBehaviour
     [Tooltip("Should the bead loop back around when it hits the ends?")]
     public bool isLooping = true;
 
+    public bool isClockwise = true;
+
     void Update()
     {
         if (targetSpline == null || Keyboard.current == null) return;
 
         // Read input using the new Input System keyboard API
         float inputAxis = 0f;
-        if (Keyboard.current.dKey.isPressed || Keyboard.current.rightArrowKey.isPressed)
+        if (isClockwise)
             inputAxis += 1f;
-        if (Keyboard.current.aKey.isPressed || Keyboard.current.leftArrowKey.isPressed)
+        if (!isClockwise)
             inputAxis -= 1f;
 
         if (Mathf.Abs(inputAxis) > 0.01f)
@@ -62,5 +64,15 @@ public class BeadOnPath : MonoBehaviour
         {
             transform.rotation = Quaternion.LookRotation(Vector3.Normalize(tangent));
         }
+    }
+
+    public void OnClockwise(InputAction.CallbackContext context)
+    {
+        isClockwise = true;
+    }
+
+    public void OnCounterClockwise(InputAction.CallbackContext context)
+    {
+        isClockwise = false;
     }
 }
