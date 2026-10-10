@@ -3,13 +3,23 @@
     "name": "PlayerControls",
     "maps": [
         {
-            "name": "Gameplay",
-            "id": "7675e637-bf70-46e1-bcb5-251907b3c789",
+            "name": "Chicken",
+            "id": "108cfefc-4437-4858-8e7f-a2fed48002d0",
             "actions": [
                 {
-                    "name": "ChickenAim",
+                    "name": "Aim",
+                    "type": "Value",
+                    "id": "b9bb3bfd-bd02-4ad1-bfcb-c0f6023361eb",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true,
+                    "priority": 0
+                },
+                {
+                    "name": "RingUp",
                     "type": "Button",
-                    "id": "586c9cd9-eedc-4570-b3b4-9c20f083975f",
+                    "id": "37b21dce-ec13-4ed7-bbf1-6e680df4eab2",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -17,9 +27,9 @@
                     "priority": 0
                 },
                 {
-                    "name": "ChickenRingSwitch",
+                    "name": "RingDown",
                     "type": "Button",
-                    "id": "69ad9aad-6279-4ba7-9362-0c7bdf5169af",
+                    "id": "55145175-7dea-44a6-8c35-8e65c9d9e23a",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -27,9 +37,137 @@
                     "priority": 0
                 },
                 {
-                    "name": "ChickenShoot",
+                    "name": "Shoot",
                     "type": "Button",
-                    "id": "79aed19f-e1fb-417b-90b2-7b4d90cef5f4",
+                    "id": "58262b86-b420-49f9-afbe-5a3218a4f080",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false,
+                    "priority": 0
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "1D Axis",
+                    "id": "0cbe001f-09ff-4381-9764-d071b2ec8844",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Aim",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "238846e7-fbbb-4c49-b066-fadd36163185",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard",
+                    "action": "Aim",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "b8013850-c80e-429d-bd09-2cc0679bd2c8",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard",
+                    "action": "Aim",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "f0c27b20-356c-4dca-be5f-2d23dc5ae839",
+                    "path": "<Gamepad>/leftStick/x",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Gamepad",
+                    "action": "Aim",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "69ff2a6a-a480-4e24-86b3-3eedbe08ae60",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard",
+                    "action": "RingUp",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "73b0a9c9-aa01-4e34-9081-168e1f9ce6ae",
+                    "path": "<Gamepad>/dpad/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Gamepad",
+                    "action": "RingUp",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7d288952-3e87-4436-9bdc-a9ac613043ce",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard",
+                    "action": "RingDown",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0d14b7ea-c18c-43e0-9857-11516cfb22cd",
+                    "path": "<Gamepad>/dpad/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Gamepad",
+                    "action": "RingDown",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "118da331-49b5-41a4-a22f-fe91e12c7310",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Gamepad",
+                    "action": "Shoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ca7cc730-0fb8-44b7-af24-29ceef695b89",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard",
+                    "action": "Shoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Egg",
+            "id": "cc67026d-cbeb-4850-aaed-d42599fe2965",
+            "actions": [
+                {
+                    "name": "RingUp",
+                    "type": "Button",
+                    "id": "2d8895b9-08bc-44e3-af0f-fffcd37bed50",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -37,9 +175,9 @@
                     "priority": 0
                 },
                 {
-                    "name": "EggRingSwitch",
+                    "name": "RingDown",
                     "type": "Button",
-                    "id": "514f97ba-c480-4fee-8656-5267d76b54ab",
+                    "id": "62a78d57-a013-4647-a07d-ca4af4aba4cd",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -47,9 +185,19 @@
                     "priority": 0
                 },
                 {
-                    "name": "EggDirection",
+                    "name": "CounterClockwise",
                     "type": "Button",
-                    "id": "ca85a960-b0b1-4ab0-aa13-64b5330f2e7f",
+                    "id": "96f8c2e6-7535-448b-b8e3-92c92a0263ed",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false,
+                    "priority": 0
+                },
+                {
+                    "name": "Clockwise",
+                    "type": "Button",
+                    "id": "16cf256e-e86a-4e81-a580-3d78a2a5174e",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -60,61 +208,117 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "6acb1ec1-5778-43bc-ab3e-417849d1f2f5",
-                    "path": "",
+                    "id": "1de45a6c-0861-408a-a210-ad260b84c822",
+                    "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "ChickenAim",
+                    "groups": ";Keyboard",
+                    "action": "RingUp",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "10ee570f-5f3f-44f6-be7e-c6e8ab87502d",
-                    "path": "",
+                    "id": "07bd3e24-0f50-47c6-9e1c-83e0cc021374",
+                    "path": "<Gamepad>/dpad/up",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "EggRingSwitch",
+                    "groups": ";Gamepad",
+                    "action": "RingUp",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "4655171e-3ab2-44b4-b4a0-1e797df6bf96",
-                    "path": "",
+                    "id": "65fa2c73-fd6d-44f4-bfa8-06b7c76082f0",
+                    "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "ChickenRingSwitch",
+                    "groups": ";Keyboard",
+                    "action": "RingDown",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "ebea1055-7da9-4c86-bbc8-e36d7f8f836b",
-                    "path": "",
+                    "id": "a940f95d-c68c-4344-a4b0-7b3401b72240",
+                    "path": "<Gamepad>/dpad/down",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "ChickenShoot",
+                    "groups": ";Gamepad",
+                    "action": "RingDown",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "66568f0d-d89d-406b-8523-97762e948824",
-                    "path": "",
+                    "id": "6a0937ac-38ff-4940-975a-95e4ce818bb7",
+                    "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "EggDirection",
+                    "groups": ";Keyboard",
+                    "action": "CounterClockwise",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c153039e-71f2-464f-b8b6-895053f9c484",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Gamepad",
+                    "action": "CounterClockwise",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "08015223-7827-428b-8607-c24ac317b55e",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard",
+                    "action": "Clockwise",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0b4c38db-58d1-4bf9-9ba3-aa071ca28a5e",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Gamepad",
+                    "action": "Clockwise",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
             ]
         }
     ],
-    "controlSchemes": []
+    "controlSchemes": [
+        {
+            "name": "Keyboard",
+            "bindingGroup": "Keyboard",
+            "devices": [
+                {
+                    "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        },
+        {
+            "name": "Gamepad",
+            "bindingGroup": "Gamepad",
+            "devices": [
+                {
+                    "devicePath": "<Gamepad>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
 }
