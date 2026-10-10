@@ -1,13 +1,14 @@
 using UnityEngine;
 using UnityEngine.Splines;
 using Unity.Mathematics;
-using UnityEngine.InputSystem; // Required for the new Input System
+using UnityEngine.InputSystem;
+using UnityEngine.Assemblies; // Required for the new Input System
 
 public class BeadOnPath : MonoBehaviour
 {
     [Header("References")]
     [Tooltip("The SplineContainer GameObject the bead will follow.")]
-    public SplineContainer targetSpline;
+    public SplineContainer[] targetSplines;
 
     [Header("Movement")]
     [Range(0f, 1f)]
@@ -20,9 +21,14 @@ public class BeadOnPath : MonoBehaviour
     [Tooltip("Should the bead loop back around when it hits the ends?")]
     public bool isLooping = true;
 
+    // Index to change Splines.
+    private int index = 0;
+
     void Update()
     {
-        if (targetSpline == null || Keyboard.current == null) return;
+        
+
+        if (targetSplines == null || Keyboard.current == null) return;
 
         // Read input using the new Input System keyboard API
         float inputAxis = 0f;
@@ -31,9 +37,22 @@ public class BeadOnPath : MonoBehaviour
         if (Keyboard.current.aKey.isPressed || Keyboard.current.leftArrowKey.isPressed)
             inputAxis -= 1f;
 
+        // Handle Spline Switching with W and S 
+        if (targetSplines != null && targetSplines.Length > 0)
+        {
+            if (Keyboard.current.wKey.wasPressedThisFrame)
+            {
+                index = (index + 1) % targetSplines.Length; // Loop forward through tracks
+            }
+            else if (Keyboard.current.sKey.wasPressedThisFrame)
+            {
+                index = (index - 1 + targetSplines.Length) % targetSplines.Length; // Loop backward safely
+            }
+        }
+
         if (Mathf.Abs(inputAxis) > 0.01f)
         {
-            float length = targetSpline.Spline.GetLength();
+            float length = targetSplines[index].Spline.GetLength();
             if (length > 0f)
             {
                 progress += (inputAxis * moveSpeed / length) * Time.deltaTime;
@@ -51,8 +70,8 @@ public class BeadOnPath : MonoBehaviour
         }
 
         // Evaluate position and direction along the spline
-        Vector3 position = targetSpline.EvaluatePosition(progress);
-        float3 tangent = targetSpline.EvaluateTangent(progress);
+        Vector3 position = targetSplines[index].EvaluatePosition(progress);
+        float3 tangent = targetSplines[index].EvaluateTangent(progress);
 
         // Apply position
         transform.position = position;
