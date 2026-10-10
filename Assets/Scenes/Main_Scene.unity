@@ -1617,6 +1617,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BeadOnPath
   targetSplines: []
+  secretSpline: {fileID: 0}
   progress: 0
   maxMoveSpeed: 0.5
   enableAcceleration: 0
@@ -1675,6 +1676,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09265a46178a2354ca8fa1393a4e3011, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AimGuide
+  targetSpline: {fileID: 0}
 --- !u!120 &768467833
 LineRenderer:
   serializedVersion: 3
@@ -1801,6 +1803,8 @@ MonoBehaviour:
   seedCooldown: 5
   lineRenderer: {fileID: 0}
   rings: []
+  normalRingMaterial: {fileID: 0}
+  selectedRingMaterial: {fileID: 0}
   multishotActive: 0
   multishotAngle: 15
 --- !u!65 &768467835
@@ -2552,6 +2556,8 @@ MonoBehaviour:
   rings:
   - {fileID: 788687276}
   - {fileID: 499470545}
+  normalRingMaterial: {fileID: 0}
+  selectedRingMaterial: {fileID: 0}
   multishotActive: 0
   multishotAngle: 15
 --- !u!120 &1016290097
@@ -3576,6 +3582,7 @@ MonoBehaviour:
   targetSplines:
   - {fileID: 788687276}
   - {fileID: 499470545}
+  secretSpline: {fileID: 0}
   progress: 0
   maxMoveSpeed: 0.5
   enableAcceleration: 0
@@ -3740,7 +3747,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1717852052}
         m_TargetAssemblyTypeName: EggOnPath, Assembly-CSharp
-        m_MethodName: OnClockwiseSwitch
+        m_MethodName: OnClockwise
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3752,6 +3759,14 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 16cf256e-e86a-4e81-a580-3d78a2a5174e
     m_ActionName: 'Egg/Clockwise[/Keyboard/d]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e1846bd0-7bd7-49f2-955e-8ba78150ba23
+    m_ActionName: 'Chicken/UseUpgrade[/Keyboard/enter,/DualSenseGamepadHID/buttonSouth,/DualSenseGamepadHID1/buttonSouth]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 50f90d79-888e-4a06-95e7-577f34622878
+    m_ActionName: 'Egg/UseUpgrade[/Keyboard/e,/DualSenseGamepadHID/buttonSouth,/DualSenseGamepadHID1/buttonSouth]'
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: 
   m_DefaultActionMap: Egg
