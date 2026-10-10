@@ -7,12 +7,11 @@ public class EggPowerups : MonoBehaviour
      [SerializeField] public float powerTime = 1f;
 
     [Header("Disappearance Parameters")]
-    [SerializeField] private string cutoffPropertyName = "_CutoffHeight";
     [SerializeField] private float targetCutoff = -5f;
     [SerializeField] private float dissolveDuration = 1.5f;
 
     private Material objectMaterial;
-    private bool isDissolving = false;
+    private bool isDissolving;
 
     // This adds a button to the component's context menu (three dots icon in the Inspector)
     [ContextMenu("Trigger Dissolve")]
@@ -20,7 +19,7 @@ public class EggPowerups : MonoBehaviour
     {
         if (!isDissolving && objectMaterial != null)
         {
-            StartCoroutine(gameObject.GetComponent<EggOnPath>().DissolveRoutine(powerTime, dissolveDuration));
+            StartCoroutine(gameObject.GetComponent<EggOnPath>().DissolveRoutine(powerTime, dissolveDuration, isDissolving));
         }
     }
 

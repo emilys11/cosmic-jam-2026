@@ -38,8 +38,6 @@ public class EggOnPath : MonoBehaviour
 
     // gameObject Materials.
     private Material objectMaterial;
-    private bool isDissolving = false;
-
 
     private void Awake()
     {
@@ -175,10 +173,10 @@ public class EggOnPath : MonoBehaviour
         transform.rotation = finalRotation;
     }
 
-    public IEnumerator DissolveRoutine(float disappearTime, float dissolveDuration)
+    public IEnumerator DissolveRoutine(float disappearTime, float dissolveDuration, bool isDissolving)
     {
         isDissolving = true;
-        
+
         float targetCutoff = -5;
         float startCutoff = objectMaterial.GetFloat("_CutoffHeight");
         float elapsed = 0f;
@@ -206,6 +204,7 @@ public class EggOnPath : MonoBehaviour
             yield return null;
         }
         objectMaterial.SetFloat("_CutoffHeight", targetCutoff);
+        isDissolving = false;
     }
     public void OnClockwise(InputAction.CallbackContext context)
     {
