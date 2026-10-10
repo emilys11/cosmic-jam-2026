@@ -8,10 +8,11 @@ using System.Collections.Generic;
 
 public class EggOnPath : MonoBehaviour
 {
+
     [Header("References")]
     [Tooltip("The SplineContainers the egg can switch between.")]
     public List<SplineContainer> targetSplines = new List<SplineContainer>();
-    public SplineContainer secretSpline;
+    public SplineContainer secretSpline; // Please make sure to add Material from DissolverShader/Material/
 
     [Header("Movement Settings")]
     [Range(0f, 1f)]
@@ -253,5 +254,40 @@ public class EggOnPath : MonoBehaviour
                 index = newIndex;
             }
         }
+    }
+
+    public void WormHole() 
+    {
+    if (targetSplines == null || targetSplines.Count == 0) return;
+    if (targetSplines.Count > 1)
+    {
+        int startIndex = index;
+        int safetyCounter = 0; // Prevents any accidental infinite hangs
+        
+        while (index == startIndex && safetyCounter < 100)
+        {
+            index = UnityEngine.Random.Range(0, targetSplines.Count);
+            safetyCounter++;
+        }
+    }
+    progress = UnityEngine.Random.Range(0f, 1f);
+    isTransitioning = false;
+    ApplyPositionAndRotation();
+    Debug.Log($"Wormhole activated! Teleported to Track {index} at Progress {progress:F2}");
+    }
+
+    public void SwitchToRandomSpline()
+    {
+        if (targetSplines == null || targetSplines.Count <= 1) return;
+
+        int newIndex = index;
+        int safetyCounter = 0;
+        while (newIndex == index && safetyCounter < 10)
+        {
+            newIndex = UnityEngine.Random.Range(0, targetSplines.Count);
+            safetyCounter++;
+        }
+
+        TriggerTransition(newIndex);
     }
 }
