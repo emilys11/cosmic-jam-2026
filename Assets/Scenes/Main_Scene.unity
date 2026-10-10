@@ -484,7 +484,7 @@ MonoBehaviour:
   countdownText: {fileID: 0}
   countdownDuration: 3
   pausePanel: {fileID: 1463501384}
-  resumeButton: {fileID: 0}
+  resumeButton: {fileID: 451808927}
   chickenWinScene: Chicken_Win
   eggWinScene: Egg_Win
 --- !u!1 &429145948
@@ -1805,6 +1805,7 @@ MonoBehaviour:
   secretSpline: {fileID: 0}
   progress: 0
   maxMoveSpeed: 0.5
+  switchCooldown: 0.5
   enableAcceleration: 0
   accelerationRate: 2
   decelerationRate: 4
@@ -4396,6 +4397,7 @@ MonoBehaviour:
   secretSpline: {fileID: 0}
   progress: 0
   maxMoveSpeed: 0.5
+  switchCooldown: 0.5
   enableAcceleration: 0
   accelerationRate: 2
   decelerationRate: 4
