@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.Splines;
 using Unity.Mathematics;
 using UnityEngine.InputSystem;
+using System.Collections;
 
 public class EggOnPath : MonoBehaviour
 {
@@ -34,6 +35,19 @@ public class EggOnPath : MonoBehaviour
 
     // Index to change Splines.
     private int index = 0;
+
+    // gameObject Materials.
+    private Material objectMaterial;
+
+    private void Awake()
+    {
+        Renderer renderer = GetComponent<Renderer>();
+        if (renderer != null)
+        {
+            objectMaterial = renderer.material;
+        }
+    }
+
 
     void Update()
     {
@@ -159,6 +173,39 @@ public class EggOnPath : MonoBehaviour
         transform.rotation = finalRotation;
     }
 
+    public IEnumerator DissolveRoutine(float disappearTime, float dissolveDuration, bool isDissolving)
+    {
+        isDissolving = true;
+
+        float targetCutoff = -5;
+        float startCutoff = objectMaterial.GetFloat("_CutoffHeight");
+        float elapsed = 0f;
+
+        while (elapsed < dissolveDuration)
+        {
+            elapsed += Time.deltaTime;
+            float newCutoff = Mathf.Lerp(startCutoff, targetCutoff, elapsed / dissolveDuration);
+            objectMaterial.SetFloat("_CutoffHeight", newCutoff);
+            yield return null;
+        }
+        objectMaterial.SetFloat("_CutoffHeight", targetCutoff);
+        
+        yield return new WaitForSeconds(disappearTime);
+
+        startCutoff = targetCutoff;
+        elapsed = 0f;
+        targetCutoff = 10;
+        
+        while (elapsed < dissolveDuration)
+        {
+            elapsed += Time.deltaTime;
+            float newCutoff = Mathf.Lerp(startCutoff, targetCutoff, elapsed / dissolveDuration);
+            objectMaterial.SetFloat("_CutoffHeight", newCutoff);
+            yield return null;
+        }
+        objectMaterial.SetFloat("_CutoffHeight", targetCutoff);
+        isDissolving = false;
+    }
     public void OnClockwise(InputAction.CallbackContext context)
     {
         isClockwise = true;
