@@ -13,6 +13,12 @@ public class PowerupInventory : MonoBehaviour
         EggReverseControls,
 
         // egg powerups
+        SpeedUpEgg,
+        WormHole,
+        SummonDecoy,
+        ExpandOrbital,
+        GoInvisible,
+
     }
 
     [SerializeField] private PowerupTypes currentPowerup = PowerupTypes.None; // default empty
