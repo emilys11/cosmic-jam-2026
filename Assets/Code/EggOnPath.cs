@@ -19,6 +19,11 @@ public class EggOnPath : MonoBehaviour
     public float progress = 0f;
     public float maxMoveSpeed = 0.5f;
 
+    [Header("Switch Cooldown")]
+    [Tooltip("Minimum time in seconds required between orbital switches.")]
+    public float switchCooldown = 0.5f;
+    private float lastSwitchTime = -999f;
+
     [Header("Acceleration & Deceleration")]
     public bool enableAcceleration = false;
     public float accelerationRate = 2f;
@@ -239,6 +244,7 @@ public class EggOnPath : MonoBehaviour
 
     void TriggerTransition(int newIndex)
     {
+        if (Time.time < lastSwitchTime + switchCooldown) return;
         // Trigger transition if index changed
         if (newIndex != index)
         {
