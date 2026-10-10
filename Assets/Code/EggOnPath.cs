@@ -3,12 +3,15 @@ using UnityEngine.Splines;
 using Unity.Mathematics;
 using UnityEngine.InputSystem;
 using System.Collections;
+using System.Linq;
+using System.Collections.Generic;
 
 public class EggOnPath : MonoBehaviour
 {
     [Header("References")]
     [Tooltip("The SplineContainers the egg can switch between.")]
-    public SplineContainer[] targetSplines;
+    public List<SplineContainer> targetSplines = new List<SplineContainer>();
+    public SplineContainer secretSpline;
 
     [Header("Movement Settings")]
     [Range(0f, 1f)]
@@ -36,22 +39,9 @@ public class EggOnPath : MonoBehaviour
     // Index to change Splines.
     private int index = 0;
 
-    // gameObject Materials.
-    private Material objectMaterial;
-
-    private void Awake()
-    {
-        Renderer renderer = GetComponent<Renderer>();
-        if (renderer != null)
-        {
-            objectMaterial = renderer.material;
-        }
-    }
-
-
     void Update()
     {
-        if (targetSplines == null || targetSplines.Length == 0 || Keyboard.current == null) return;
+        if (targetSplines == null || targetSplines.Count == 0 || Keyboard.current == null) return;
 
         HandleSplineSwitching();
         UpdateMovementAndProgress();
@@ -63,11 +53,11 @@ public class EggOnPath : MonoBehaviour
         int newIndex = index;
         if (Keyboard.current.wKey.wasPressedThisFrame)
         {
-            newIndex = (index + 1) % targetSplines.Length;
+            newIndex = (index + 1) % targetSplines.Count;
         }
         else if (Keyboard.current.sKey.wasPressedThisFrame)
         {
-            newIndex = (index - 1 + targetSplines.Length) % targetSplines.Length;
+            newIndex = (index - 1 + targetSplines.Count) % targetSplines.Count;
         }
 
         // Trigger transition if index changed
@@ -173,39 +163,73 @@ public class EggOnPath : MonoBehaviour
         transform.rotation = finalRotation;
     }
 
-    public IEnumerator DissolveRoutine(float disappearTime, float dissolveDuration, bool isDissolving)
+    public IEnumerator DissolveCycleRoutine(GameObject targetObject, float disappearTime, float dissolveDuration, bool toDissolve)
     {
-        isDissolving = true;
+        if (targetObject == null) yield break;
 
-        float targetCutoff = -5;
-        float startCutoff = objectMaterial.GetFloat("_CutoffHeight");
+        Renderer targetRenderer = targetObject.GetComponent<Renderer>();
+        if (targetRenderer == null) yield break;
+        
+        Material targetMaterial = targetRenderer.material;
+        
+        float startCutoff;
+        float intermediateCutoff;
+
+        // Define the first transition based on bool flag
+        if (toDissolve)
+        {
+            // Start visible (10), go to hidden (-5)
+            startCutoff = 10f;
+            intermediateCutoff = -5f;
+        }
+        else
+        {
+            // Start hidden (-5), go to visible (10)
+            startCutoff = -5f;
+            intermediateCutoff = 10f;
+        }
+
+        // Apply starting state immediately
+        targetMaterial.SetFloat("_CutoffHeight", startCutoff);
         float elapsed = 0f;
 
         while (elapsed < dissolveDuration)
         {
             elapsed += Time.deltaTime;
-            float newCutoff = Mathf.Lerp(startCutoff, targetCutoff, elapsed / dissolveDuration);
-            objectMaterial.SetFloat("_CutoffHeight", newCutoff);
+            float newCutoff = Mathf.Lerp(startCutoff, intermediateCutoff, elapsed / dissolveDuration);
+            targetMaterial.SetFloat("_CutoffHeight", newCutoff);
             yield return null;
         }
-        objectMaterial.SetFloat("_CutoffHeight", targetCutoff);
+        targetMaterial.SetFloat("_CutoffHeight", intermediateCutoff);
         
+        // Pause at the intermediate state
         yield return new WaitForSeconds(disappearTime);
 
-        startCutoff = targetCutoff;
+        // The new start is where we just left off, and the final target is the opposite extreme
+        float finalTarget = startCutoff; 
         elapsed = 0f;
-        targetCutoff = 10;
-        
+
         while (elapsed < dissolveDuration)
         {
             elapsed += Time.deltaTime;
-            float newCutoff = Mathf.Lerp(startCutoff, targetCutoff, elapsed / dissolveDuration);
-            objectMaterial.SetFloat("_CutoffHeight", newCutoff);
+            float newCutoff = Mathf.Lerp(intermediateCutoff, finalTarget, elapsed / dissolveDuration);
+            targetMaterial.SetFloat("_CutoffHeight", newCutoff);
             yield return null;
         }
-        objectMaterial.SetFloat("_CutoffHeight", targetCutoff);
-        isDissolving = false;
+        targetMaterial.SetFloat("_CutoffHeight", finalTarget);
     }
+
+    public void SpeedModifier(float speedMultiplier)
+    {
+        maxMoveSpeed *= speedMultiplier;
+    }
+
+    public void SetActiveSpline()
+    {
+        secretSpline.gameObject.SetActive(true);
+        targetSplines.Add(secretSpline);
+    }
+
     public void OnClockwise(InputAction.CallbackContext context)
     {
         isClockwise = true;

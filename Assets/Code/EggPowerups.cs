@@ -3,24 +3,49 @@ using UnityEngine;
 
 public class EggPowerups : MonoBehaviour
 {
+    [Header("Reference")]
+    [SerializeField] EggOnPath eggOnPath;
+
     [Header("Power Parameters")]
-     [SerializeField] public float powerTime = 1f;
+    [SerializeField] public float powerupTimer = 1f;
+
+    [Header("Speed Parameters")]
+    [SerializeField] public float speedMultiplier = 2f;
 
     [Header("Disappearance Parameters")]
-    [SerializeField] private float targetCutoff = -5f;
     [SerializeField] private float dissolveDuration = 1.5f;
 
-    private Material objectMaterial;
-    private bool isDissolving;
-
-    // This adds a button to the component's context menu (three dots icon in the Inspector)
-    [ContextMenu("Trigger Dissolve")]
-    public void DissolveEgg()
+    [ContextMenu("Enable Secret Spline")]
+    private void UndissolveOrbital()
     {
-        if (!isDissolving && objectMaterial != null)
+        if (eggOnPath != null && eggOnPath.secretSpline != null)
         {
-            StartCoroutine(gameObject.GetComponent<EggOnPath>().DissolveRoutine(powerTime, dissolveDuration, isDissolving));
+            eggOnPath.SetActiveSpline();
+            StartCoroutine(eggOnPath.DissolveCycleRoutine(eggOnPath.secretSpline.gameObject, powerupTimer * 999f, dissolveDuration, false));
         }
     }
 
+    IEnumerator MultiplySpeedRoutine()
+    {
+        if (eggOnPath == null) yield break;
+
+        eggOnPath.maxMoveSpeed *= speedMultiplier;
+        yield return new WaitForSeconds(powerupTimer);
+        eggOnPath.maxMoveSpeed /= speedMultiplier; 
+    }
+
+    [ContextMenu("Trigger Dissolve")]
+    private void DissolveEgg()
+    {
+        if (eggOnPath != null)
+        {
+            StartCoroutine(eggOnPath.DissolveCycleRoutine(eggOnPath.gameObject, powerupTimer, dissolveDuration, true));
+        }
+    }
+
+    [ContextMenu("Multiply Speed")]
+    public void TestMultiplySpeed()
+    {
+        StartCoroutine(MultiplySpeedRoutine());
+    }
 }
