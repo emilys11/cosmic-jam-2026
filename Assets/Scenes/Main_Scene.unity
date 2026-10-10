@@ -3929,7 +3929,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b897ea8dafacc9419599babbd2056a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CountdownTimer
-  duration: 2
+  duration: 60
   startAutomatically: 1
   timerSlider: {fileID: 1784194776}
 --- !u!1 &1922303933
