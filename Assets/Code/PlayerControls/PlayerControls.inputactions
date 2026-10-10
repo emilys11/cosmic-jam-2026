@@ -182,7 +182,7 @@
                 {
                     "name": "",
                     "id": "62c70319-1fcb-4d85-9462-1724605dd3f9",
-                    "path": "<Gamepad>/buttonSouth",
+                    "path": "<Gamepad>/buttonWest",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
@@ -295,19 +295,8 @@
                 },
                 {
                     "name": "",
-                    "id": "c432bd0b-d6ee-41e0-a033-3397a8dc0778",
-                    "path": "<Gamepad>/rightStick/left",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Gamepad",
-                    "action": "ClockwiseSwitch",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "f846e49a-5544-4e82-8bae-162cef948f0c",
-                    "path": "<Gamepad>/rightStick/right",
+                    "id": "2907322c-1e3c-429f-ad21-af89ed8e8b4f",
+                    "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
@@ -328,22 +317,11 @@
                 },
                 {
                     "name": "",
-                    "id": "7f7bae0e-40cf-42ca-939d-ed2d7b607c02",
-                    "path": "<Gamepad>/rightStick/left",
+                    "id": "ce6222eb-8231-4bb9-b5ce-9052b339ace3",
+                    "path": "<Gamepad>/buttonWest",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
-                    "action": "UseUpgrade",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "a79d47d0-0f6b-43c0-b777-90a617183cca",
-                    "path": "<Gamepad>/rightStick/left",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
                     "action": "UseUpgrade",
                     "isComposite": false,
                     "isPartOfComposite": false
