@@ -16,6 +16,9 @@ public class ChickenShooting : MonoBehaviour
     private int selectedRingIndex = 0; // default innermost ring
     private float selectedRingRadius;
 
+    [SerializeField] Material normalRingMaterial;
+    [SerializeField] Material selectedRingMaterial;
+
     // POWERUPS
     private float currentSeedCooldown;
     [SerializeField] bool multishotActive = false;
@@ -114,6 +117,24 @@ public class ChickenShooting : MonoBehaviour
 
     void UpdateSelectedRing()
     {
+        // set material for every ring
+        for (int i = 0; i < rings.Length; i++)
+        {
+            MeshRenderer renderer = rings[i].GetComponent<MeshRenderer>();
+
+            if (renderer != null)
+            {
+                if (i == selectedRingIndex)
+                {
+                    renderer.material = selectedRingMaterial;
+                }
+                else
+                {
+                    renderer.material = normalRingMaterial;
+                }
+            }
+        }
+
         SplineContainer selectedRing = rings[selectedRingIndex];
 
         float ringCircumference = selectedRing.CalculateLength ();

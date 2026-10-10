@@ -1665,6 +1665,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BeadOnPath
   targetSplines: []
+  secretSpline: {fileID: 0}
   progress: 0
   maxMoveSpeed: 0.5
   enableAcceleration: 0
@@ -1850,6 +1851,8 @@ MonoBehaviour:
   seedCooldown: 5
   lineRenderer: {fileID: 0}
   rings: []
+  normalRingMaterial: {fileID: 0}
+  selectedRingMaterial: {fileID: 0}
   multishotActive: 0
   multishotAngle: 15
 --- !u!65 &768467835
@@ -2601,6 +2604,8 @@ MonoBehaviour:
   rings:
   - {fileID: 788687276}
   - {fileID: 499470545}
+  normalRingMaterial: {fileID: 2100000, guid: 9c3e25c7363b6474285be69d5abf629f, type: 2}
+  selectedRingMaterial: {fileID: 2100000, guid: b12053ea56302ad41a23a9555af8be28, type: 2}
   multishotActive: 0
   multishotAngle: 15
 --- !u!120 &1016290097
@@ -3626,6 +3631,7 @@ MonoBehaviour:
   targetSplines:
   - {fileID: 788687276}
   - {fileID: 499470545}
+  secretSpline: {fileID: 0}
   progress: 0
   maxMoveSpeed: 0.5
   enableAcceleration: 0
@@ -3923,7 +3929,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b897ea8dafacc9419599babbd2056a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CountdownTimer
-  duration: 60
+  duration: 2
   startAutomatically: 1
   timerSlider: {fileID: 1784194776}
 --- !u!1 &1922303933

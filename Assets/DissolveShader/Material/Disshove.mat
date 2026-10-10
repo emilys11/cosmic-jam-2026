@@ -54,7 +54,7 @@ Material:
     - Vector1_C8EB9E54: 1
     - Vector1_CFBBCBA: 10
     - Vector1_DE929E18: 50
-    - _CutoffHeight: 10
+    - _CutoffHeight: -5
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
