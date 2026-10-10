@@ -5,6 +5,7 @@ public class EggPowerups : MonoBehaviour
 {
     [Header("Reference")]
     [SerializeField] EggOnPath eggOnPath; // MUST ASSIGN.
+    [SerializeField] PowerupInventory inventory; // MUST ASSIGN THIS TOO.
 
     [Header("Power Parameters")]
     [SerializeField] public float powerupTimer = 1f;
@@ -35,7 +36,7 @@ public class EggPowerups : MonoBehaviour
     }
 
     [ContextMenu("Trigger Dissolve")]
-    private void DissolveEgg()
+    private void TriggerDissolve()
     {
         if (eggOnPath != null)
         {
@@ -44,9 +45,22 @@ public class EggPowerups : MonoBehaviour
     }
 
     [ContextMenu("Multiply Speed")]
-    public void TestMultiplySpeed()
+    public void MultiplySpeed()
     {
         StartCoroutine(MultiplySpeedRoutine());
+    }
+
+    [ContextMenu("Trigger Wormhole")]
+    public void TriggerWormHole()
+    {
+        StartCoroutine(CallWormhole());
+    }
+
+    private IEnumerator CallWormhole()
+    {
+        StartCoroutine(eggOnPath.DissolveCycleRoutine(eggOnPath.gameObject, 0.1f, dissolveDuration, true));
+        yield return new WaitForSeconds(dissolveDuration);
+        eggOnPath.WormHole();
     }
 
     [ContextMenu("Spawn Decoy")]
@@ -97,6 +111,33 @@ public class EggPowerups : MonoBehaviour
             }
             yield return new WaitForSeconds(powerupTimer + dissolveDuration);
             Destroy(decoy);
+        }
+    }
+    public void UsePowerups()
+    {
+        PowerupInventory.PowerupTypes type = inventory.UseInventoryPowerup();
+
+        switch(type)
+        {
+            case PowerupInventory.PowerupTypes.SpeedUpEgg:
+                MultiplySpeed();
+                break;
+
+            case PowerupInventory.PowerupTypes.WormHole:
+                TriggerWormHole();
+                break;
+
+            case PowerupInventory.PowerupTypes.SummonDecoy:
+                SpawnDecoy();
+                break;
+
+            case PowerupInventory.PowerupTypes.ExpandOrbital:
+                UndissolveOrbital();
+                break;
+            
+            case PowerupInventory.PowerupTypes.GoInvisible:
+                TriggerDissolve();
+                break;
         }
     }
 }

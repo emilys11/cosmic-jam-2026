@@ -45,6 +45,16 @@
                     "interactions": "",
                     "initialStateCheck": false,
                     "priority": 0
+                },
+                {
+                    "name": "UseUpgrade",
+                    "type": "Button",
+                    "id": "e1846bd0-7bd7-49f2-955e-8ba78150ba23",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false,
+                    "priority": 0
                 }
             ],
             "bindings": [
@@ -84,7 +94,7 @@
                 {
                     "name": "",
                     "id": "f0c27b20-356c-4dca-be5f-2d23dc5ae839",
-                    "path": "<Gamepad>/leftStick/x",
+                    "path": "<Gamepad>/rightStick/x",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
@@ -106,7 +116,7 @@
                 {
                     "name": "",
                     "id": "73b0a9c9-aa01-4e34-9081-168e1f9ce6ae",
-                    "path": "<Gamepad>/dpad/up",
+                    "path": "<Gamepad>/leftStick/up",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
@@ -128,7 +138,7 @@
                 {
                     "name": "",
                     "id": "0d14b7ea-c18c-43e0-9857-11516cfb22cd",
-                    "path": "<Gamepad>/dpad/down",
+                    "path": "<Gamepad>/leftStick/down",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
@@ -160,12 +170,23 @@
                 },
                 {
                     "name": "",
-                    "id": "6e9e6fca-14c6-49f5-a1ef-7bf5b8ec36ca",
+                    "id": "6b099a18-8f72-491e-940d-5614a9b0601a",
                     "path": "<Keyboard>/enter",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard",
-                    "action": "Shoot",
+                    "action": "UseUpgrade",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "62c70319-1fcb-4d85-9462-1724605dd3f9",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Gamepad",
+                    "action": "UseUpgrade",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -204,6 +225,16 @@
                     "interactions": "",
                     "initialStateCheck": false,
                     "priority": 0
+                },
+                {
+                    "name": "UseUpgrade",
+                    "type": "Button",
+                    "id": "50f90d79-888e-4a06-95e7-577f34622878",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false,
+                    "priority": 0
                 }
             ],
             "bindings": [
@@ -221,7 +252,7 @@
                 {
                     "name": "",
                     "id": "07bd3e24-0f50-47c6-9e1c-83e0cc021374",
-                    "path": "<Gamepad>/dpad/up",
+                    "path": "<Gamepad>/leftStick/up",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
@@ -243,7 +274,7 @@
                 {
                     "name": "",
                     "id": "a940f95d-c68c-4344-a4b0-7b3401b72240",
-                    "path": "<Gamepad>/dpad/down",
+                    "path": "<Gamepad>/leftStick/down",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
@@ -264,8 +295,8 @@
                 },
                 {
                     "name": "",
-                    "id": "e64c1171-dfe6-4171-a493-5c404a367a04",
-                    "path": "<Gamepad>/rightStick/down",
+                    "id": "2907322c-1e3c-429f-ad21-af89ed8e8b4f",
+                    "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
@@ -275,34 +306,23 @@
                 },
                 {
                     "name": "",
-                    "id": "c432bd0b-d6ee-41e0-a033-3397a8dc0778",
-                    "path": "<Gamepad>/rightStick/left",
+                    "id": "b8645101-f978-4ba7-b66d-92b8bd6817a5",
+                    "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Gamepad",
-                    "action": "ClockwiseSwitch",
+                    "groups": ";Keyboard",
+                    "action": "UseUpgrade",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "5f8dcbef-2603-4b58-8ce7-d6abef411117",
-                    "path": "<Gamepad>/rightStick/right",
+                    "id": "ce6222eb-8231-4bb9-b5ce-9052b339ace3",
+                    "path": "<Gamepad>/buttonWest",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
-                    "action": "ClockwiseSwitch",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "f90ec65a-790d-4ce5-8715-77699877b613",
-                    "path": "<Gamepad>/rightStick/up",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Gamepad",
-                    "action": "ClockwiseSwitch",
+                    "action": "UseUpgrade",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
