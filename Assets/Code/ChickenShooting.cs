@@ -29,7 +29,7 @@ public class ChickenShooting : MonoBehaviour
             cooldownTimer -= Time.deltaTime;
         }
         
-        // PLACEHOLDER FOR INPUT
+        // PLACEHOLDER FOR INPUT (lowk will keep this for people who prefer mouse)
         if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
         {
             //Debug.Log("left mb pressed");
@@ -118,6 +118,15 @@ public class ChickenShooting : MonoBehaviour
         {
             selectedRingIndex++;
             UpdateSelectedRing();
+        }
+    }
+
+    public void OnFire(InputAction.CallbackContext context)
+    {
+        Debug.Log("Fire input received: " + context.phase);
+        if (context.performed)
+        {
+            Fire();
         }
     }
 }

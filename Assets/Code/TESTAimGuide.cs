@@ -8,6 +8,11 @@ public class TESTAimGuide : MonoBehaviour
     private Camera mainCamera;
     private Vector3 aimDirection;
 
+    private float aimInput;
+    [SerializeField] private float aimSpeed = 90f;
+    [SerializeField] private float aimDistance = 10f;
+    
+
     void Awake()
     {
         lineRenderer = GetComponent<LineRenderer>();
@@ -15,25 +20,55 @@ public class TESTAimGuide : MonoBehaviour
         lineRenderer.useWorldSpace = true;
 
         mainCamera = Camera.main;
+
+        aimDirection = transform.forward;
+        aimDirection.y = 0f;
+        aimDirection.Normalize();
     }
 
     void Update()
     {
-        if (mainCamera == null || Mouse.current == null) return;
-        
-        Ray ray = mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
+        if (mainCamera == null) return;
 
-        Plane groundPlane = new Plane(Vector3.up, transform.position);
-
-        if (groundPlane.Raycast(ray, out float distance))
+        //keyboard
+        if (aimInput != 0f)
         {
-            //Vector3 mouseWorldPosition = ray.GetPoint(distance);
-            Vector3 target = ray.GetPoint(distance);
-            target.y = transform.position.y;
+            aimDirection = Quaternion.AngleAxis(aimInput * aimSpeed * Time.deltaTime,Vector3.up) * aimDirection;
 
-            lineRenderer.SetPosition(0, transform.position);
-            lineRenderer.SetPosition(1, target);
+            aimDirection.y = 0f;
+
+            if (aimDirection.sqrMagnitude > 0.001f) aimDirection.Normalize();
         }
+
+        else if(Mouse.current != null)
+        {
+            Ray ray = mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
+
+            Plane groundPlane = new Plane(Vector3.up, transform.position);
+
+            if (groundPlane.Raycast(ray, out float distance))
+            {
+                //Vector3 mouseWorldPosition = ray.GetPoint(distance);
+                Vector3 target = ray.GetPoint(distance);
+                target.y = transform.position.y;
+
+                Vector3 direction = target - transform.position;
+
+                if (direction.sqrMagnitude > 0.001f)
+                {
+                    aimDirection = direction.normalized;
+                }
+                
+            }
+        }
+
+        Vector3 start = transform.position;
+        Vector3 end = start + aimDirection * aimDistance;
+
+        lineRenderer.SetPosition(0, start);
+        lineRenderer.SetPosition(1, end);
+        
+       
     }
 
     public Vector3 TESTAimDirection()
@@ -44,6 +79,11 @@ public class TESTAimGuide : MonoBehaviour
         //Vector3 end = lineRenderer.GetPosition(1);
 
         //return (end - start).normalized;
+    }
+
+    public void OnAim(InputAction.CallbackContext context)
+    {
+        if(context.performed) aimInput = context.ReadValue<float>();
     }
 
 }
