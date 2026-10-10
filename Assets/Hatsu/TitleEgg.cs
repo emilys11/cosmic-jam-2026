@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class TitleEgg : MonoBehaviour
 {
-    void OnCollisionEnter(Collision collision)
+    void FixedUpdate()
     {
-        if(collision.gameObject.CompareTag("DestroyBox")) Destroy(gameObject);
+        if(transform.position.y > 7.8f) Destroy(gameObject);
     }
 }
