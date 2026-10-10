@@ -51,14 +51,13 @@ public class EggOnPath : MonoBehaviour
 
     void Update()
     {
-        if (targetSplines == null || targetSplines.Length == 0 || Keyboard.current == null) return;
+        if (targetSplines == null || targetSplines.Length == 0) return;
 
-        HandleSplineSwitching();
         UpdateMovementAndProgress();
         ApplyPositionAndRotation();
     }
 
-    private void HandleSplineSwitching()
+    /*private void HandleSplineSwitching()
     {
         int newIndex = index;
         if (Keyboard.current.wKey.wasPressedThisFrame)
@@ -85,7 +84,7 @@ public class EggOnPath : MonoBehaviour
                 index = newIndex;
             }
         }
-    }
+    }*/
 
     private void UpdateMovementAndProgress()
     {
@@ -206,13 +205,54 @@ public class EggOnPath : MonoBehaviour
         objectMaterial.SetFloat("_CutoffHeight", targetCutoff);
         isDissolving = false;
     }
-    public void OnClockwise(InputAction.CallbackContext context)
+    public void OnClockwiseSwitch(InputAction.CallbackContext context)
     {
-        isClockwise = true;
+        if(context.performed)
+        {
+            UnityEngine.Debug.Log("Clockwise switch");
+            isClockwise = !isClockwise;
+        }
+        
     }
 
-    public void OnCounterClockwise(InputAction.CallbackContext context)
+
+    public void OnRingUp(InputAction.CallbackContext context)
     {
-        isClockwise = false;
+        if(context.performed)
+        {
+            int newIndex = index;
+            newIndex = (index + 1) % targetSplines.Length;
+            TriggerTransition(newIndex);
+        }
+    }
+
+    public void OnRingDown(InputAction.CallbackContext context)
+    {
+        if(context.performed)
+        {
+            int newIndex = index;
+            newIndex = (index - 1 + targetSplines.Length) % targetSplines.Length;
+            TriggerTransition(newIndex);
+        }
+        
+    }
+
+    void TriggerTransition(int newIndex)
+    {
+        // Trigger transition if index changed
+        if (newIndex != index)
+        {
+            if (enableSwitchLerp && switchDuration > 0f)
+            {
+                oldIndex = index;
+                index = newIndex;
+                isTransitioning = true;
+                transitionTimer = 0f;
+            }
+            else
+            {
+                index = newIndex;
+            }
+        }
     }
 }
