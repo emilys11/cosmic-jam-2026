@@ -1,5 +1,4 @@
 
-using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
@@ -16,20 +15,16 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
-    [Header("Game Settings")]
-    [SerializeField] private float roundDuration = 60f;
+    [Header("References")]
+    [SerializeField] private CountdownTimer countdownTimer;
+    [SerializeField] private EggHealth eggHealth;
 
-    [Header("Scene Names")]
-    [SerializeField] private string chickenWinScene = "Chicken_Win";
-    [SerializeField] private string eggWinScene = "Egg_Win";
+    [Header("Scenes")]
+    [SerializeField] private string chickenWinScene = "ChickenWin";
+    [SerializeField] private string eggWinScene = "EggWin";
 
     public GameState CurrentState { get; private set; }
-    public float TimeRemaining { get; private set; }
-
     public bool IsPlaying => CurrentState == GameState.Playing;
-
-    public event Action<float> OnTimeChanged;
-    public event Action<GameState> OnStateChanged;
 
     private void Awake()
     {
@@ -40,15 +35,29 @@ public class GameManager : MonoBehaviour
         }
 
         Instance = this;
-        Time.timeScale = 1f;
         CurrentState = GameState.Playing;
-        TimeRemaining = roundDuration;
+        Time.timeScale = 1f;
     }
 
-    private void Start()
+    private void OnEnable()
     {
-        OnTimeChanged?.Invoke(TimeRemaining);
-        OnStateChanged?.Invoke(CurrentState);
+        // Listen for the timer expiring.
+        if (countdownTimer != null)
+            countdownTimer.OnTimerFinished += EggWins;
+
+        // Listen for the egg being defeated.
+        if (eggHealth != null)
+            eggHealth.OnEggDied += ChickenWins;
+    }
+
+    private void OnDisable()
+    {
+        // Unsubscribe to prevent stale event references.
+        if (countdownTimer != null)
+            countdownTimer.OnTimerFinished -= EggWins;
+
+        if (eggHealth != null)
+            eggHealth.OnEggDied -= ChickenWins;
     }
 
     private void Update()
@@ -58,17 +67,6 @@ public class GameManager : MonoBehaviour
         {
             TogglePause();
         }
-
-        if (!IsPlaying)
-            return;
-
-        TimeRemaining = Mathf.Max(
-            0f, TimeRemaining - Time.deltaTime);
-
-        OnTimeChanged?.Invoke(TimeRemaining);
-
-        if (TimeRemaining <= 0f)
-            EggWins();
     }
 
     public void ChickenWins()
@@ -76,7 +74,8 @@ public class GameManager : MonoBehaviour
         if (!IsPlaying)
             return;
 
-        FinishGame(GameState.ChickenWon, chickenWinScene);
+        CurrentState = GameState.ChickenWon;
+        FinishGame(chickenWinScene);
     }
 
     public void EggWins()
@@ -84,14 +83,13 @@ public class GameManager : MonoBehaviour
         if (!IsPlaying)
             return;
 
-        FinishGame(GameState.EggWon, eggWinScene);
+        CurrentState = GameState.EggWon;
+        FinishGame(eggWinScene);
     }
 
-    private void FinishGame(GameState result, string sceneName)
+    private void FinishGame(string sceneName)
     {
-        CurrentState = result;
-        OnStateChanged?.Invoke(result);
-
+        countdownTimer.PauseTimer();
         Time.timeScale = 1f;
         SceneManager.LoadScene(sceneName);
     }
@@ -111,7 +109,7 @@ public class GameManager : MonoBehaviour
 
         CurrentState = GameState.Paused;
         Time.timeScale = 0f;
-        OnStateChanged?.Invoke(CurrentState);
+        countdownTimer.PauseTimer();
     }
 
     public void ResumeGame()
@@ -121,7 +119,7 @@ public class GameManager : MonoBehaviour
 
         CurrentState = GameState.Playing;
         Time.timeScale = 1f;
-        OnStateChanged?.Invoke(CurrentState);
+        countdownTimer.StartTimer();
     }
 
     public void RestartGame()

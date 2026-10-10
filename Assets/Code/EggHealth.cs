@@ -1,5 +1,6 @@
 
 using UnityEngine;
+using System;
 
 public class EggHealth : MonoBehaviour
 {
@@ -7,6 +8,8 @@ public class EggHealth : MonoBehaviour
 
     private int currentHealth;
     private bool defeated;
+
+    public event Action OnEggDied;
 
     private void Awake()
     {
@@ -35,7 +38,7 @@ public class EggHealth : MonoBehaviour
         if (currentHealth <= 0)
         {
             defeated = true;
-            GameManager.Instance.ChickenWins();
+            OnEggDied?.Invoke();
         }
     }
 }
