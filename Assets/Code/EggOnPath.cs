@@ -205,7 +205,6 @@ public class EggOnPath : MonoBehaviour
         objectMaterial.SetFloat("_CutoffHeight", targetCutoff);
         isDissolving = false;
     }
-    public void OnClockwise(InputAction.CallbackContext context)
     public void OnClockwiseSwitch(InputAction.CallbackContext context)
     {
         if(context.performed)
