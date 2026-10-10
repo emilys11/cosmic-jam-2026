@@ -8,10 +8,11 @@ using System.Collections.Generic;
 
 public class EggOnPath : MonoBehaviour
 {
+
     [Header("References")]
     [Tooltip("The SplineContainers the egg can switch between.")]
     public List<SplineContainer> targetSplines = new List<SplineContainer>();
-    public SplineContainer secretSpline;
+    public SplineContainer secretSpline; // Please make sure to add Material from DissolverShader/Material/
 
     [Header("Movement Settings")]
     [Range(0f, 1f)]
@@ -190,6 +191,33 @@ public class EggOnPath : MonoBehaviour
         targetMaterial.SetFloat("_CutoffHeight", finalTarget);
     }
 
+    public IEnumerator DissolveOneWayRoutine(GameObject targetObject, float duration, bool toDissolve)
+    {
+        if (targetObject == null) yield break;
+
+        Renderer targetRenderer = targetObject.GetComponent<Renderer>();
+        if (targetRenderer == null) yield break;
+        
+        Material targetMaterial = targetRenderer.material;
+        
+        // toDissolve = true means go from visible (10) to hidden (-5)
+        // toDissolve = false means go from hidden (-5) to visible (10)
+        float startCutoff = toDissolve ? 10f : -5f;
+        float targetCutoff = toDissolve ? -5f : 10f;
+
+        targetMaterial.SetFloat("_CutoffHeight", startCutoff);
+        float elapsed = 0f;
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            float newCutoff = Mathf.Lerp(startCutoff, targetCutoff, elapsed / duration);
+            targetMaterial.SetFloat("_CutoffHeight", newCutoff);
+            yield return null;
+        }
+        targetMaterial.SetFloat("_CutoffHeight", targetCutoff);
+    }
+
     public void SpeedModifier(float speedMultiplier)
     {
         maxMoveSpeed *= speedMultiplier;
@@ -253,5 +281,19 @@ public class EggOnPath : MonoBehaviour
                 index = newIndex;
             }
         }
+    }
+    public void SwitchToRandomSpline()
+    {
+        if (targetSplines == null || targetSplines.Count <= 1) return;
+
+        int newIndex = index;
+        int safetyCounter = 0;
+        while (newIndex == index && safetyCounter < 10)
+        {
+            newIndex = UnityEngine.Random.Range(0, targetSplines.Count);
+            safetyCounter++;
+        }
+
+        TriggerTransition(newIndex);
     }
 }
