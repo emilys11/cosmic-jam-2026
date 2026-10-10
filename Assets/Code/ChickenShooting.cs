@@ -8,6 +8,7 @@ public class ChickenShooting : MonoBehaviour
     private float cooldownTimer = 0f;
 
     // select orbital ring -> shoot seed -> destroy when chicken seed hits the ring collider
+    [SerializeField] LineRenderer lineRenderer;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     //void Start()
@@ -15,7 +16,6 @@ public class ChickenShooting : MonoBehaviour
 
     //}
 
-    // Update is called once per frame
     void Update()
     {
         if (cooldownTimer > 0f)
@@ -45,9 +45,28 @@ public class ChickenShooting : MonoBehaviour
             return;
         }
 
-        GameObject activeSeed = Instantiate(seedsPrefab, transform.position, transform.rotation);
+        // get line direction
+        Vector3 start = lineRenderer.GetPosition(0);
+        Vector3 end = lineRenderer.GetPosition(1);
+        Vector3 shootDirection = (end - start).normalized;
+
+        GameObject activeSeed = Instantiate(seedsPrefab, transform.position, Quaternion.identity);
+        
+        // IGNORE COLLISIONS BETWEEN SEED AND CHICKEN
+        Collider[] chickenColliders = GetComponentsInChildren<Collider>();
+        Collider[] seedColliders = activeSeed.GetComponentsInChildren<Collider>();
+
+        foreach (Collider chickenCollider in chickenColliders)
+        {
+            foreach (Collider seedCollider in seedColliders)
+            {
+                Physics.IgnoreCollision(chickenCollider, seedCollider);
+            }
+        }
+
+        // shoot seed
         Seed seed = activeSeed.GetComponent<Seed>();
-        seed.LaunchSeed(Vector3.forward);
+        seed.LaunchSeed(shootDirection);
 
         cooldownTimer = seedCooldown;
 
