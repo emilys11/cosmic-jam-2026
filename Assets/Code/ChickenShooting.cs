@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 public class ChickenShooting : MonoBehaviour
 {
     public GameObject seedsPrefab;
-    [SerializeField] float seedCooldown = 5f;
+    [SerializeField] float seedCooldown = 0.5f;
     private float cooldownTimer = 0f;
 
     // select orbital ring -> shoot seed -> destroy when chicken seed hits the ring collider
@@ -22,14 +22,21 @@ public class ChickenShooting : MonoBehaviour
         {
             cooldownTimer -= Time.deltaTime;
         }
-    }
-    public void onFire(InputValue value)
-    {
-        if (value.isPressed)
+        // Shoot when Space is pressed
+        if (Keyboard.current.spaceKey.wasPressedThisFrame)
         {
+            Debug.Log("space pressed");
             Fire();
         }
     }
+    //public void onFire(InputValue value)
+    //{
+    //    Debug.Log("OnFire called");
+    //    if (value.isPressed)
+    //    {
+    //        Fire();
+    //    }
+    //}
 
     void Fire()
     {
@@ -39,6 +46,8 @@ public class ChickenShooting : MonoBehaviour
         }
 
         GameObject activeSeed = Instantiate(seedsPrefab, transform.position, transform.rotation);
+        Seed seed = activeSeed.GetComponent<Seed>();
+        seed.LaunchSeed(Vector3.forward);
 
         cooldownTimer = seedCooldown;
 
