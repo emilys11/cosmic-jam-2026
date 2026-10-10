@@ -20,8 +20,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private EggHealth eggHealth;
 
     [Header("Scenes")]
-    [SerializeField] private string chickenWinScene = "ChickenWin";
-    [SerializeField] private string eggWinScene = "EggWin";
+    [SerializeField] private string chickenWinScene = "Chicken_Win";
+    [SerializeField] private string eggWinScene = "Egg_Win";
 
     public GameState CurrentState { get; private set; }
     public bool IsPlaying => CurrentState == GameState.Playing;

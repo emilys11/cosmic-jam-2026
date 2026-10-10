@@ -322,7 +322,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.25}
   m_AnchorMax: {x: 1, y: 0.75}
-  m_AnchoredPosition: {x: -4.9999695, y: 0}
+  m_AnchoredPosition: {x: -5.000244, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &191304066
@@ -435,6 +435,54 @@ MonoBehaviour:
       BarrelClipping: 0.25
       Anamorphism: 0
   BlendHint: 0
+--- !u!1 &417395893
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 417395894}
+  - component: {fileID: 417395895}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &417395894
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 417395893}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 593.0745, y: 794.5609, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &417395895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 417395893}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de6cfc0ae50cf0846883ba947af4da89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameManager
+  countdownTimer: {fileID: 1784194777}
+  eggHealth: {fileID: 1717852057}
+  chickenWinScene: Chicken_Win
+  eggWinScene: Egg_Win
 --- !u!1 &429145948
 GameObject:
   m_ObjectHideFlags: 0
@@ -1617,6 +1665,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BeadOnPath
   targetSplines: []
+  secretSpline: {fileID: 0}
   progress: 0
   maxMoveSpeed: 0.5
   enableAcceleration: 0
@@ -1675,6 +1724,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09265a46178a2354ca8fa1393a4e3011, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AimGuide
+  targetSpline: {fileID: 0}
 --- !u!120 &768467833
 LineRenderer:
   serializedVersion: 3
@@ -1801,6 +1851,8 @@ MonoBehaviour:
   seedCooldown: 5
   lineRenderer: {fileID: 0}
   rings: []
+  normalRingMaterial: {fileID: 0}
+  selectedRingMaterial: {fileID: 0}
   multishotActive: 0
   multishotAngle: 15
 --- !u!65 &768467835
@@ -2552,6 +2604,8 @@ MonoBehaviour:
   rings:
   - {fileID: 788687276}
   - {fileID: 499470545}
+  normalRingMaterial: {fileID: 2100000, guid: 9c3e25c7363b6474285be69d5abf629f, type: 2}
+  selectedRingMaterial: {fileID: 2100000, guid: b12053ea56302ad41a23a9555af8be28, type: 2}
   multishotActive: 0
   multishotAngle: 15
 --- !u!120 &1016290097
@@ -3539,8 +3593,9 @@ GameObject:
   - component: {fileID: 1717852053}
   - component: {fileID: 1717852052}
   - component: {fileID: 1717852056}
+  - component: {fileID: 1717852057}
   m_Layer: 0
-  m_Name: Sphere
+  m_Name: Egg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3576,6 +3631,7 @@ MonoBehaviour:
   targetSplines:
   - {fileID: 788687276}
   - {fileID: 499470545}
+  secretSpline: {fileID: 0}
   progress: 0
   maxMoveSpeed: 0.5
   enableAcceleration: 0
@@ -3600,7 +3656,7 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -3757,6 +3813,19 @@ MonoBehaviour:
   m_DefaultActionMap: Egg
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &1717852057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1717852050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8730495bcf221a4eb2abe136214deb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EggHealth
+  maxHealth: 3
 --- !u!1 &1784194774
 GameObject:
   m_ObjectHideFlags: 0
@@ -3784,7 +3853,7 @@ RectTransform:
   m_GameObject: {fileID: 1784194774}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4, y: 4, z: 4}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1214871950}
@@ -3792,9 +3861,9 @@ RectTransform:
   - {fileID: 2029735172}
   m_Father: {fileID: 1631582411}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 945.5}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0.000061035156, y: -62.48877}
   m_SizeDelta: {x: 686.4, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1784194776
@@ -4260,3 +4329,4 @@ SceneRoots:
   - {fileID: 1631582411}
   - {fileID: 2060676022}
   - {fileID: 1942000133}
+  - {fileID: 417395894}
