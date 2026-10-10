@@ -139,7 +139,7 @@
                 {
                     "name": "",
                     "id": "118da331-49b5-41a4-a22f-fe91e12c7310",
-                    "path": "<Gamepad>/buttonSouth",
+                    "path": "<Gamepad>/rightTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
@@ -196,17 +196,7 @@
                     "priority": 0
                 },
                 {
-                    "name": "CounterClockwise",
-                    "type": "Button",
-                    "id": "96f8c2e6-7535-448b-b8e3-92c92a0263ed",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false,
-                    "priority": 0
-                },
-                {
-                    "name": "Clockwise",
+                    "name": "ClockwiseSwitch",
                     "type": "Button",
                     "id": "16cf256e-e86a-4e81-a580-3d78a2a5174e",
                     "expectedControlType": "",
@@ -263,45 +253,56 @@
                 },
                 {
                     "name": "",
-                    "id": "6a0937ac-38ff-4940-975a-95e4ce818bb7",
-                    "path": "<Keyboard>/a",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard",
-                    "action": "CounterClockwise",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "c153039e-71f2-464f-b8b6-895053f9c484",
-                    "path": "<Gamepad>/leftShoulder",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Gamepad",
-                    "action": "CounterClockwise",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "08015223-7827-428b-8607-c24ac317b55e",
+                    "id": "46217dde-78f4-4d1a-ac0a-8808e3a8ee6e",
                     "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard",
-                    "action": "Clockwise",
+                    "action": "ClockwiseSwitch",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "0b4c38db-58d1-4bf9-9ba3-aa071ca28a5e",
-                    "path": "<Gamepad>/rightShoulder",
+                    "id": "e64c1171-dfe6-4171-a493-5c404a367a04",
+                    "path": "<Gamepad>/rightStick/down",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
-                    "action": "Clockwise",
+                    "action": "ClockwiseSwitch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c432bd0b-d6ee-41e0-a033-3397a8dc0778",
+                    "path": "<Gamepad>/rightStick/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Gamepad",
+                    "action": "ClockwiseSwitch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5f8dcbef-2603-4b58-8ce7-d6abef411117",
+                    "path": "<Gamepad>/rightStick/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Gamepad",
+                    "action": "ClockwiseSwitch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f90ec65a-790d-4ce5-8715-77699877b613",
+                    "path": "<Gamepad>/rightStick/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Gamepad",
+                    "action": "ClockwiseSwitch",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

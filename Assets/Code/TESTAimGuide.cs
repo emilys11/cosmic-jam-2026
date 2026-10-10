@@ -11,6 +11,7 @@ public class TESTAimGuide : MonoBehaviour
     private float aimInput;
     [SerializeField] private float aimSpeed = 90f;
     [SerializeField] private float aimDistance = 10f;
+    private bool useMouseAim = true;
     
 
     void Awake()
@@ -26,29 +27,23 @@ public class TESTAimGuide : MonoBehaviour
         aimDirection.Normalize();
     }
 
+    
+
     void Update()
     {
         if (mainCamera == null) return;
 
-        //keyboard
-        if (aimInput != 0f)
+        if (useMouseAim && Mouse.current != null)
         {
-            aimDirection = Quaternion.AngleAxis(aimInput * aimSpeed * Time.deltaTime,Vector3.up) * aimDirection;
-
-            aimDirection.y = 0f;
-
-            if (aimDirection.sqrMagnitude > 0.001f) aimDirection.Normalize();
-        }
-
-        else if(Mouse.current != null)
-        {
-            Ray ray = mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
+            // mouse aiming
+            Ray ray = mainCamera.ScreenPointToRay(
+                Mouse.current.position.ReadValue()
+            );
 
             Plane groundPlane = new Plane(Vector3.up, transform.position);
 
             if (groundPlane.Raycast(ray, out float distance))
             {
-                //Vector3 mouseWorldPosition = ray.GetPoint(distance);
                 Vector3 target = ray.GetPoint(distance);
                 target.y = transform.position.y;
 
@@ -58,18 +53,31 @@ public class TESTAimGuide : MonoBehaviour
                 {
                     aimDirection = direction.normalized;
                 }
-                
             }
         }
+        else if (aimInput != 0f)
+        {
+            // keyboard/controller aiming
+            aimDirection = Quaternion.AngleAxis(
+                aimInput * aimSpeed * Time.deltaTime,
+                Vector3.up
+            ) * aimDirection;
 
+            aimDirection.y = 0f;
+
+            if (aimDirection.sqrMagnitude > 0.001f)
+                aimDirection.Normalize();
+        }
+
+    
         Vector3 start = transform.position;
         Vector3 end = start + aimDirection * aimDistance;
 
         lineRenderer.SetPosition(0, start);
         lineRenderer.SetPosition(1, end);
-        
-       
     }
+
+
 
     public Vector3 TESTAimDirection()
     {
@@ -83,7 +91,15 @@ public class TESTAimGuide : MonoBehaviour
 
     public void OnAim(InputAction.CallbackContext context)
     {
-        if(context.performed) aimInput = context.ReadValue<float>();
+        if (context.performed)
+        {
+            aimInput = context.ReadValue<float>();
+            useMouseAim = false;
+        }
+        else if (context.canceled)
+        {
+            aimInput = 0f;
+        }
     }
 
 }
