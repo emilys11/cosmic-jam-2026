@@ -1023,6 +1023,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   countdownTimer: {fileID: 1784194777}
   eggHealth: {fileID: 1717852057}
+  countSfx: {fileID: 0}
+  goSfx: {fileID: 0}
+  bgMusic: {fileID: 0}
+  backgroundMusicSource: {fileID: 0}
   countdownText: {fileID: 2044969528}
   countdownDuration: 3
   pausePanel: {fileID: 1406946184}
