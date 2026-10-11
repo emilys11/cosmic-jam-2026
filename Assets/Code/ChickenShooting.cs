@@ -5,8 +5,9 @@ using UnityEngine.Splines;
 public class ChickenShooting : MonoBehaviour
 {
     public GameObject seedsPrefab;
+    public GameObject[] seedPrefabs;
     [SerializeField] float seedCooldown = 1.0f;
-    
+    [SerializeField] private Animator animator;
     private float cooldownTimer = 0f;
 
     // select orbital ring -> shoot seed -> destroy when chicken seed hits the ring collider
@@ -49,7 +50,13 @@ public class ChickenShooting : MonoBehaviour
         if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
         {
             //Debug.Log("left mb pressed");
+            animator.SetBool ("isShooting", true);
             Fire();
+        }
+        else
+        {
+            animator.SetBool ("isShooting", false);
+
         }
         // left = move inward
         /*if (Keyboard.current != null && Keyboard.current.qKey.wasPressedThisFrame)
@@ -108,7 +115,8 @@ public class ChickenShooting : MonoBehaviour
 
     void SpawnSeed(Vector3 direction)
     {
-        GameObject activeSeed = Instantiate(seedsPrefab, transform.position, Quaternion.identity);
+        //GameObject activeSeed = Instantiate(seedsPrefab, transform.position, Quaternion.identity);
+        GameObject activeSeed = Instantiate(seedPrefabs[Random.Range(0, seedPrefabs.Length)], transform.position, Quaternion.identity);
         //Debug.Log("SEED CREATED: " + activeSeed.name);
 
         // IGNORE COLLISIONS BETWEEN SEED AND CHICKEN
