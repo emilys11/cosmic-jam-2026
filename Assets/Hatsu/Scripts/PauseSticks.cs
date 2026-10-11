@@ -24,7 +24,7 @@ public class PauseSticks : MonoBehaviour
     {
         if (animate)
         {
-            transform.position = Vector3.MoveTowards(transform.position, endPos.transform.position, positionSpeed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, endPos.transform.position, positionSpeed * Time.unscaledDeltaTime);
             // transform.rotation = Quaternion.RotateTowards(startPos.transform.rotation, endPos.transform.rotation, 1f * Time.deltaTime);
         }
         transform.localScale = Vector3.MoveTowards(transform.localScale, targetScale, 1f);
