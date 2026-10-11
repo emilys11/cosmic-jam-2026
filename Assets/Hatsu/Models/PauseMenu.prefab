@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6097298769374286421}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: DestinationPos (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 4082816771979495360}
   - component: {fileID: 7733104848098569343}
   - component: {fileID: 5277365181409152779}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: HomeStickParent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98,7 +98,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3080965395363421168}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: OriginalPos (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -129,7 +129,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4355835568011536447}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: DestinationPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -160,7 +160,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3629797223843344714}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PauseMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -206,7 +206,7 @@ GameObject:
   - component: {fileID: 3971355975721249196}
   - component: {fileID: 6017663338602485606}
   - component: {fileID: 3760973944961337027}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RDIAParent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -262,7 +262,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9212835567371879539}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: OriginalPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -293,7 +293,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3320779126831657395}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: DestinationPos (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -324,7 +324,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 747046707749789025}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: OriginalPos (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -357,13 +357,13 @@ GameObject:
   - component: {fileID: 332767028795668950}
   - component: {fileID: 3963218972369391630}
   - component: {fileID: 3643194136150801165}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SpotLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &332767028795668950
 Transform:
   m_ObjectHideFlags: 0
@@ -482,7 +482,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6390728492325418030}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: OriginalPos (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -513,7 +513,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7618692008192042585}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: DestinationPos (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -598,6 +598,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 7262e59392b3c3541aa27dc9f75a94bb, type: 3}
       propertyPath: m_Name
       value: Return
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7262e59392b3c3541aa27dc9f75a94bb, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -702,6 +706,10 @@ PrefabInstance:
       value: HomeStick
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 515267d215439da4faa864cd57b857e4, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 515267d215439da4faa864cd57b857e4, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -783,6 +791,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RestartStick
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 76cfb91d1856a0c43a5a5c3bbb71d85a, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -825,6 +837,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3971355975721249196}
     m_Modifications:
+    - target: {fileID: 673603137365468563, guid: b189fefcdf30388479216015f7111d13, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3072520627390616518, guid: b189fefcdf30388479216015f7111d13, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4098206621071069480, guid: b189fefcdf30388479216015f7111d13, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.120000005
@@ -872,6 +892,14 @@ PrefabInstance:
     - target: {fileID: 6328267061888301954, guid: b189fefcdf30388479216015f7111d13, type: 3}
       propertyPath: m_Name
       value: RDia
+      objectReference: {fileID: 0}
+    - target: {fileID: 6328267061888301954, guid: b189fefcdf30388479216015f7111d13, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6494490207763378693, guid: b189fefcdf30388479216015f7111d13, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
