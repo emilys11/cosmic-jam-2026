@@ -40,7 +40,7 @@ public class EggPowerups : MonoBehaviour
     {
         if (eggOnPath != null)
         {
-            StartCoroutine(eggOnPath.DissolveCycleRoutine(eggOnPath.gameObject, powerupTimer, dissolveDuration, true));
+            StartCoroutine(eggOnPath.DissolveCycleRoutine(eggOnPath.meshObject, powerupTimer, dissolveDuration, true));
         }
     }
 
@@ -58,7 +58,7 @@ public class EggPowerups : MonoBehaviour
 
     private IEnumerator CallWormhole()
     {
-        StartCoroutine(eggOnPath.DissolveCycleRoutine(eggOnPath.gameObject, 0.1f, dissolveDuration, true));
+        StartCoroutine(eggOnPath.DissolveCycleRoutine(eggOnPath.meshObject, 0.1f, dissolveDuration, true));
         yield return new WaitForSeconds(dissolveDuration);
         eggOnPath.WormHole();
     }

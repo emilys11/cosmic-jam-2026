@@ -13,6 +13,7 @@ public class EggOnPath : MonoBehaviour
     [Tooltip("The SplineContainers the egg can switch between.")]
     public List<SplineContainer> targetSplines = new List<SplineContainer>();
     public SplineContainer secretSpline; // Please make sure to add Material from DissolverShader/Material/
+    public GameObject meshObject;
 
     // Hassan - getting defeated flag to stop movement
     [SerializeField] EggHealth eggHealth;
@@ -26,6 +27,11 @@ public class EggOnPath : MonoBehaviour
     [Tooltip("Minimum time in seconds required between orbital switches.")]
     public float switchCooldown = 0.5f;
     private float lastSwitchTime = -999f;
+
+    [Header("Dissolve Transition")]
+    public bool dissolveToJump;
+    public float vanishTime;
+    public float animationDuration;
 
     [Header("Acceleration & Deceleration")]
     public bool enableAcceleration = false;
@@ -260,6 +266,12 @@ public class EggOnPath : MonoBehaviour
 
         if (newIndex == index) return;
 
+//     public IEnumerator DissolveCycleRoutine(GameObject targetObject, float disappearTime, float dissolveDuration, bool toDissolve)
+        if (dissolveToJump) {
+            StartCoroutine(DissolveTransition(newIndex));
+            return;
+        }
+
         lastSwitchTime = Time.time;
         if (enableSwitchLerp && switchDuration > 0f)
         {
@@ -272,6 +284,13 @@ public class EggOnPath : MonoBehaviour
         {
             index = newIndex;
         }
+    }
+
+    private IEnumerator DissolveTransition(int n)
+    {
+        StartCoroutine(DissolveCycleRoutine(meshObject, vanishTime, animationDuration, true));
+        yield return new WaitForSeconds(animationDuration);
+        index = n;
     }
 
     public void WormHole() 
