@@ -7,7 +7,7 @@ public class EggLives : MonoBehaviour
     [SerializeField] EggLife[] eggs; //Handles up to how many slots are serialized
     [SerializeField] int numOfEggIcons;
 
-    void Awake()
+    void Start()
     {
         numOfEggIcons = eggHealthScript.currentHealth;
 
