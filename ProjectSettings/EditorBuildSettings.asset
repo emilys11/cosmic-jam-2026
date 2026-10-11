@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
+    path: Assets/Hatsu/TitleUI.unity
+    guid: 0117544dd0312384dbaac75d0578d36e
+  - enabled: 1
     path: Assets/Scenes/Main_Scene.unity
     guid: b5c294af178121d4fb7bc42db371eebb
   - enabled: 1

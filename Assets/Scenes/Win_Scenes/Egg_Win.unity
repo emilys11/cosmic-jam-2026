@@ -803,7 +803,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: TitleUI
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1660838359
@@ -1085,6 +1085,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 342b9397d2cbe934ab6b85122e3c5d17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneLoader
+  restartButton: {fileID: 1284183255}
 --- !u!4 &2104097158
 Transform:
   m_ObjectHideFlags: 0

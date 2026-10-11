@@ -1,60 +1,85 @@
-using System.Numerics;
-using System.Runtime.CompilerServices;
+
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
+using System.Collections;
 
 public class TitleUI : MonoBehaviour
 {
-    [SerializeField] Image blackBackground;
+    [Header("References")]
+    [SerializeField] private Image blackBackground;
+    [SerializeField] private Button playButton;
+
+    [Header("Fade Settings")]
+    [SerializeField] private float fadeTime = 1f;
+
     private bool fadeStart;
-    [SerializeField] float fadeTime;
-    private float transparency = 0;
+    private float transparency;
     private float fadeSpeed;
-    void Awake()
+
+    private void Awake()
     {
-        Color color = new Color(0,0,0,0);
+        Color color = new Color(0, 0, 0, 0);
         blackBackground.color = color;
         blackBackground.enabled = false;
-        fadeSpeed = 1f/fadeTime;
+
+        fadeSpeed = fadeTime > 0f ? 1f / fadeTime : 1f;
     }
-    void FixedUpdate()
+
+    private IEnumerator Start()
     {
-        if (fadeStart)
+        // Wait one frame for Unity's UI to initialize.
+        yield return null;
+
+        if (playButton != null && EventSystem.current != null)
         {
-            transparency += fadeSpeed * Time.deltaTime;
-            Color color = blackBackground.color;
+            EventSystem.current.SetSelectedGameObject(null);
 
-            color.a = transparency;
-            blackBackground.color = color;
-
-            if(color.a >= 1)
-            {
-                SwitchScene();
-                fadeStart = false;
-            }
+            EventSystem.current.SetSelectedGameObject(
+                playButton.gameObject);
         }
     }
+
+    private void Update()
+    {
+        if (!fadeStart)
+            return;
+
+        transparency += fadeSpeed * Time.deltaTime;
+
+        Color color = blackBackground.color;
+        color.a = Mathf.Clamp01(transparency);
+        blackBackground.color = color;
+
+        if (transparency >= 1f)
+        {
+            fadeStart = false;
+            SwitchScene();
+        }
+    }
+
     public void Play()
     {
+        if (fadeStart)
+            return;
+
         blackBackground.enabled = true;
         fadeStart = true;
-        //Fade out
-
     }
 
     private void SwitchScene()
     {
         Debug.Log("SwitchScene");
-        //Switch scene
+        // Put your existing scene-loading logic here.
     }
 
     public void Credits()
     {
-        //Show credits
+        // Your credits logic here.
     }
 
     public void Exit()
     {
-        
+        Application.Quit();
     }
 }
