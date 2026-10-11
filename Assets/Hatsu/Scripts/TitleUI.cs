@@ -3,9 +3,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class TitleUI : MonoBehaviour
 {
+    [Header("Scene Settings")]
+    [SerializeField] private string transitionScene = "TransitionLevel";
+
     [Header("References")]
     [SerializeField] private Image blackBackground;
     [SerializeField] private Button playButton;
@@ -69,8 +73,7 @@ public class TitleUI : MonoBehaviour
 
     private void SwitchScene()
     {
-        Debug.Log("SwitchScene");
-        // Put your existing scene-loading logic here.
+        SceneManager.LoadScene(transitionScene);
     }
 
     public void Credits()
