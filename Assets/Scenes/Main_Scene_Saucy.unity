@@ -9797,7 +9797,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: e72ab5d3ffaa8a14198f6dba5ef5c126, type: 3}
   - {fileID: 8300000, guid: b9600fbe8269aff42b62a8289e1748d6, type: 3}
   - {fileID: 8300000, guid: 8c60fb3e77aa5e443a49bd58d1476fe4, type: 3}
-  damageParticles: {fileID: 0}
+  damageParticles: {fileID: 214460595}
 --- !u!136 &1717852058
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -9934,7 +9934,7 @@ MonoBehaviour:
   intactEgg: {fileID: 1766909723}
   fracturedEgg: {fileID: 663645612}
   explosionPoint: {fileID: 651234041}
-  burstEffect: {fileID: 214460595}
+  burstEffect: {fileID: 0}
   explosionForce: 1
   explosionRadius: 2
   upwardsModifier: 0.2
