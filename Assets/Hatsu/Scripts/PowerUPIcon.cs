@@ -5,6 +5,12 @@ using UnityEngine.UI;
 public class PowerUPIcon : MonoBehaviour
 {
     private Image image;
+    private bool animate = false;
+
+    private float counter = 0;
+    private float intervalCounter;
+    private float flashInterval = 0.1f;
+    private float duration = 1.5f;
     [SerializeField] Sprite[] sprites;
 
     void Awake()
@@ -12,8 +18,31 @@ public class PowerUPIcon : MonoBehaviour
         image = GetComponent<Image>();
         image.enabled = false;
     }
+
+    void Update()
+    {
+        if (animate)
+        {
+            counter += Time.deltaTime;
+            intervalCounter += Time.deltaTime;
+            if(intervalCounter >= flashInterval)
+            {
+                image.enabled = !image.enabled;
+                intervalCounter = 0;
+            }
+
+            if(counter >= duration)
+            {
+                image.enabled = false;
+                animate = false;
+                counter = 0;
+                intervalCounter = 0;
+            }
+        }
+    }
     public void UpdateIcon(PowerupInventory.PowerupTypes powerup)
     {
+        Debug.Log(powerup);
         image.enabled = true;
         switch (powerup)
         {
@@ -40,5 +69,10 @@ public class PowerUPIcon : MonoBehaviour
                 break;
                 
         }
+    }
+
+    public void AnimateIcon()
+    {
+        animate = true;
     }
 }
