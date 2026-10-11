@@ -1023,6 +1023,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   countdownTimer: {fileID: 1784194777}
   eggHealth: {fileID: 1717852057}
+  countSfx: {fileID: 0}
+  goSfx: {fileID: 0}
+  bgMusic: {fileID: 0}
+  backgroundMusicSource: {fileID: 0}
   countdownText: {fileID: 2044969528}
   countdownDuration: 3
   pausePanel: {fileID: 1406946184}
@@ -1804,7 +1808,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EggLives
   eggIcon: {fileID: 4644906763221030825, guid: fbf0eba7c98b156498e0cb78ed1ab2e8, type: 3}
-  numOfEggs: 3
+  eggHealthScript: {fileID: 0}
+  numOfEggsIcons: 0
   eggs:
   - {fileID: 882369902}
   - {fileID: 753178615}
@@ -9367,6 +9372,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: e72ab5d3ffaa8a14198f6dba5ef5c126, type: 3}
   - {fileID: 8300000, guid: b9600fbe8269aff42b62a8289e1748d6, type: 3}
   - {fileID: 8300000, guid: 8c60fb3e77aa5e443a49bd58d1476fe4, type: 3}
+  eggLives: {fileID: 0}
+  damageParticles: {fileID: 0}
+  currentHealth: 0
 --- !u!136 &1717852058
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -10302,6 +10310,7 @@ RectTransform:
   - {fileID: 1784194775}
   - {fileID: 2044969530}
   - {fileID: 559471592}
+  - {fileID: 2044173649}
   m_Father: {fileID: 1631582411}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -11171,6 +11180,54 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &2044173648
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2044173649}
+  - component: {fileID: 2044173650}
+  m_Layer: 5
+  m_Name: Chicken upgrade
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2044173649
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2044173648}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.3, y: 1.3, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1848585402}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 685, y: 1248}
+  m_SizeDelta: {x: 25, y: 25}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2044173650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2044173648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cff4da5d3b72c475ca635195696835b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ChickenUpgrade
 --- !u!1 &2044969527
 GameObject:
   m_ObjectHideFlags: 0
