@@ -286,6 +286,11 @@ public class EggOnPath : MonoBehaviour
         }
     }
 
+    public SplineContainer getCurrentSpline() //For letting Egg find its spline through EggHealth 
+    {
+        return targetSplines[index];
+    }
+
     private IEnumerator DissolveTransition(int n)
     {
         StartCoroutine(DissolveCycleRoutine(meshObject, vanishTime, animationDuration, true));
