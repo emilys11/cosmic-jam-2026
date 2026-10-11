@@ -1,10 +1,13 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
     [SerializeField] Light spotLight;
     [SerializeField] GameObject pauseMenuSticks;
     [SerializeField] PauseSticks[] pauseSticks;
+    [SerializeField] private Button defaultButton;
     void Awake()
     {
         spotLight.enabled = false;
@@ -18,6 +21,11 @@ public class PauseMenu : MonoBehaviour
         for(int i = 0; i < pauseSticks.Length; i++)
         {
             pauseSticks[i].startAnimation();
+        }
+        if (EventSystem.current != null && defaultButton != null)
+        {
+            EventSystem.current.SetSelectedGameObject(null);
+            EventSystem.current.SetSelectedGameObject(defaultButton.gameObject);
         }
     }
 
