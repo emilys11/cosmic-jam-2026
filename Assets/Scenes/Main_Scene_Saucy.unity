@@ -6257,7 +6257,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 756649957673793801, guid: 530fd9344f2d4044f81f5d43f6b32dce, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.19
+      value: -0.061
       objectReference: {fileID: 0}
     - target: {fileID: 3889721964755094403, guid: 530fd9344f2d4044f81f5d43f6b32dce, type: 3}
       propertyPath: m_Materials.Array.size
@@ -6273,7 +6273,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4896339759459853898, guid: 530fd9344f2d4044f81f5d43f6b32dce, type: 3}
       propertyPath: prewarm
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4896339759459853898, guid: 530fd9344f2d4044f81f5d43f6b32dce, type: 3}
       propertyPath: NoiseModule.enabled
@@ -6907,3 +6907,4 @@ SceneRoots:
   - {fileID: 1428803698}
   - {fileID: 367674919}
   - {fileID: 4902031}
+  - {fileID: 1995349263}
