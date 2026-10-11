@@ -2130,6 +2130,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ChickenShooting
   seedsPrefab: {fileID: 4123111896536563332, guid: 74612feaa78754442913542aecac575f, type: 3}
+  seedPrefabs: []
   seedCooldown: 5
   lineRenderer: {fileID: 0}
   audioSource: {fileID: 0}
@@ -3281,6 +3282,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ChickenShooting
   seedsPrefab: {fileID: 4123111896536563332, guid: 74612feaa78754442913542aecac575f, type: 3}
+  seedPrefabs:
+  - {fileID: 3979946225914890495, guid: fa951a7125a68473e9309ea4fb7641be, type: 3}
+  - {fileID: 7043980486785897881, guid: 261e21c6e2d8d495385d4537428f20e2, type: 3}
+  - {fileID: 1833552314031880955, guid: 462e70c1f4251484ea90546dc7a9e90d, type: 3}
   seedCooldown: 0.5
   lineRenderer: {fileID: 1016290097}
   audioSource: {fileID: 1016290102}

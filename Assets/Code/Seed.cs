@@ -1,9 +1,11 @@
+using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 
 public class Seed : MonoBehaviour
 {
     [SerializeField] float seedVelocity = 1f;
     [SerializeField] float seedLifetime = 5f; // only for testing
+    [SerializeField] float ringMargin = 0.05f;
     private bool launched = false;
 
     private Rigidbody rb;
@@ -15,13 +17,32 @@ public class Seed : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
     }
+
+    float GetVisualRadius()
+    {
+        Renderer[] renderers = GetComponentsInChildren<Renderer>();
+        if (renderers.Length == 0) return 0f;
+
+        Bounds bounds = renderers[0].bounds;
+        for (int i = 1; i < renderers.Length; i++)
+        {
+            bounds.Encapsulate(renderers[i].bounds);
+        }
+        return Mathf.Max(bounds.extents.x, bounds.extents.z);
+    }
+
     public void LaunchSeed(Vector3 direction, Transform chicken, float ringRadius)
     {
         // get center of the ring where chicken is, launch seed from that point
         center = chicken;
-        targetRadius = ringRadius;
+        targetRadius = Mathf.Max(0f, ringRadius - GetVisualRadius() - ringMargin);
 
         direction.y = 0f;
+        Quaternion facingDirection = Quaternion.LookRotation(direction.normalized, Vector3.up);
+
+        float roll = Random.Range(0f, 360f);
+
+        transform.rotation = facingDirection * Quaternion.Euler(0f, 0f, roll);
 
         rb.linearVelocity = direction.normalized * seedVelocity;
 
@@ -29,6 +50,8 @@ public class Seed : MonoBehaviour
 
         Destroy(gameObject, seedLifetime);
     }
+
+    
 
     // collision with ring -> destroy once TRAVELLED target radius
     void Update()
