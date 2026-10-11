@@ -17,6 +17,39 @@ public class EggPowerups : MonoBehaviour
     [SerializeField] private float dissolveDuration = 1.5f;
 
     [ContextMenu("Enable Secret Spline")]
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("egg touched: " + other.gameObject.name);
+
+        PowerupOrb orb = other.GetComponent<PowerupOrb>();
+
+        if (orb == null) return;
+
+        // can only collect egg type orbs
+        if (orb.GetOrbType() != PowerupOrb.OrbType.Egg) return;
+
+        CollectEggOrb();
+
+        Destroy(other.gameObject);
+    }
+    private void CollectEggOrb()
+    {
+        PowerupInventory.PowerupTypes[] eggPowerups =
+        {
+            PowerupInventory.PowerupTypes.SpeedUpEgg,
+            PowerupInventory.PowerupTypes.WormHole,
+            PowerupInventory.PowerupTypes.SummonDecoy,
+            PowerupInventory.PowerupTypes.ExpandOrbital,
+            PowerupInventory.PowerupTypes.GoInvisible
+        };
+
+        PowerupInventory.PowerupTypes randomPowerup = eggPowerups[Random.Range(0, eggPowerups.Length)];
+        inventory.AddPowerup(randomPowerup);
+
+        //Debug.Log("Egg collected powerup: " + randomPowerup);
+    }
+
     private void UndissolveOrbital()
     {
         if (eggOnPath != null && eggOnPath.secretSpline != null)
