@@ -2972,7 +2972,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TESTAimGuide
   aimSpeed: 90
   aimDistance: 10
-  model: {fileID: 697197411}
+  model: {fileID: 0}
 --- !u!114 &1016290096
 MonoBehaviour:
   m_ObjectHideFlags: 0
