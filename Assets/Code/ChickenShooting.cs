@@ -5,6 +5,7 @@ using UnityEngine.Splines;
 public class ChickenShooting : MonoBehaviour
 {
     public GameObject seedsPrefab;
+    public GameObject[] seedPrefabs;
     [SerializeField] float seedCooldown = 1.0f;
     
     private float cooldownTimer = 0f;
@@ -108,7 +109,8 @@ public class ChickenShooting : MonoBehaviour
 
     void SpawnSeed(Vector3 direction)
     {
-        GameObject activeSeed = Instantiate(seedsPrefab, transform.position, Quaternion.identity);
+        //GameObject activeSeed = Instantiate(seedsPrefab, transform.position, Quaternion.identity);
+        GameObject activeSeed = Instantiate(seedPrefabs[Random.Range(0, seedPrefabs.Length)], transform.position, Quaternion.identity);
         //Debug.Log("SEED CREATED: " + activeSeed.name);
 
         // IGNORE COLLISIONS BETWEEN SEED AND CHICKEN
