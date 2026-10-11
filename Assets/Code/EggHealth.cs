@@ -1,6 +1,7 @@
 
 using UnityEngine;
 using System;
+using System.Collections;
 
 public class EggHealth : MonoBehaviour
 {
@@ -11,6 +12,9 @@ public class EggHealth : MonoBehaviour
     [SerializeField] AudioSource audioSource;
     [SerializeField] AudioClip[] collisionClips;
     [SerializeField] AudioClip[] deathClips;
+
+    [Header("Particles Effect")]
+    [SerializeField] ParticleSystem damageParticles;
 
     private int currentHealth;
     private bool defeated;
@@ -59,10 +63,13 @@ public class EggHealth : MonoBehaviour
         if(other.GetComponent<Seed>().getTargetSpline() == GetComponent<EggOnPath>().getCurrentSpline()) //Is on same outline as selected?
         {
             TakeDamage();
+            //StartCoroutine(ParticleEffectRoutine(damageParticles));
+            damageParticles.Play();
             playDamageSound();
             Destroy(seed.gameObject);
         }
     }
+
 
     private void TakeDamage()
     {

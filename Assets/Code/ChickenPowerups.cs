@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class ChickenPowerups : MonoBehaviour
 {
@@ -134,24 +135,29 @@ public class ChickenPowerups : MonoBehaviour
     //        Destroy(gameObject);
     //    }
     //}
-    public void UsePowerups()
+    public void UsePowerups(InputAction.CallbackContext context)
     {
-        PowerupInventory.PowerupTypes type = inventory.UseInventoryPowerup();
-
-        switch(type)
+        if(context.performed)
         {
-            case PowerupInventory.PowerupTypes.IncreaseSeedVelocity:
-                ActivateSeedVelocityIncrease();
-                break;
+            Debug.Log("chicken powerup INPUT WORKS");
+            PowerupInventory.PowerupTypes type = inventory.UseInventoryPowerup();
 
-            case PowerupInventory.PowerupTypes.Multishot:
-                ActivateMultishot();
-                break;
+            switch(type)
+            {
+                case PowerupInventory.PowerupTypes.IncreaseSeedVelocity:
+                    ActivateSeedVelocityIncrease();
+                    break;
 
-            case PowerupInventory.PowerupTypes.EggReverseControls:
-                ActivateEggReverseControls();
-                break;
+                case PowerupInventory.PowerupTypes.Multishot:
+                    ActivateMultishot();
+                    break;
 
+                case PowerupInventory.PowerupTypes.EggReverseControls:
+                    ActivateEggReverseControls();
+                    break;
+
+            }
         }
+        
     }
 }

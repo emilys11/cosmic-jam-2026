@@ -756,6 +756,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 49231536}
     m_Modifications:
+    - target: {fileID: 437475501896688011, guid: 61d233afe1b0e7f4cb11b0c909acf778, type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: 869019681771823225, guid: 61d233afe1b0e7f4cb11b0c909acf778, type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: 908290921359920259, guid: 61d233afe1b0e7f4cb11b0c909acf778, type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 64
+      objectReference: {fileID: 0}
     - target: {fileID: 3629797223843344714, guid: 61d233afe1b0e7f4cb11b0c909acf778, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.77
@@ -802,7 +814,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3644321229402110352, guid: 61d233afe1b0e7f4cb11b0c909acf778, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3877414459708329054, guid: 61d233afe1b0e7f4cb11b0c909acf778, type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 64
       objectReference: {fileID: 0}
     - target: {fileID: 3963218972369391630, guid: 61d233afe1b0e7f4cb11b0c909acf778, type: 3}
       propertyPath: m_Range
@@ -811,6 +827,18 @@ PrefabInstance:
     - target: {fileID: 3963218972369391630, guid: 61d233afe1b0e7f4cb11b0c909acf778, type: 3}
       propertyPath: m_Intensity
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4239116326342398893, guid: 61d233afe1b0e7f4cb11b0c909acf778, type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: 4482400867434930552, guid: 61d233afe1b0e7f4cb11b0c909acf778, type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: 7474317144730882612, guid: 61d233afe1b0e7f4cb11b0c909acf778, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -993,7 +1021,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de6cfc0ae50cf0846883ba947af4da89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  countdownTimer: {fileID: 0}
+  countdownTimer: {fileID: 1784194777}
   eggHealth: {fileID: 1717852057}
   countdownText: {fileID: 2044969528}
   countdownDuration: 3
@@ -1836,7 +1864,7 @@ MonoBehaviour:
   m_SoftShadowQuality: 0
   m_RenderingLayersMask:
     serializedVersion: 0
-    m_Bits: 1
+    m_Bits: 64
   m_ShadowRenderingLayersMask:
     serializedVersion: 0
     m_Bits: 1
@@ -1856,13 +1884,13 @@ Light:
   serializedVersion: 13
   m_Type: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0.73
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize2D: {x: 0.5, y: 0.5}
   m_Shadows:
-    m_Type: 0
+    m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -1894,7 +1922,7 @@ Light:
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 64
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
@@ -5388,15 +5416,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6973649477343055896, guid: ae5b2fb892ce7aa4da4e90668daa1a0c, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 0.7453091
       objectReference: {fileID: 0}
     - target: {fileID: 6973649477343055896, guid: ae5b2fb892ce7aa4da4e90668daa1a0c, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 0.74501115
       objectReference: {fileID: 0}
     - target: {fileID: 6973649477343055896, guid: ae5b2fb892ce7aa4da4e90668daa1a0c, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1
+      value: 0.74501115
       objectReference: {fileID: 0}
     - target: {fileID: 6973649477343055896, guid: ae5b2fb892ce7aa4da4e90668daa1a0c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5428,11 +5456,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6973649477343055896, guid: ae5b2fb892ce7aa4da4e90668daa1a0c, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: -1.4059
       objectReference: {fileID: 0}
     - target: {fileID: 6973649477343055896, guid: ae5b2fb892ce7aa4da4e90668daa1a0c, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: 0.65235
       objectReference: {fileID: 0}
     - target: {fileID: 6973649477343055896, guid: ae5b2fb892ce7aa4da4e90668daa1a0c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -6008,7 +6036,7 @@ MonoBehaviour:
   - {fileID: 3979946225914890495, guid: fa951a7125a68473e9309ea4fb7641be, type: 3}
   - {fileID: 7043980486785897881, guid: 261e21c6e2d8d495385d4537428f20e2, type: 3}
   - {fileID: 1833552314031880955, guid: 462e70c1f4251484ea90546dc7a9e90d, type: 3}
-  seedCooldown: 0.5
+  seedCooldown: 0.2
   animator: {fileID: 822514537}
   lineRenderer: {fileID: 1016290097}
   audioSource: {fileID: 1016290102}
@@ -6326,7 +6354,19 @@ MonoBehaviour:
     m_ActionId: 16cf256e-e86a-4e81-a580-3d78a2a5174e
     m_ActionName: 'Egg/Clockwise[/Keyboard/d]'
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1016290104}
+        m_TargetAssemblyTypeName: ChickenPowerups, Assembly-CSharp
+        m_MethodName: UsePowerups
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: e1846bd0-7bd7-49f2-955e-8ba78150ba23
     m_ActionName: 'Chicken/UseUpgrade[/Keyboard/enter,/XInputControllerWindows/buttonWest]'
   - m_PersistentCalls:
@@ -8793,7 +8833,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.CanvasScaler
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1080}
@@ -9128,7 +9168,7 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -9285,7 +9325,19 @@ MonoBehaviour:
     m_ActionId: e1846bd0-7bd7-49f2-955e-8ba78150ba23
     m_ActionName: 'Chicken/UseUpgrade[/Keyboard/enter,/DualSenseGamepadHID/buttonSouth,/DualSenseGamepadHID1/buttonSouth]'
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1717852061}
+        m_TargetAssemblyTypeName: EggPowerups, Assembly-CSharp
+        m_MethodName: UsePowerups
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 50f90d79-888e-4a06-95e7-577f34622878
     m_ActionName: 'Egg/UseUpgrade[/Keyboard/e,/DualSenseGamepadHID/buttonSouth,/DualSenseGamepadHID1/buttonSouth]'
   m_NeverAutoSwitchControlSchemes: 1
@@ -10240,7 +10292,7 @@ RectTransform:
   m_GameObject: {fileID: 1848585397}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.74575627, y: 0.74501115, z: 0.74501115}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 981722157}
@@ -10252,9 +10304,9 @@ RectTransform:
   - {fileID: 559471592}
   m_Father: {fileID: 1631582411}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 1280, y: 707}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -9.6031, y: 4.3467}
   m_SizeDelta: {x: 2560, y: 1440}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1868187312
