@@ -14,11 +14,7 @@ GameObject:
   - component: {fileID: 6577917599810189366}
   - component: {fileID: 6035246254061935353}
   m_Layer: 0
-<<<<<<<< HEAD:Assets/Prefabs/Seed1.prefab
-  m_Name: Seed1
-========
   m_Name: EggOrb
->>>>>>>> main:Assets/Prefabs/EggOrb.prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -130,3 +126,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PowerupOrbit
   orbType: 1
+  chickenOrbPickupVFX: {fileID: 0}
+  eggOrbPickupVFX: {fileID: 450914062724852422, guid: 64214eddf958e4444a7c8e52eafb7405, type: 3}

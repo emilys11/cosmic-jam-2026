@@ -22,15 +22,9 @@ public class Seed : MonoBehaviour
 
     float GetVisualRadius()
     {
-        Renderer[] renderers = GetComponentsInChildren<Renderer>();
-        if (renderers.Length == 0) return 0f;
-
-        Bounds bounds = renderers[0].bounds;
-        for (int i = 1; i < renderers.Length; i++)
-        {
-            bounds.Encapsulate(renderers[i].bounds);
-        }
-        return Mathf.Max(bounds.extents.x, bounds.extents.z);
+        Collider col = GetComponent<Collider>();
+        if (col == null) return 0f;
+        return Mathf.Max(col.bounds.extents.x, col.bounds.extents.z);
     }
 
     public void LaunchSeed(Vector3 direction, Transform chicken, float ringRadius, float velocityMultiplier)
@@ -67,7 +61,7 @@ public class Seed : MonoBehaviour
         {
             //ChickenPowerups chickenPowerups = FindAnyObjectByType<ChickenPowerups>();
             chickenPowerups.CollectOrb();
-
+            orb.SpawnOrbPickupVFX();
             // destroy orb and seed
             Destroy(collision.gameObject);
             Destroy(gameObject);

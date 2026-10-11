@@ -153,8 +153,8 @@ MonoBehaviour:
   - {fileID: 499470545}
   - {fileID: 869843624}
   - {fileID: 1560392529}
-  chickenOrbsPrefab: {fileID: 4619687680126110477, guid: d9136efb8dd5b2144a83f3d143860d4c, type: 3}
-  eggOrbPrefab: {fileID: 5282556015142708664, guid: d4d17aa5914795842b2cfda4d41e97d9, type: 3}
+  chickenOrbsPrefab: {fileID: 5282556015142708664, guid: 5c1813b29d74b40cda991770f4558643, type: 3}
+  eggOrbPrefab: {fileID: 4619687680126110477, guid: d9136efb8dd5b2144a83f3d143860d4c, type: 3}
   orbLifetime: 5
   timeBetweenSpawns: 2
   heightOffset: 0.2
