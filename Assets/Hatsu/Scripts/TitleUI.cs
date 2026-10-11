@@ -78,7 +78,7 @@ public class TitleUI : MonoBehaviour
 
     public void Credits()
     {
-        // Your credits logic here.
+        SceneManager.LoadScene("Credits");
     }
 
     public void Exit()
