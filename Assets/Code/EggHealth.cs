@@ -12,11 +12,12 @@ public class EggHealth : MonoBehaviour
     [SerializeField] AudioSource audioSource;
     [SerializeField] AudioClip[] collisionClips;
     [SerializeField] AudioClip[] deathClips;
+    [SerializeField] EggLives eggLives;
 
     [Header("Particles Effect")]
     [SerializeField] ParticleSystem damageParticles;
 
-    private int currentHealth;
+    public int currentHealth;
     private bool defeated;
 
     public event Action OnEggDied;
@@ -74,7 +75,7 @@ public class EggHealth : MonoBehaviour
     private void TakeDamage()
     {
         currentHealth--;
-
+        eggLives.ManageLives();
         Debug.Log("Egg HP: " + currentHealth);
 
         if (currentHealth <= 0)
