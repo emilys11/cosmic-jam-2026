@@ -19,8 +19,9 @@ public class PowerupOrb : MonoBehaviour
 
         switch (orbType)
         {
-            case OrbType.Chicken: fx = chickenOrbPickupVFX; break;
             case OrbType.Egg: fx = eggOrbPickupVFX; break;
+            case OrbType.Chicken: fx = chickenOrbPickupVFX; break;
+            
         }
 
         if (fx == null) return;

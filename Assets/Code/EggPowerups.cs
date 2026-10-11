@@ -29,9 +29,7 @@ public class EggPowerups : MonoBehaviour
 
         // can only collect egg type orbs
         if (orb.GetOrbType() != PowerupOrb.OrbType.Egg) return;
-
         orb.SpawnOrbPickupVFX();
-
         CollectEggOrb();
 
         Destroy(other.gameObject);

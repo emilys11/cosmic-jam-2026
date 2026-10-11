@@ -24,19 +24,19 @@ public class PowerUPIcon : MonoBehaviour
                 image.sprite = sprites[1];
                  break;
             case (PowerupInventory.PowerupTypes.SpeedUpEgg) :
-                image.sprite = sprites[3];
+                image.sprite = sprites[2];
                 break;
             case (PowerupInventory.PowerupTypes.WormHole) :
-                image.sprite = sprites[4];
+                image.sprite = sprites[3];
                 break;
             case (PowerupInventory.PowerupTypes.SummonDecoy) :
-                image.sprite = sprites[5];
+                image.sprite = sprites[4];
                 break;
             case (PowerupInventory.PowerupTypes.ExpandOrbital) :
-                image.sprite = sprites[6];
+                image.sprite = sprites[5];
                 break;
             case (PowerupInventory.PowerupTypes.GoInvisible) :
-                image.sprite = sprites[7];
+                image.sprite = sprites[6];
                 break;
                 
         }

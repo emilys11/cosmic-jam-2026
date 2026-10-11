@@ -126,5 +126,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PowerupOrbit
   orbType: 1
-  chickenOrbPickupVFX: {fileID: 0}
+  chickenOrbPickupVFX: {fileID: 450914062724852422, guid: 64214eddf958e4444a7c8e52eafb7405, type: 3}
   eggOrbPickupVFX: {fileID: 450914062724852422, guid: 64214eddf958e4444a7c8e52eafb7405, type: 3}
