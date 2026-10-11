@@ -11,6 +11,11 @@ public class ChickenShooting : MonoBehaviour
     // select orbital ring -> shoot seed -> destroy when chicken seed hits the ring collider
     [SerializeField] LineRenderer lineRenderer;
 
+    // Hassan's chicken shooting audio
+    [Header("Audio")]
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioClip[] fireClips;
+
     [Header("Orbital Rings")]
     [SerializeField] SplineContainer[] rings;
     private int selectedRingIndex = 0; // default innermost ring
@@ -56,6 +61,16 @@ public class ChickenShooting : MonoBehaviour
             //Debug.Log("pressed E");
             SelectOutwardRing();
         }*/
+    }
+
+    void FireSound()
+    {
+        if (audioSource == null || fireClips == null || fireClips.Length == 0)
+        {
+            return;
+        }
+
+        audioSource.PlayOneShot(fireClips[Random.Range(0, fireClips.Length)]);
     }
 
     void Fire()
@@ -112,6 +127,7 @@ public class ChickenShooting : MonoBehaviour
             //Debug.LogError("Seed prefab does not have Seed.cs!");
             return;
         }
+        FireSound();
         seed.LaunchSeed(direction, transform, selectedRingRadius);
     }
 
