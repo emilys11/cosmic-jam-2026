@@ -48,13 +48,6 @@ public class EggHealth : MonoBehaviour
         return selectedClip.length;
     }
 
-    System.Collections.IEnumerator InvokeDeathAfterSound()
-    {
-        float clipLength = playDeathSound();
-        yield return new WaitForSecondsRealtime(clipLength);
-        OnEggDied?.Invoke();
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         if (defeated || !other.TryGetComponent(out Seed seed))
@@ -78,7 +71,8 @@ public class EggHealth : MonoBehaviour
         if (currentHealth <= 0)
         {
             defeated = true;
-            StartCoroutine(InvokeDeathAfterSound());
+            playDeathSound();
+            OnEggDied?.Invoke();
         }
     }
 }
