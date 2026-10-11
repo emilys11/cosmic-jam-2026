@@ -130,12 +130,11 @@ public class ChickenShooting : MonoBehaviour
             //Debug.LogError("Seed prefab does not have Seed.cs!");
             return;
         }
-<<<<<<< Updated upstream
+
         FireSound();
-        seed.LaunchSeed(direction, transform, selectedRingRadius);
-=======
+
         seed.LaunchSeed(direction, transform, selectedRingRadius, seedVelocityMultiplier);
->>>>>>> Stashed changes
+
     }
 
     void UpdateSelectedRing()
