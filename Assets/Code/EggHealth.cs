@@ -66,7 +66,7 @@ public class EggHealth : MonoBehaviour
 
         TakeDamage();
         playDamageSound();
-        //Destroy(seed.gameObject);
+        Destroy(seed.gameObject);
     }
 
     private void TakeDamage()
