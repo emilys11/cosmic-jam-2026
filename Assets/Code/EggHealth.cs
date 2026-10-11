@@ -56,10 +56,12 @@ public class EggHealth : MonoBehaviour
         if (GameManager.Instance == null ||
             !GameManager.Instance.IsPlaying)
             return;
-
-        TakeDamage();
-        playDamageSound();
-        Destroy(seed.gameObject);
+        if(other.GetComponent<Seed>().getTargetSpline() == GetComponent<EggOnPath>().getCurrentSpline()) //Is on same outline as selected?
+        {
+            TakeDamage();
+            playDamageSound();
+            Destroy(seed.gameObject);
+        }
     }
 
     private void TakeDamage()

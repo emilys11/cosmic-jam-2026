@@ -1,5 +1,6 @@
 using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
+using UnityEngine.Splines;
 
 public class Seed : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class Seed : MonoBehaviour
 
     private ChickenPowerups chickenPowerups;
 
+    private SplineContainer targetSpline;
+
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -27,7 +30,7 @@ public class Seed : MonoBehaviour
         return Mathf.Max(col.bounds.extents.x, col.bounds.extents.z);
     }
 
-    public void LaunchSeed(Vector3 direction, Transform chicken, float ringRadius, float velocityMultiplier)
+    public void LaunchSeed(Vector3 direction, Transform chicken, float ringRadius, float velocityMultiplier, SplineContainer selectedSpline)
     {
         // get center of the ring where chicken is, launch seed from that point
         center = chicken;
@@ -48,7 +51,14 @@ public class Seed : MonoBehaviour
 
         launched = true;
 
+        targetSpline = selectedSpline; //For communicating with egg selected spline
+
         Destroy(gameObject, seedLifetime);
+    }
+
+    public SplineContainer getTargetSpline()
+    {
+        return targetSpline;
     }
 
     void OnCollisionEnter(Collision collision)
