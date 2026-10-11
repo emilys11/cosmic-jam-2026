@@ -560,8 +560,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EggOnPath
   targetSplines: []
+  secretSpline: {fileID: 0}
   progress: 0
   maxMoveSpeed: 0.5
+  switchCooldown: 0.5
   enableAcceleration: 0
   accelerationRate: 2
   decelerationRate: 4
@@ -1686,8 +1688,10 @@ MonoBehaviour:
   rings: []
   normalRingMaterial: {fileID: 0}
   selectedRingMaterial: {fileID: 0}
+  seedVelocityMultiplier: 5
   multishotActive: 0
   multishotAngle: 15
+  eggReverseControl: 0
 --- !u!114 &1466812810
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1827,6 +1831,8 @@ GameObject:
   - component: {fileID: 1817084746}
   - component: {fileID: 1817084747}
   - component: {fileID: 1817084748}
+  - component: {fileID: 1817084750}
+  - component: {fileID: 1817084749}
   m_Layer: 0
   m_Name: Chicken_Placeholder
   m_TagString: Untagged
@@ -2057,8 +2063,10 @@ MonoBehaviour:
   - {fileID: 821384425}
   normalRingMaterial: {fileID: 2100000, guid: 9c3e25c7363b6474285be69d5abf629f, type: 2}
   selectedRingMaterial: {fileID: 2100000, guid: b12053ea56302ad41a23a9555af8be28, type: 2}
+  seedVelocityMultiplier: 5
   multishotActive: 0
   multishotAngle: 15
+  eggReverseControl: 0
 --- !u!114 &1817084747
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2073,6 +2081,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TESTAimGuide
   aimSpeed: 90
   aimDistance: 10
+  model: {fileID: 0}
 --- !u!114 &1817084748
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2174,11 +2183,113 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 16cf256e-e86a-4e81-a580-3d78a2a5174e
     m_ActionName: 'Egg/ClockwiseSwitch[/Keyboard/d]'
-  m_NeverAutoSwitchControlSchemes: 0
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1817084750}
+        m_TargetAssemblyTypeName: ChickenPowerups, Assembly-CSharp
+        m_MethodName: UsePowerups
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: e1846bd0-7bd7-49f2-955e-8ba78150ba23
+    m_ActionName: 'Chicken/UseUpgrade[/Keyboard/enter]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 50f90d79-888e-4a06-95e7-577f34622878
+    m_ActionName: 'Egg/UseUpgrade[/Keyboard/e]'
+  m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: 
   m_DefaultActionMap: Chicken
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &1817084749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1817084739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e3d83312f047f24f9b0c9c1a3a1b967, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PowerupInventory
+  currentPowerup: 1
+--- !u!114 &1817084750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1817084739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c3e0f5115216a04d9ca04cc053a5eb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ChickenPowerups
+  chickenShooting: {fileID: 1817084746}
+  velocityMultiplier: 5
+  powerupTimer: 15
+  inventory: {fileID: 1817084749}
+  requiredOrbs: 3
+--- !u!1 &1977657997
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1977657998}
+  - component: {fileID: 1977657999}
+  m_Layer: 0
+  m_Name: OrbSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1977657998
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1977657997}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.43, y: 0, z: 0.1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1977657999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1977657997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d45b24831ba03e349b683cf7c89ef63a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PowerupOrbSpawner
+  rings:
+  - {fileID: 143062076}
+  - {fileID: 821384425}
+  chickenOrbsPrefab: {fileID: 5282556015142708664, guid: d4d17aa5914795842b2cfda4d41e97d9, type: 3}
+  eggOrbPrefab: {fileID: 4619687680126110477, guid: d9136efb8dd5b2144a83f3d143860d4c, type: 3}
+  orbLifetime: 5
+  timeBetweenSpawns: 2
+  heightOffset: 0.2
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -2192,3 +2303,4 @@ SceneRoots:
   - {fileID: 333471772}
   - {fileID: 1817084745}
   - {fileID: 980399881}
+  - {fileID: 1977657998}
