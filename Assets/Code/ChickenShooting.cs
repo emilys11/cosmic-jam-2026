@@ -28,14 +28,17 @@ public class ChickenShooting : MonoBehaviour
 
     // POWERUPS
     private float currentSeedVelocity;
-    [SerializeField] float seedVelocityMultiplier = 1f;
+    float seedVelocityMultiplier = 1f;
     [SerializeField] bool multishotActive = false;
-    [SerializeField] float multishotAngle = 15f;
+    [SerializeField] float multishotAngle = 25f;
     [SerializeField] bool eggReverseControl = false;
 
     void Start()
     {
-        //currentSeedVelocity = seedVelocity;
+        seedVelocityMultiplier = 1f;
+        multishotActive = false;
+        eggReverseControl = false;
+
         UpdateSelectedRing();
     }
 
@@ -77,6 +80,28 @@ public class ChickenShooting : MonoBehaviour
         audioSource.PlayOneShot(fireClips[Random.Range(0, fireClips.Length)]);
     }
 
+    //multishot fan out
+    void FireMultishot(Vector3 centerDirection)
+    {
+        int seedCount = 3;
+        float angleBetweenSeeds = 20f;
+
+        centerDirection.y = 0f;
+        centerDirection.Normalize();
+
+        float startAngle = -angleBetweenSeeds * (seedCount - 1) / 2f;
+
+        for (int i = 0; i < seedCount; i++)
+        {
+            float angle = startAngle + i * angleBetweenSeeds;
+
+            Vector3 direction = Quaternion.AngleAxis(angle, Vector3.up) * centerDirection;
+            direction.Normalize();
+
+            SpawnSeed(direction);
+        }
+    }
+
     void Fire()
     {
         if (cooldownTimer > 0f)
@@ -89,14 +114,19 @@ public class ChickenShooting : MonoBehaviour
         Vector3 end = lineRenderer.GetPosition(1);
         Vector3 shootDirection = (end - start).normalized;
 
+        shootDirection.y = 0f;
+        shootDirection.Normalize();
+
         if (multishotActive)
         {
-            SpawnSeed(shootDirection); // center
-            Vector3 leftDirection = Quaternion.AngleAxis(-multishotAngle, Vector3.up) * shootDirection; // left
-            Vector3 rightDirection = Quaternion.AngleAxis(multishotAngle, Vector3.up) * shootDirection; // right
+            //SpawnSeed(shootDirection); // center
+            //Vector3 leftDirection = Quaternion.AngleAxis(-multishotAngle, Vector3.up) * shootDirection; // left
+            //Vector3 rightDirection = Quaternion.AngleAxis(multishotAngle, Vector3.up) * shootDirection; // right
 
-            SpawnSeed(leftDirection);
-            SpawnSeed(rightDirection);
+            //SpawnSeed(leftDirection);
+            //SpawnSeed(rightDirection);
+
+            FireMultishot(shootDirection);
         }
         else
         {
@@ -150,11 +180,11 @@ public class ChickenShooting : MonoBehaviour
             {
                 if (i == selectedRingIndex)
                 {
-                    renderer.material = selectedRingMaterial;
+                    renderer.sharedMaterial = selectedRingMaterial;
                 }
                 else
                 {
-                    renderer.material = normalRingMaterial;
+                    renderer.sharedMaterial = normalRingMaterial;
                 }
             }
         }
