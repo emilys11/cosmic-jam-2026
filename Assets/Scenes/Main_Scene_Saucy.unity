@@ -6369,15 +6369,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 756649957673793801, guid: 530fd9344f2d4044f81f5d43f6b32dce, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.4008665
+      value: 0.46889356
       objectReference: {fileID: 0}
     - target: {fileID: 756649957673793801, guid: 530fd9344f2d4044f81f5d43f6b32dce, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.4008665
+      value: 0.46889356
       objectReference: {fileID: 0}
     - target: {fileID: 756649957673793801, guid: 530fd9344f2d4044f81f5d43f6b32dce, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.4008665
+      value: 0.46889356
       objectReference: {fileID: 0}
     - target: {fileID: 756649957673793801, guid: 530fd9344f2d4044f81f5d43f6b32dce, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6385,11 +6385,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 756649957673793801, guid: 530fd9344f2d4044f81f5d43f6b32dce, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.247
+      value: -0.64
       objectReference: {fileID: 0}
     - target: {fileID: 756649957673793801, guid: 530fd9344f2d4044f81f5d43f6b32dce, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.061
+      value: -0.75
       objectReference: {fileID: 0}
     - target: {fileID: 3889721964755094403, guid: 530fd9344f2d4044f81f5d43f6b32dce, type: 3}
       propertyPath: m_Materials.Array.size
@@ -6403,9 +6403,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chicken_Particles
       objectReference: {fileID: 0}
+    - target: {fileID: 4762592123635169709, guid: 530fd9344f2d4044f81f5d43f6b32dce, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4896339759459853898, guid: 530fd9344f2d4044f81f5d43f6b32dce, type: 3}
       propertyPath: prewarm
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4896339759459853898, guid: 530fd9344f2d4044f81f5d43f6b32dce, type: 3}
+      propertyPath: ShapeModule.type
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4896339759459853898, guid: 530fd9344f2d4044f81f5d43f6b32dce, type: 3}
+      propertyPath: ShapeModule.angle
+      value: 58
+      objectReference: {fileID: 0}
+    - target: {fileID: 4896339759459853898, guid: 530fd9344f2d4044f81f5d43f6b32dce, type: 3}
+      propertyPath: NoiseModule.damping
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4896339759459853898, guid: 530fd9344f2d4044f81f5d43f6b32dce, type: 3}
       propertyPath: NoiseModule.enabled
@@ -6414,6 +6430,14 @@ PrefabInstance:
     - target: {fileID: 4896339759459853898, guid: 530fd9344f2d4044f81f5d43f6b32dce, type: 3}
       propertyPath: TrailModule.enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4896339759459853898, guid: 530fd9344f2d4044f81f5d43f6b32dce, type: 3}
+      propertyPath: LightsModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4896339759459853898, guid: 530fd9344f2d4044f81f5d43f6b32dce, type: 3}
+      propertyPath: NoiseModule.frequency
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 4896339759459853898, guid: 530fd9344f2d4044f81f5d43f6b32dce, type: 3}
       propertyPath: TrailModule.worldSpace
@@ -6432,8 +6456,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4896339759459853898, guid: 530fd9344f2d4044f81f5d43f6b32dce, type: 3}
+      propertyPath: ShapeModule.radius.value
+      value: 0.83
+      objectReference: {fileID: 0}
+    - target: {fileID: 4896339759459853898, guid: 530fd9344f2d4044f81f5d43f6b32dce, type: 3}
       propertyPath: ClampVelocityModule.enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4896339759459853898, guid: 530fd9344f2d4044f81f5d43f6b32dce, type: 3}
+      propertyPath: ShapeModule.radiusThickness
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4896339759459853898, guid: 530fd9344f2d4044f81f5d43f6b32dce, type: 3}
       propertyPath: InitialModule.maxNumParticles
@@ -6565,7 +6597,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5085709675571342589, guid: 530fd9344f2d4044f81f5d43f6b32dce, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.2313
+      value: 0.332
       objectReference: {fileID: 0}
     - target: {fileID: 5085709675571342589, guid: 530fd9344f2d4044f81f5d43f6b32dce, type: 3}
       propertyPath: m_LocalRotation.w
