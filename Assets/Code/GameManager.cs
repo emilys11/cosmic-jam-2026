@@ -35,6 +35,9 @@ public class GameManager : MonoBehaviour
     [Header("Scenes")]
     [SerializeField] private string chickenWinScene = "ChickenWin";
     [SerializeField] private string eggWinScene = "EggWin";
+    
+    [Header("End of Game")]
+    [SerializeField] private float chickenWinDelay = 2f;
 
     public GameState CurrentState { get; private set; }
 
@@ -135,13 +138,21 @@ public class GameManager : MonoBehaviour
             TogglePause();
     }
 
-    public void ChickenWins()
-    {
-        if (!IsPlaying)
+    public void ChickenWins() {
+        if (!IsPlaying) 
             return;
-
+        
         CurrentState = GameState.ChickenWon;
-        FinishGame(chickenWinScene);
+        
+        if (countdownTimer != null)
+            countdownTimer.PauseTimer();
+
+        StartCoroutine(FinishGameAfterDelay(chickenWinScene, chickenWinDelay)); 
+    }
+
+    private IEnumerator FinishGameAfterDelay(string sceneName, float delay) { 
+        yield return new WaitForSecondsRealtime(delay);
+        FinishGame(sceneName); 
     }
 
     public void EggWins()

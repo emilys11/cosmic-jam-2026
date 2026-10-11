@@ -48,13 +48,6 @@ public class EggHealth : MonoBehaviour
         return selectedClip.length;
     }
 
-    System.Collections.IEnumerator InvokeDeathAfterSound()
-    {
-        float clipLength = playDeathSound();
-        yield return new WaitForSecondsRealtime(clipLength);
-        OnEggDied?.Invoke();
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         if (defeated || !other.TryGetComponent(out Seed seed))
@@ -63,10 +56,12 @@ public class EggHealth : MonoBehaviour
         if (GameManager.Instance == null ||
             !GameManager.Instance.IsPlaying)
             return;
-
-        TakeDamage();
-        playDamageSound();
-        Destroy(seed.gameObject);
+        if(other.GetComponent<Seed>().getTargetSpline() == GetComponent<EggOnPath>().getCurrentSpline()) //Is on same outline as selected?
+        {
+            TakeDamage();
+            playDamageSound();
+            Destroy(seed.gameObject);
+        }
     }
 
     private void TakeDamage()
@@ -78,7 +73,8 @@ public class EggHealth : MonoBehaviour
         if (currentHealth <= 0)
         {
             defeated = true;
-            StartCoroutine(InvokeDeathAfterSound());
+            playDeathSound();
+            OnEggDied?.Invoke();
         }
     }
 }

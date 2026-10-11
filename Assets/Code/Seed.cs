@@ -1,5 +1,6 @@
 using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
+using UnityEngine.Splines;
 
 public class Seed : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class Seed : MonoBehaviour
 
     private ChickenPowerups chickenPowerups;
 
+    private SplineContainer targetSpline;
+
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -22,18 +25,12 @@ public class Seed : MonoBehaviour
 
     float GetVisualRadius()
     {
-        Renderer[] renderers = GetComponentsInChildren<Renderer>();
-        if (renderers.Length == 0) return 0f;
-
-        Bounds bounds = renderers[0].bounds;
-        for (int i = 1; i < renderers.Length; i++)
-        {
-            bounds.Encapsulate(renderers[i].bounds);
-        }
-        return Mathf.Max(bounds.extents.x, bounds.extents.z);
+        Collider col = GetComponent<Collider>();
+        if (col == null) return 0f;
+        return Mathf.Max(col.bounds.extents.x, col.bounds.extents.z);
     }
 
-    public void LaunchSeed(Vector3 direction, Transform chicken, float ringRadius, float velocityMultiplier)
+    public void LaunchSeed(Vector3 direction, Transform chicken, float ringRadius, float velocityMultiplier, SplineContainer selectedSpline)
     {
         // get center of the ring where chicken is, launch seed from that point
         center = chicken;
@@ -54,7 +51,14 @@ public class Seed : MonoBehaviour
 
         launched = true;
 
+        targetSpline = selectedSpline; //For communicating with egg selected spline
+
         Destroy(gameObject, seedLifetime);
+    }
+
+    public SplineContainer getTargetSpline()
+    {
+        return targetSpline;
     }
 
     void OnCollisionEnter(Collision collision)
@@ -67,7 +71,7 @@ public class Seed : MonoBehaviour
         {
             //ChickenPowerups chickenPowerups = FindAnyObjectByType<ChickenPowerups>();
             chickenPowerups.CollectOrb();
-
+            orb.SpawnOrbPickupVFX();
             // destroy orb and seed
             Destroy(collision.gameObject);
             Destroy(gameObject);

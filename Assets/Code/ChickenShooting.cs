@@ -171,7 +171,7 @@ public class ChickenShooting : MonoBehaviour
 
         FireSound();
 
-        seed.LaunchSeed(direction, transform, selectedRingRadius, seedVelocityMultiplier);
+        seed.LaunchSeed(direction, transform, selectedRingRadius, seedVelocityMultiplier, rings[selectedRingIndex]);
 
     }
 
