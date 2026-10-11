@@ -5,7 +5,9 @@ using UnityEngine.Splines;
 public class ChickenShooting : MonoBehaviour
 {
     public GameObject seedsPrefab;
+    public GameObject[] seedPrefabs;
     [SerializeField] float seedCooldown = 1.0f;
+    
     private float cooldownTimer = 0f;
 
     // select orbital ring -> shoot seed -> destroy when chicken seed hits the ring collider
@@ -25,13 +27,15 @@ public class ChickenShooting : MonoBehaviour
     [SerializeField] Material selectedRingMaterial;
 
     // POWERUPS
-    private float currentSeedCooldown;
+    private float currentSeedVelocity;
+    [SerializeField] float seedVelocityMultiplier = 1f;
     [SerializeField] bool multishotActive = false;
     [SerializeField] float multishotAngle = 15f;
+    [SerializeField] bool eggReverseControl = false;
 
     void Start()
     {
-        currentSeedCooldown = seedCooldown;
+        //currentSeedVelocity = seedVelocity;
         UpdateSelectedRing();
     }
 
@@ -105,7 +109,8 @@ public class ChickenShooting : MonoBehaviour
 
     void SpawnSeed(Vector3 direction)
     {
-        GameObject activeSeed = Instantiate(seedsPrefab, transform.position, Quaternion.identity);
+        //GameObject activeSeed = Instantiate(seedsPrefab, transform.position, Quaternion.identity);
+        GameObject activeSeed = Instantiate(seedPrefabs[Random.Range(0, seedPrefabs.Length)], transform.position, Quaternion.identity);
         //Debug.Log("SEED CREATED: " + activeSeed.name);
 
         // IGNORE COLLISIONS BETWEEN SEED AND CHICKEN
@@ -127,8 +132,11 @@ public class ChickenShooting : MonoBehaviour
             //Debug.LogError("Seed prefab does not have Seed.cs!");
             return;
         }
+
         FireSound();
-        seed.LaunchSeed(direction, transform, selectedRingRadius);
+
+        seed.LaunchSeed(direction, transform, selectedRingRadius, seedVelocityMultiplier);
+
     }
 
     void UpdateSelectedRing()
@@ -191,22 +199,36 @@ public class ChickenShooting : MonoBehaviour
     }
 
     // POWER UP FUNCTIONS
-    public void ActivateCooldownDecrease(float multiplier)
+    public void ActivateSeedVelocityIncrease(float multiplier)
     {
-        currentSeedCooldown = seedCooldown * multiplier;
+        seedVelocityMultiplier = multiplier;
+        Debug.Log("velocity increase activated");
     }
-    public void DeactivateCooldownDecrease()
+    public void DeactivateSeedVelocityIncrease()
     {
-        currentSeedCooldown = seedCooldown;
+        seedVelocityMultiplier = 1f;
+        Debug.Log("velocity increase deactivated");
     }
     public void ActivateMultishot()
     {
         multishotActive = true;
 
-        Debug.Log("Multishot active: 1 -> 3 seeds");
+        //Debug.Log("Multishot active");
     }
     public void DeactivateMultishot()
     {
         multishotActive = false;
+        //Debug.Log("Multishot deactivated");
+    }
+    public void ActivateEggReverseControls()
+    {
+        eggReverseControl = true;
+
+        //Debug.Log("Multishot active");
+    }
+    public void DeactivateEggReverseControls()
+    {
+        eggReverseControl = false;
+        //Debug.Log("Multishot deactivated");
     }
 }
