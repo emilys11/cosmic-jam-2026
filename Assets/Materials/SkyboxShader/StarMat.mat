@@ -55,14 +55,14 @@ Material:
     - _Gradientrotation: 0
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _StarChonk: 100
-    - _StarPower: 75
+    - _StarChonk: 120
+    - _StarPower: 50
     - _Star_Density: 100
     - _gradientPosition: -0.3
     - _rotation: 20
     m_Colors:
     - _BackgroundColour: {r: 0.0036518655, g: 0, b: 0.11320752, a: 1}
     - _StarColor1: {r: 8.675369, g: 7.774497, b: 5.6062527, a: 0}
-    - _StarColor2: {r: 0.6318843, g: 6.4119997, b: 7.0505004, a: 1}
+    - _StarColor2: {r: 0.61451834, g: 3.8196852, b: 7.663404, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
