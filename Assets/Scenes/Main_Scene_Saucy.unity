@@ -8193,10 +8193,10 @@ MonoBehaviour:
   eggHealth: {fileID: 1717852057}
   progress: 0
   maxMoveSpeed: 3
-  switchCooldown: 0.5
-  dissolveToJump: 1
+  switchCooldown: 0.4
+  dissolveToJump: 0
   vanishTime: 0
-  animationDuration: 1
+  animationDuration: 0.4
   enableAcceleration: 0
   accelerationRate: 2
   decelerationRate: 4
