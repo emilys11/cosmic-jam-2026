@@ -9010,7 +9010,19 @@ MonoBehaviour:
     m_ActionId: e1846bd0-7bd7-49f2-955e-8ba78150ba23
     m_ActionName: 'Chicken/UseUpgrade[/Keyboard/enter,/DualSenseGamepadHID/buttonSouth,/DualSenseGamepadHID1/buttonSouth]'
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1717852061}
+        m_TargetAssemblyTypeName: EggPowerups, Assembly-CSharp
+        m_MethodName: UsePowerups
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 50f90d79-888e-4a06-95e7-577f34622878
     m_ActionName: 'Egg/UseUpgrade[/Keyboard/e,/DualSenseGamepadHID/buttonSouth,/DualSenseGamepadHID1/buttonSouth]'
   m_NeverAutoSwitchControlSchemes: 1

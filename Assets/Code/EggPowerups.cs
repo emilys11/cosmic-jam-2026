@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class EggPowerups : MonoBehaviour
 {
@@ -146,31 +147,35 @@ public class EggPowerups : MonoBehaviour
             Destroy(decoy);
         }
     }
-    public void UsePowerups()
+    public void UsePowerups(InputAction.CallbackContext context)
     {
-        PowerupInventory.PowerupTypes type = inventory.UseInventoryPowerup();
-
-        switch(type)
+        if (context.performed)
         {
-            case PowerupInventory.PowerupTypes.SpeedUpEgg:
-                MultiplySpeed();
-                break;
+            PowerupInventory.PowerupTypes type = inventory.UseInventoryPowerup();
 
-            case PowerupInventory.PowerupTypes.WormHole:
-                TriggerWormHole();
-                break;
+            switch(type)
+            {
+                case PowerupInventory.PowerupTypes.SpeedUpEgg:
+                    MultiplySpeed();
+                    break;
 
-            case PowerupInventory.PowerupTypes.SummonDecoy:
-                SpawnDecoy();
-                break;
+                case PowerupInventory.PowerupTypes.WormHole:
+                    TriggerWormHole();
+                    break;
 
-            case PowerupInventory.PowerupTypes.ExpandOrbital:
-                UndissolveOrbital();
-                break;
+                case PowerupInventory.PowerupTypes.SummonDecoy:
+                    SpawnDecoy();
+                    break;
+
+                case PowerupInventory.PowerupTypes.ExpandOrbital:
+                    UndissolveOrbital();
+                    break;
             
-            case PowerupInventory.PowerupTypes.GoInvisible:
-                TriggerDissolve();
-                break;
+                case PowerupInventory.PowerupTypes.GoInvisible:
+                    TriggerDissolve();
+                    break;
+            }
         }
+        
     }
 }
