@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
+using UnityEditor.ShaderKeywordFilter;
 
 public enum GameState
 {
@@ -23,6 +24,12 @@ public class GameManager : MonoBehaviour
     [Header("References")]
     [SerializeField] private CountdownTimer countdownTimer;
     [SerializeField] private EggHealth eggHealth;
+
+    [Header("Countdown Audio")]
+    public AudioClip countSfx;
+    public AudioClip goSfx;
+    public AudioClip bgMusic;
+    public AudioSource backgroundMusicSource;
 
     [Header("Starting Countdown")]
     [SerializeField] private TMP_Text countdownText;
@@ -97,12 +104,21 @@ public class GameManager : MonoBehaviour
         {
             if (countdownText != null)
                 countdownText.text = i.ToString();
+            if (GetComponent<AudioSource>() != null && countSfx != null)
+            {
+                GetComponent<AudioSource>().PlayOneShot(countSfx);
+            }
 
             yield return new WaitForSecondsRealtime(1f);
         }
 
         if (countdownText != null)
             countdownText.text = "GO!";
+            if (GetComponent<AudioSource>() != null && goSfx != null)
+            {
+                GetComponent<AudioSource>().PlayOneShot(goSfx);
+            }
+            
 
         yield return new WaitForSecondsRealtime(0.5f);
 
@@ -111,6 +127,13 @@ public class GameManager : MonoBehaviour
 
         CurrentState = GameState.Playing;
         Time.timeScale = 1f;
+
+        // Trigger the looping music right as gameplay starts
+        if (backgroundMusicSource != null && !backgroundMusicSource.isPlaying)
+        {
+            backgroundMusicSource.clip = bgMusic;
+            backgroundMusicSource.Play();
+        }
 
         if (countdownTimer != null)
             countdownTimer.StartTimer();
