@@ -47,8 +47,10 @@ public class Seed : MonoBehaviour
         float roll = Random.Range(0f, 360f);
 
         transform.rotation = facingDirection * Quaternion.Euler(0f, 0f, roll);
-
-        rb.linearVelocity = direction.normalized * seedVelocity * velocityMultiplier;
+        
+        // DO NOT REMOVE THIS PLEASE!!!!!! THIS MAKES THE SEED SPAWN AND MOVE :SOB: :WILTED ROSE:
+        float finalSpeed = seedVelocity * velocityMultiplier;
+        rb.linearVelocity = direction * finalSpeed;
 
         launched = true;
 
