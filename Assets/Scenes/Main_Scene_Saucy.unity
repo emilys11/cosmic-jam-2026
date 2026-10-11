@@ -153,11 +153,11 @@ MonoBehaviour:
   - {fileID: 499470545}
   - {fileID: 869843624}
   - {fileID: 1560392529}
-  chickenOrbsPrefab: {fileID: 5282556015142708664, guid: 5c1813b29d74b40cda991770f4558643, type: 3}
-  eggOrbPrefab: {fileID: 4619687680126110477, guid: d9136efb8dd5b2144a83f3d143860d4c, type: 3}
+  chickenOrbsPrefab: {fileID: 327250237924666065, guid: ccc143c59ddcb29489ae38236e56e8af, type: 3}
+  eggOrbPrefab: {fileID: 3081814019093801460, guid: bceb86d6249650a44a63cd94c7200fb8, type: 3}
   orbLifetime: 5
   timeBetweenSpawns: 2
-  heightOffset: 0.2
+  heightOffset: 0
 --- !u!4 &4902031
 Transform:
   m_ObjectHideFlags: 0
@@ -6356,7 +6356,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32d28db856eb23145a1df2f54e0e966c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TESTAimGuide
-  aimSpeed: 90
+  aimSpeed: 150
   aimDistance: 10
   model: {fileID: 697197411}
   turnSpeed: 720
@@ -9647,7 +9647,7 @@ MonoBehaviour:
   meshObject: {fileID: 1766909723}
   eggHealth: {fileID: 1717852057}
   progress: 0
-  maxMoveSpeed: 3
+  maxMoveSpeed: 2.5
   switchCooldown: 0.4
   dissolveToJump: 0
   vanishTime: 0
@@ -10430,7 +10430,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b897ea8dafacc9419599babbd2056a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CountdownTimer
-  duration: 60
+  duration: 120
   startAutomatically: 1
   timerSlider: {fileID: 1784194776}
 --- !u!1 &1786456411
