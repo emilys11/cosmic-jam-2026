@@ -9,7 +9,7 @@ public class EggPowerups : MonoBehaviour
     [SerializeField] PowerupInventory inventory; // MUST ASSIGN THIS TOO.
 
     [Header("Power Parameters")]
-    [SerializeField] public float powerupTimer = 1f;
+    [SerializeField] private float powerupTimer = 15f;
 
     [Header("Speed Parameters")]
     [SerializeField] public float speedMultiplier = 2f;
@@ -66,7 +66,7 @@ public class EggPowerups : MonoBehaviour
 
         eggOnPath.maxMoveSpeed *= speedMultiplier;
         yield return new WaitForSeconds(powerupTimer);
-        eggOnPath.maxMoveSpeed /= speedMultiplier; 
+        eggOnPath.maxMoveSpeed /= speedMultiplier;
     }
 
     [ContextMenu("Trigger Dissolve")]
@@ -119,7 +119,7 @@ public class EggPowerups : MonoBehaviour
 
     private IEnumerator DecoyBrain(GameObject decoy, float delay)
     {
-    float elapsed = 0f;
+        float elapsed = 0f;
         while (elapsed < delay)
         {
             // Wait a random amount of time before trying to switch tracks
@@ -153,7 +153,7 @@ public class EggPowerups : MonoBehaviour
         {
             PowerupInventory.PowerupTypes type = inventory.UseInventoryPowerup();
 
-            switch(type)
+            switch (type)
             {
                 case PowerupInventory.PowerupTypes.SpeedUpEgg:
                     MultiplySpeed();
@@ -170,12 +170,12 @@ public class EggPowerups : MonoBehaviour
                 case PowerupInventory.PowerupTypes.ExpandOrbital:
                     UndissolveOrbital();
                     break;
-            
+
                 case PowerupInventory.PowerupTypes.GoInvisible:
                     TriggerDissolve();
                     break;
             }
         }
-        
+
     }
 }
