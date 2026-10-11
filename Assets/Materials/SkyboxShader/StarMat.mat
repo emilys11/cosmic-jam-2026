@@ -55,8 +55,8 @@ Material:
     - _Gradientrotation: 0
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _StarChonk: 120
-    - _StarPower: 50
+    - _StarChonk: 200
+    - _StarPower: 30
     - _Star_Density: 100
     - _gradientPosition: -0.3
     - _rotation: 20
