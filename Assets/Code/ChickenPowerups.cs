@@ -13,12 +13,15 @@ public class ChickenPowerups : MonoBehaviour
     [SerializeField] PowerupInventory inventory;
     [SerializeField] int requiredOrbs = 3;
     private int collectedOrbs = 0;
+    [SerializeField] OrbUI orbUI;
 
     private void ClearActivePowerup()
     {
         chickenShooting.DeactivateSeedVelocityIncrease();
         chickenShooting.DeactivateMultishot();
         chickenShooting.DeactivateEggReverseControls();
+
+        orbUI.ResetOrbs(); //restore 3 in ui again
     }
 
     public void ActivateSeedVelocityIncrease()
@@ -92,6 +95,7 @@ public class ChickenPowerups : MonoBehaviour
     public void CollectOrb()
     {
         collectedOrbs++;
+        orbUI.RemoveOrb();
         if (collectedOrbs >= requiredOrbs)
         {
             AssignRandomPowerup();

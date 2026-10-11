@@ -50,6 +50,7 @@ public class PowerupInventory : MonoBehaviour
 
         PowerupTypes powerToUse = currentPowerup; // set it to be used
         currentPowerup = PowerupTypes.None; // set the inventory to empty
+        powerupIcon.AnimateIcon();
 
         return powerToUse;
     }
