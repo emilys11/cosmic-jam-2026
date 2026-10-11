@@ -8779,6 +8779,9 @@ GameObject:
   - component: {fileID: 1717852058}
   - component: {fileID: 1717852059}
   - component: {fileID: 1717852060}
+  - component: {fileID: 1717852062}
+  - component: {fileID: 1717852061}
+  - component: {fileID: 1717852063}
   m_Layer: 0
   m_Name: Egg
   m_TagString: Untagged
@@ -8821,13 +8824,13 @@ MonoBehaviour:
   - {fileID: 1560392529}
   secretSpline: {fileID: 0}
   meshObject: {fileID: 1766909723}
-  eggHealth: {fileID: 0}
+  eggHealth: {fileID: 1717852057}
   progress: 0
-  maxMoveSpeed: 0.5
-  switchCooldown: 0.5
-  dissolveToJump: 1
+  maxMoveSpeed: 3
+  switchCooldown: 0.4
+  dissolveToJump: 0
   vanishTime: 0
-  animationDuration: 1
+  animationDuration: 0.4
   enableAcceleration: 0
   accelerationRate: 2
   decelerationRate: 4
@@ -8850,7 +8853,7 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -9177,6 +9180,63 @@ MonoBehaviour:
   explosionForce: 1
   explosionRadius: 2
   upwardsModifier: 0.2
+--- !u!114 &1717852061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1717852050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e088c75fe8ec3455694b4c310e1f0a13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EggPowerups
+  eggOnPath: {fileID: 1717852052}
+  inventory: {fileID: 1717852062}
+  powerupTimer: 1
+  speedMultiplier: 2
+  dissolveDuration: 1.5
+--- !u!114 &1717852062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1717852050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e3d83312f047f24f9b0c9c1a3a1b967, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PowerupInventory
+  currentPowerup: 0
+--- !u!54 &1717852063
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1717852050}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1766909723 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -5117700066308340382, guid: 80cf26b06f1125a4ab1e8ad4d61fc273, type: 3}
