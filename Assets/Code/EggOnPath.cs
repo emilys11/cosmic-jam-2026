@@ -257,20 +257,20 @@ public class EggOnPath : MonoBehaviour
     void TriggerTransition(int newIndex)
     {
         if (Time.time < lastSwitchTime + switchCooldown) return;
-        // Trigger transition if index changed
-        if (newIndex != index)
+
+        if (newIndex == index) return;
+
+        lastSwitchTime = Time.time;
+        if (enableSwitchLerp && switchDuration > 0f)
         {
-            if (enableSwitchLerp && switchDuration > 0f)
-            {
-                oldIndex = index;
-                index = newIndex;
-                isTransitioning = true;
-                transitionTimer = 0f;
-            }
-            else
-            {
-                index = newIndex;
-            }
+            oldIndex = index;
+            index = newIndex;
+            isTransitioning = true;
+            transitionTimer = 0f;
+        }
+        else
+        {
+            index = newIndex;
         }
     }
 
