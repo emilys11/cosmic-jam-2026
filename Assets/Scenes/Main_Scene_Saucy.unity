@@ -695,6 +695,77 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &214460593
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1325972147}
+    m_Modifications:
+    - target: {fileID: 588345677434377653, guid: c005495040931d14698f01577ae282c4, type: 3}
+      propertyPath: m_Name
+      value: SeedImpact Effect
+      objectReference: {fileID: 0}
+    - target: {fileID: 1745776269278516056, guid: c005495040931d14698f01577ae282c4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1745776269278516056, guid: c005495040931d14698f01577ae282c4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1745776269278516056, guid: c005495040931d14698f01577ae282c4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1745776269278516056, guid: c005495040931d14698f01577ae282c4, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 1745776269278516056, guid: c005495040931d14698f01577ae282c4, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 1745776269278516056, guid: c005495040931d14698f01577ae282c4, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1745776269278516056, guid: c005495040931d14698f01577ae282c4, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1745776269278516056, guid: c005495040931d14698f01577ae282c4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 1745776269278516056, guid: c005495040931d14698f01577ae282c4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1745776269278516056, guid: c005495040931d14698f01577ae282c4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3035131905068350952, guid: c005495040931d14698f01577ae282c4, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c005495040931d14698f01577ae282c4, type: 3}
+--- !u!4 &214460594 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1745776269278516056, guid: c005495040931d14698f01577ae282c4, type: 3}
+  m_PrefabInstance: {fileID: 214460593}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &214460595 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 3035131905068350952, guid: c005495040931d14698f01577ae282c4, type: 3}
+  m_PrefabInstance: {fileID: 214460593}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &244503463 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4696599244775698410, guid: ae5b2fb892ce7aa4da4e90668daa1a0c, type: 3}
@@ -8451,6 +8522,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 80cf26b06f1125a4ab1e8ad4d61fc273, type: 3}
       insertIndex: -1
       addedObject: {fileID: 651234041}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 80cf26b06f1125a4ab1e8ad4d61fc273, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 214460594}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 80cf26b06f1125a4ab1e8ad4d61fc273, type: 3}
 --- !u!4 &1325972147 stripped
@@ -9860,7 +9934,7 @@ MonoBehaviour:
   intactEgg: {fileID: 1766909723}
   fracturedEgg: {fileID: 663645612}
   explosionPoint: {fileID: 651234041}
-  burstEffect: {fileID: 0}
+  burstEffect: {fileID: 214460595}
   explosionForce: 1
   explosionRadius: 2
   upwardsModifier: 0.2
