@@ -11,8 +11,8 @@ public class TESTAimGuide : MonoBehaviour
     private float aimInput;
     [SerializeField] private float aimSpeed = 90f;
     [SerializeField] private float aimDistance = 10f;
+    [SerializeField] private Transform model;
     private bool useMouseAim = true;
-    
 
     void Awake()
     {
@@ -75,6 +75,10 @@ public class TESTAimGuide : MonoBehaviour
 
         lineRenderer.SetPosition(0, start);
         lineRenderer.SetPosition(1, end);
+        
+        //rotate model
+        if (model != null)
+            model.rotation = Quaternion.LookRotation(aimDirection, Vector3.up);
     }
 
 

@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: 80250f56c681e97459002880a6d0f6d3, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: f9da16e41c3576948889394f4e679cb1, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -119,67 +119,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &84931496
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: -8679921383154817045, guid: fad13e0a92fc92b44aed8223244dba0f, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.80224884
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: fad13e0a92fc92b44aed8223244dba0f, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: fad13e0a92fc92b44aed8223244dba0f, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.22459453
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: fad13e0a92fc92b44aed8223244dba0f, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: -0.29946047
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: fad13e0a92fc92b44aed8223244dba0f, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: fad13e0a92fc92b44aed8223244dba0f, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.9541087
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: fad13e0a92fc92b44aed8223244dba0f, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: fad13e0a92fc92b44aed8223244dba0f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: fad13e0a92fc92b44aed8223244dba0f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -214.85
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: fad13e0a92fc92b44aed8223244dba0f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: fad13e0a92fc92b44aed8223244dba0f, type: 3}
-      propertyPath: m_Name
-      value: chicken_model
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: fad13e0a92fc92b44aed8223244dba0f, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: fad13e0a92fc92b44aed8223244dba0f, type: 3}
 --- !u!1001 &101256666
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -189,12 +128,24 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 877b769e1d1ed924a99c395e9e941217, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2.94
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 877b769e1d1ed924a99c395e9e941217, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2.94
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 877b769e1d1ed924a99c395e9e941217, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2.94
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 877b769e1d1ed924a99c395e9e941217, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.6
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 877b769e1d1ed924a99c395e9e941217, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -1.6
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 877b769e1d1ed924a99c395e9e941217, type: 3}
       propertyPath: m_LocalPosition.z
@@ -228,9 +179,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 877b769e1d1ed924a99c395e9e941217, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 877b769e1d1ed924a99c395e9e941217, type: 3}
       propertyPath: m_Name
       value: chicken_model 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 877b769e1d1ed924a99c395e9e941217, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -253,7 +212,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &218343421
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -304,7 +263,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!135 &609223172
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -392,8 +351,8 @@ Transform:
   m_GameObject: {fileID: 609223171}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.43, y: -9.06, z: 0}
-  m_LocalScale: {x: 10.83, y: 15.03, z: 10.83}
+  m_LocalPosition: {x: -0.43, y: -10, z: 0}
+  m_LocalScale: {x: 15, y: 15, z: 15}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -461,10 +420,14 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 1efc34d71beae104299a4b5c792524fc, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 09fcd6efdb5bdd542be5f67073629a75, type: 2}
+      objectReference: {fileID: 2100000, guid: 4f5c049a1002c3d4bb7ea445d36de9f9, type: 2}
     - target: {fileID: 919132149155446097, guid: 1efc34d71beae104299a4b5c792524fc, type: 3}
       propertyPath: m_Name
       value: Ring_Placeholder (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1efc34d71beae104299a4b5c792524fc, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -483,6 +446,7 @@ GameObject:
   - component: {fileID: 1360440088}
   - component: {fileID: 1360440087}
   - component: {fileID: 1360440090}
+  - component: {fileID: 1360440091}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -608,6 +572,23 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
+--- !u!114 &1360440091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1360440086}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 618b0e3f6c65dd247a4a016150006c57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Core.Runtime::UnityEngine.Rendering.FreeCamera
+  m_LookSpeedController: 121.2
+  m_LookSpeedMouse: 11.81
+  m_MoveSpeed: 10
+  m_MoveSpeedIncrement: 2.5
+  m_Turbo: 10
 --- !u!1001 &1488217916
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -739,6 +720,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ring_Placeholder
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1efc34d71beae104299a4b5c792524fc, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -772,7 +757,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 13
   m_Type: 1
-  m_Color: {r: 1, g: 0.57924527, b: 0.9610862, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1.01
   m_Range: 10
   m_SpotAngle: 30
@@ -877,7 +862,6 @@ SceneRoots:
   m_Roots:
   - {fileID: 1360440089}
   - {fileID: 1995977070}
-  - {fileID: 84931496}
   - {fileID: 218343422}
   - {fileID: 1488217916}
   - {fileID: 1790253079}
