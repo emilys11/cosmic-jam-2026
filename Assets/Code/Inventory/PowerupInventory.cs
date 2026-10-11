@@ -22,6 +22,7 @@ public class PowerupInventory : MonoBehaviour
     }
 
     [SerializeField] private PowerupTypes currentPowerup = PowerupTypes.None; // default empty
+    [SerializeField] PowerUPIcon powerupIcon;
 
     public bool HasPowerup()
     {
@@ -37,6 +38,8 @@ public class PowerupInventory : MonoBehaviour
     {
         // replace current held powerup
         currentPowerup = powerup;
+        powerupIcon.UpdateIcon(powerup);
+        
         return true;
     }
 

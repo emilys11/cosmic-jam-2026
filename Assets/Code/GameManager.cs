@@ -1,4 +1,3 @@
-
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -6,7 +5,6 @@ using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
-using UnityEditor.ShaderKeywordFilter;
 
 public enum GameState
 {
@@ -32,7 +30,8 @@ public class GameManager : MonoBehaviour
     public AudioSource backgroundMusicSource;
 
     [Header("Starting Countdown")]
-    [SerializeField] private TMP_Text countdownText;
+    [SerializeField] private Sprite[] countdownSprites;
+    [SerializeField] private GameObject countdownObj;
     [SerializeField] private int countdownDuration = 3;
 
     [Header("Pause Menu")]
@@ -97,13 +96,13 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 0f;
 
-        if (countdownText != null)
-            countdownText.gameObject.SetActive(true);
+        if (countdownObj != null)
+            countdownObj.gameObject.SetActive(true);
 
-        for (int i = countdownDuration; i > 0; i--)
+        for (int i = countdownDuration-1; i >= 0; i--)
         {
-            if (countdownText != null)
-                countdownText.text = i.ToString();
+            if (countdownObj != null)
+                countdownObj.GetComponent<Image>().sprite = countdownSprites[i];
             if (GetComponent<AudioSource>() != null && countSfx != null)
             {
                 GetComponent<AudioSource>().PlayOneShot(countSfx);
@@ -112,8 +111,9 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSecondsRealtime(1f);
         }
 
-        if (countdownText != null)
-            countdownText.text = "GO!";
+        if (countdownObj != null)
+            countdownObj.transform.localScale = new Vector3(8f, 8f, 1.0f);
+            countdownObj.GetComponent<Image>().sprite = countdownSprites[3];
             if (GetComponent<AudioSource>() != null && goSfx != null)
             {
                 GetComponent<AudioSource>().PlayOneShot(goSfx);
@@ -122,8 +122,9 @@ public class GameManager : MonoBehaviour
 
         yield return new WaitForSecondsRealtime(0.5f);
 
-        if (countdownText != null)
-            countdownText.gameObject.SetActive(false);
+        if (countdownObj != null)
+            countdownObj.transform.localScale = new Vector3(5f, 5f, 1.0f);
+            countdownObj.gameObject.SetActive(false);
 
         CurrentState = GameState.Playing;
         Time.timeScale = 1f;
