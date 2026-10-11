@@ -135,7 +135,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &4902030
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2208,10 +2208,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BeadOnPath
   targetSplines: []
   secretSpline: {fileID: 0}
+  meshObject: {fileID: 0}
   eggHealth: {fileID: 0}
   progress: 0
   maxMoveSpeed: 0.5
   switchCooldown: 0.5
+  dissolveToJump: 0
+  vanishTime: 0
+  animationDuration: 0
   enableAcceleration: 0
   accelerationRate: 2
   decelerationRate: 4
@@ -3777,8 +3781,6 @@ MonoBehaviour:
   - {fileID: 1560392529}
   normalRingMaterial: {fileID: 2100000, guid: 9c3e25c7363b6474285be69d5abf629f, type: 2}
   selectedRingMaterial: {fileID: 2100000, guid: c43d484185500d74296db2a8c2ce021b, type: 2}
-  seedVelocityMultiplier: 1
-  selectedRingMaterial: {fileID: 2100000, guid: b12053ea56302ad41a23a9555af8be28, type: 2}
   multishotActive: 0
   multishotAngle: 15
   eggReverseControl: 0
@@ -4431,6 +4433,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1efc34d71beae104299a4b5c792524fc, type: 3}
   m_PrefabInstance: {fileID: 1026628743}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1072267578 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -5117700066308340382, guid: 80cf26b06f1125a4ab1e8ad4d61fc273, type: 3}
+  m_PrefabInstance: {fileID: 1325972146}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1214871949
 GameObject:
   m_ObjectHideFlags: 0
@@ -4843,7 +4850,7 @@ PrefabInstance:
     - target: {fileID: -2571118854743697038, guid: 80cf26b06f1125a4ab1e8ad4d61fc273, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 49855c80d4905494a9a41eeec97b0223, type: 2}
+      objectReference: {fileID: 2100000, guid: 4e812fac454006042aef7f0e8880fb42, type: 2}
     - target: {fileID: -2571118854743697038, guid: 80cf26b06f1125a4ab1e8ad4d61fc273, type: 3}
       propertyPath: 'm_Materials.Array.data[1]'
       value: 
@@ -5670,6 +5677,7 @@ GameObject:
   - component: {fileID: 1717852057}
   - component: {fileID: 1717852058}
   - component: {fileID: 1717852059}
+  - component: {fileID: 1717852060}
   m_Layer: 0
   m_Name: Egg
   m_TagString: Untagged
@@ -5711,10 +5719,14 @@ MonoBehaviour:
   - {fileID: 869843624}
   - {fileID: 1560392529}
   secretSpline: {fileID: 0}
+  meshObject: {fileID: 1072267578}
   eggHealth: {fileID: 0}
   progress: 0
   maxMoveSpeed: 0.5
   switchCooldown: 0.5
+  dissolveToJump: 1
+  vanishTime: 0
+  animationDuration: 1
   enableAcceleration: 0
   accelerationRate: 2
   decelerationRate: 4
@@ -6044,6 +6056,23 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1717852060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1717852050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e088c75fe8ec3455694b4c310e1f0a13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EggPowerups
+  eggOnPath: {fileID: 1717852052}
+  inventory: {fileID: 0}
+  powerupTimer: 1
+  speedMultiplier: 2
+  dissolveDuration: 1.5
 --- !u!1 &1767243040
 GameObject:
   m_ObjectHideFlags: 0

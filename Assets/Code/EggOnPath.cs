@@ -13,6 +13,7 @@ public class EggOnPath : MonoBehaviour
     [Tooltip("The SplineContainers the egg can switch between.")]
     public List<SplineContainer> targetSplines = new List<SplineContainer>();
     public SplineContainer secretSpline; // Please make sure to add Material from DissolverShader/Material/
+    public GameObject meshObject;
 
     // Hassan - getting defeated flag to stop movement
     [SerializeField] EggHealth eggHealth;
@@ -287,7 +288,7 @@ public class EggOnPath : MonoBehaviour
 
     private IEnumerator DissolveTransition(int n)
     {
-        StartCoroutine(DissolveCycleRoutine(gameObject, vanishTime, animationDuration, true));
+        StartCoroutine(DissolveCycleRoutine(meshObject, vanishTime, animationDuration, true));
         yield return new WaitForSeconds(animationDuration);
         index = n;
     }
