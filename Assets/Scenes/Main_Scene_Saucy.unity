@@ -570,10 +570,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   countdownTimer: {fileID: 1784194777}
   eggHealth: {fileID: 1717852057}
-  countdownText: {fileID: 0}
+  countdownText: {fileID: 2044969528}
   countdownDuration: 3
   pausePanel: {fileID: 1463501384}
-  resumeButton: {fileID: 0}
+  resumeButton: {fileID: 451808927}
   chickenWinScene: Chicken_Win
   eggWinScene: Egg_Win
 --- !u!1 &429145948
@@ -2401,7 +2401,6 @@ MonoBehaviour:
   rings: []
   normalRingMaterial: {fileID: 0}
   selectedRingMaterial: {fileID: 0}
-  seedVelocityMultiplier: 1
   multishotActive: 0
   multishotAngle: 15
   eggReverseControl: 0
@@ -3779,6 +3778,7 @@ MonoBehaviour:
   normalRingMaterial: {fileID: 2100000, guid: 9c3e25c7363b6474285be69d5abf629f, type: 2}
   selectedRingMaterial: {fileID: 2100000, guid: c43d484185500d74296db2a8c2ce021b, type: 2}
   seedVelocityMultiplier: 1
+  selectedRingMaterial: {fileID: 2100000, guid: b12053ea56302ad41a23a9555af8be28, type: 2}
   multishotActive: 0
   multishotAngle: 15
   eggReverseControl: 0
@@ -6845,7 +6845,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2044969528
 MonoBehaviour:
   m_ObjectHideFlags: 0
