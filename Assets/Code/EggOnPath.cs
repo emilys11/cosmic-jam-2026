@@ -14,6 +14,9 @@ public class EggOnPath : MonoBehaviour
     public List<SplineContainer> targetSplines = new List<SplineContainer>();
     public SplineContainer secretSpline; // Please make sure to add Material from DissolverShader/Material/
 
+    // Hassan - getting defeated flag to stop movement
+    [SerializeField] EggHealth eggHealth;
+
     [Header("Movement Settings")]
     [Range(0f, 1f)]
     public float progress = 0f;
@@ -45,10 +48,18 @@ public class EggOnPath : MonoBehaviour
     // Index to change Splines.
     private int index = 0;
 
+    void Awake()
+    {
+        if (eggHealth == null)
+        {
+            eggHealth = GetComponent<EggHealth>();
+        }
+    }
+
     void Update()
     {
         // Resolved: Using .Count for List and keeping safety null check
-        if (targetSplines == null || targetSplines.Count == 0) return;
+        if (targetSplines == null || targetSplines.Count == 0 || eggHealth.isDefeated()) return;
 
         UpdateMovementAndProgress();
         ApplyPositionAndRotation();
@@ -246,20 +257,20 @@ public class EggOnPath : MonoBehaviour
     void TriggerTransition(int newIndex)
     {
         if (Time.time < lastSwitchTime + switchCooldown) return;
-        // Trigger transition if index changed
-        if (newIndex != index)
+
+        if (newIndex == index) return;
+
+        lastSwitchTime = Time.time;
+        if (enableSwitchLerp && switchDuration > 0f)
         {
-            if (enableSwitchLerp && switchDuration > 0f)
-            {
-                oldIndex = index;
-                index = newIndex;
-                isTransitioning = true;
-                transitionTimer = 0f;
-            }
-            else
-            {
-                index = newIndex;
-            }
+            oldIndex = index;
+            index = newIndex;
+            isTransitioning = true;
+            transitionTimer = 0f;
+        }
+        else
+        {
+            index = newIndex;
         }
     }
 
