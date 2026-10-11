@@ -355,6 +355,7 @@ GameObject:
   - component: {fileID: 70951390}
   - component: {fileID: 70951392}
   - component: {fileID: 70951391}
+  - component: {fileID: 70951393}
   m_Layer: 5
   m_Name: AbilityIcon (1)
   m_TagString: Untagged
@@ -371,7 +372,7 @@ RectTransform:
   m_GameObject: {fileID: 70951389}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.6818181, y: 0.6818181, z: 0.7808}
+  m_LocalScale: {x: 0.76114976, y: 0.76114976, z: 0.8716485}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 960609583}
@@ -402,7 +403,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 0}
-  m_Type: 0
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -419,6 +420,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 70951389}
   m_CullTransparentMesh: 1
+--- !u!114 &70951393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 70951389}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac2970e67de44704d8fb87476c464975, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PowerUPIcon
+  sprites:
+  - {fileID: -6187265057119674963, guid: a8ba2ea3e5eae4a3fad7ba23b96cd8f4, type: 3}
+  - {fileID: -8091575605242941571, guid: 10b5b28bbd628494aa321f6cc0980f74, type: 3}
+  - {fileID: 21300000, guid: e9f2eddacf65c7d4ca4d761e94abe7d3, type: 3}
+  - {fileID: 3382018920196296296, guid: 115aa5391f81e45cc938ce1fe0214d8e, type: 3}
+  - {fileID: -2911473667223024103, guid: a290cbee6d85046a4a858650d64a06b5, type: 3}
+  - {fileID: 8958967494640084933, guid: b039487dd44e540cdaf229a6267abb10, type: 3}
+  - {fileID: 200909000895028017, guid: 8c729fe4f3b1541ee873ed314ad22f99, type: 3}
 --- !u!54 &82139007
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1023,6 +1044,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   countdownTimer: {fileID: 1784194777}
   eggHealth: {fileID: 1717852057}
+  countSfx: {fileID: 0}
+  goSfx: {fileID: 0}
+  bgMusic: {fileID: 0}
+  backgroundMusicSource: {fileID: 0}
   countdownText: {fileID: 2044969528}
   countdownDuration: 3
   pausePanel: {fileID: 1406946184}
@@ -6500,6 +6525,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PowerupInventory
   currentPowerup: 0
+  powerupIcon: {fileID: 70951393}
 --- !u!114 &1016290104
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9663,6 +9689,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PowerupInventory
   currentPowerup: 0
+  powerupIcon: {fileID: 1786456415}
 --- !u!54 &1717852063
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -10060,6 +10087,7 @@ GameObject:
   - component: {fileID: 1786456412}
   - component: {fileID: 1786456414}
   - component: {fileID: 1786456413}
+  - component: {fileID: 1786456415}
   m_Layer: 5
   m_Name: AbilityIcon
   m_TagString: Untagged
@@ -10076,7 +10104,7 @@ RectTransform:
   m_GameObject: {fileID: 1786456411}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.75, y: 0.65217394, z: 1}
+  m_LocalScale: {x: 0.877275, y: 0.7628479, z: 1.1697}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 279660201}
@@ -10124,6 +10152,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1786456411}
   m_CullTransparentMesh: 1
+--- !u!114 &1786456415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1786456411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac2970e67de44704d8fb87476c464975, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PowerUPIcon
+  sprites:
+  - {fileID: -6187265057119674963, guid: a8ba2ea3e5eae4a3fad7ba23b96cd8f4, type: 3}
+  - {fileID: -8091575605242941571, guid: 10b5b28bbd628494aa321f6cc0980f74, type: 3}
+  - {fileID: 21300000, guid: e9f2eddacf65c7d4ca4d761e94abe7d3, type: 3}
+  - {fileID: 3382018920196296296, guid: 115aa5391f81e45cc938ce1fe0214d8e, type: 3}
+  - {fileID: -2911473667223024103, guid: a290cbee6d85046a4a858650d64a06b5, type: 3}
+  - {fileID: 8958967494640084933, guid: b039487dd44e540cdaf229a6267abb10, type: 3}
+  - {fileID: 200909000895028017, guid: 8c729fe4f3b1541ee873ed314ad22f99, type: 3}
 --- !u!54 &1797262618
 Rigidbody:
   m_ObjectHideFlags: 0
