@@ -12,6 +12,7 @@ public class TESTAimGuide : MonoBehaviour
     [SerializeField] private float aimSpeed = 90f;
     [SerializeField] private float aimDistance = 10f;
     [SerializeField] private Transform model;
+    [SerializeField] private float turnSpeed = 720f; // chicken turning degrees per second
     private bool useMouseAim = true;
 
     void Awake()
@@ -78,7 +79,10 @@ public class TESTAimGuide : MonoBehaviour
         
         //rotate model
         if (model != null)
-            model.rotation = Quaternion.LookRotation(aimDirection, Vector3.up);
+        {
+            Quaternion targetRot = Quaternion.LookRotation(aimDirection, Vector3.up);
+            model.rotation = Quaternion.RotateTowards(model.rotation, targetRot, turnSpeed * Time.deltaTime);
+        }
     }
 
 
