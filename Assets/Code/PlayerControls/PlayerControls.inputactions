@@ -126,6 +126,17 @@
                 },
                 {
                     "name": "",
+                    "id": "d4e7c671-e0ed-4efb-a50c-2b72ff5c6586",
+                    "path": "<Gamepad>/dpad/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Gamepad",
+                    "action": "RingUp",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "7d288952-3e87-4436-9bdc-a9ac613043ce",
                     "path": "<Keyboard>/downArrow",
                     "interactions": "",
@@ -139,6 +150,17 @@
                     "name": "",
                     "id": "0d14b7ea-c18c-43e0-9857-11516cfb22cd",
                     "path": "<Gamepad>/leftStick/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Gamepad",
+                    "action": "RingDown",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c1c33b3b-00fc-448b-8f53-e3a06bc0e7ea",
+                    "path": "<Gamepad>/dpad/down",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
@@ -262,6 +284,17 @@
                 },
                 {
                     "name": "",
+                    "id": "db25ae49-78c1-4944-8e8b-24ee57443b97",
+                    "path": "<Gamepad>/dpad/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Gamepad",
+                    "action": "RingUp",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "65fa2c73-fd6d-44f4-bfa8-06b7c76082f0",
                     "path": "<Keyboard>/s",
                     "interactions": "",
@@ -275,6 +308,17 @@
                     "name": "",
                     "id": "a940f95d-c68c-4344-a4b0-7b3401b72240",
                     "path": "<Gamepad>/leftStick/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Gamepad",
+                    "action": "RingDown",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9426b2d0-f66a-4b6d-aa42-02ea6652937e",
+                    "path": "<Gamepad>/dpad/down",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
