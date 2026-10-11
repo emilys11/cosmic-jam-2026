@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class EggPowerups : MonoBehaviour
 {
@@ -18,10 +19,9 @@ public class EggPowerups : MonoBehaviour
 
     [ContextMenu("Enable Secret Spline")]
 
-    // get random powerup
     private void OnTriggerEnter(Collider other)
     {
-        //Debug.Log("egg touched: " + other.gameObject.name);
+        Debug.Log("egg touched: " + other.gameObject.name);
 
         PowerupOrb orb = other.GetComponent<PowerupOrb>();
 
@@ -51,7 +51,6 @@ public class EggPowerups : MonoBehaviour
         //Debug.Log("Egg collected powerup: " + randomPowerup);
     }
 
-
     private void UndissolveOrbital()
     {
         if (eggOnPath != null && eggOnPath.secretSpline != null)
@@ -67,7 +66,7 @@ public class EggPowerups : MonoBehaviour
 
         eggOnPath.maxMoveSpeed *= speedMultiplier;
         yield return new WaitForSeconds(powerupTimer);
-        eggOnPath.maxMoveSpeed /= speedMultiplier; 
+        eggOnPath.maxMoveSpeed /= speedMultiplier;
     }
 
     [ContextMenu("Trigger Dissolve")]
@@ -120,7 +119,7 @@ public class EggPowerups : MonoBehaviour
 
     private IEnumerator DecoyBrain(GameObject decoy, float delay)
     {
-    float elapsed = 0f;
+        float elapsed = 0f;
         while (elapsed < delay)
         {
             // Wait a random amount of time before trying to switch tracks
@@ -148,31 +147,35 @@ public class EggPowerups : MonoBehaviour
             Destroy(decoy);
         }
     }
-    public void UsePowerups()
+    public void UsePowerups(InputAction.CallbackContext context)
     {
-        PowerupInventory.PowerupTypes type = inventory.UseInventoryPowerup();
-
-        switch(type)
+        if (context.performed)
         {
-            case PowerupInventory.PowerupTypes.SpeedUpEgg:
-                MultiplySpeed();
-                break;
+            PowerupInventory.PowerupTypes type = inventory.UseInventoryPowerup();
 
-            case PowerupInventory.PowerupTypes.WormHole:
-                TriggerWormHole();
-                break;
+            switch (type)
+            {
+                case PowerupInventory.PowerupTypes.SpeedUpEgg:
+                    MultiplySpeed();
+                    break;
 
-            case PowerupInventory.PowerupTypes.SummonDecoy:
-                SpawnDecoy();
-                break;
+                case PowerupInventory.PowerupTypes.WormHole:
+                    TriggerWormHole();
+                    break;
 
-            case PowerupInventory.PowerupTypes.ExpandOrbital:
-                UndissolveOrbital();
-                break;
-            
-            case PowerupInventory.PowerupTypes.GoInvisible:
-                TriggerDissolve();
-                break;
+                case PowerupInventory.PowerupTypes.SummonDecoy:
+                    SpawnDecoy();
+                    break;
+
+                case PowerupInventory.PowerupTypes.ExpandOrbital:
+                    UndissolveOrbital();
+                    break;
+
+                case PowerupInventory.PowerupTypes.GoInvisible:
+                    TriggerDissolve();
+                    break;
+            }
         }
+
     }
 }

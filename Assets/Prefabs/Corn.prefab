@@ -132,7 +132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66eaba26567701740829b1119ce223f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Seed
-  seedVelocity: 5
+  seedVelocity: 6
   seedLifetime: 5
   ringMargin: 0.05
 --- !u!65 &2798391648871819764

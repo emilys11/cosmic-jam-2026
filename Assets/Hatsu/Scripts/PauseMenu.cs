@@ -1,35 +1,61 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
     [SerializeField] Light spotLight;
     [SerializeField] GameObject pauseMenuSticks;
     [SerializeField] PauseSticks[] pauseSticks;
+    [SerializeField] private Button defaultButton;
     void Awake()
     {
         spotLight.enabled = false;
         pauseMenuSticks.SetActive(false);
         // GetComponent<Canvas>().enabled = false;
     }
-    public void ManagePauseMenu(bool enable)
+
+    void OnEnable()
     {
-        pauseMenuSticks.SetActive(enable);
-        // GetComponent<Canvas>().enabled = enable;
-        if (enable == false)
+        pauseMenuSticks.SetActive(true);
+        for(int i = 0; i < pauseSticks.Length; i++)
         {
-            for(int i = 0; i < pauseSticks.Length; i++)
-            {
-                pauseSticks[i].Reset();
-            }
+            pauseSticks[i].startAnimation();
         }
-        else
+        if (EventSystem.current != null && defaultButton != null)
         {
-            for(int i = 0; i < pauseSticks.Length; i++)
-            {
-                pauseSticks[i].startAnimation();
-            }
+            EventSystem.current.SetSelectedGameObject(null);
+            EventSystem.current.SetSelectedGameObject(defaultButton.gameObject);
         }
     }
+
+    void OnDisable()
+    {
+        pauseMenuSticks.SetActive(false);
+        for(int i = 0; i < pauseSticks.Length; i++)
+        {
+            pauseSticks[i].Reset();
+        }
+    }
+    // public void ManagePauseMenu(bool enable)
+    // {
+    //     pauseMenuSticks.SetActive(enable);
+    //     // GetComponent<Canvas>().enabled = enable;
+    //     if (enable == false)
+    //     {
+    //         for(int i = 0; i < pauseSticks.Length; i++)
+    //         {
+    //             pauseSticks[i].Reset();
+    //         }
+    //     }
+    //     else
+    //     {
+    //         for(int i = 0; i < pauseSticks.Length; i++)
+    //         {
+    //             pauseSticks[i].startAnimation();
+    //         }
+    //     }
+    // }
 
     public void IncreaseScale(PauseSticks target)
     {
