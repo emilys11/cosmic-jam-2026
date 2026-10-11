@@ -211,6 +211,10 @@ public class GameManager : MonoBehaviour
             return;
 
         CurrentState = GameState.Paused;
+
+        backgroundMusicSource.Stop();
+
+
         Time.timeScale = 0f;
 
         if (countdownTimer != null)
@@ -234,7 +238,7 @@ public class GameManager : MonoBehaviour
             return;
 
         CurrentState = GameState.Playing;
-
+        backgroundMusicSource.Play();
         // Hide pause menu.
         if (pausePanel != null)
             pausePanel.SetActive(false);
