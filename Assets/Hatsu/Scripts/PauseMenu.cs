@@ -8,6 +8,8 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] GameObject pauseMenuSticks;
     [SerializeField] PauseSticks[] pauseSticks;
     [SerializeField] private Button defaultButton;
+    [SerializeField] private GameObject pauseBackdrop;
+    [SerializeField] private GameObject gameplayUI;
     void Awake()
     {
         spotLight.enabled = false;
@@ -17,6 +19,11 @@ public class PauseMenu : MonoBehaviour
 
     void OnEnable()
     {
+        if (pauseBackdrop != null)
+            pauseBackdrop.SetActive(true);
+        if (gameplayUI != null)
+            gameplayUI.SetActive(false);
+
         pauseMenuSticks.SetActive(true);
         for(int i = 0; i < pauseSticks.Length; i++)
         {
@@ -31,6 +38,11 @@ public class PauseMenu : MonoBehaviour
 
     void OnDisable()
     {
+        if (pauseBackdrop != null)
+            pauseBackdrop.SetActive(false);
+        if (gameplayUI != null)
+            gameplayUI.SetActive(true);
+
         pauseMenuSticks.SetActive(false);
         for(int i = 0; i < pauseSticks.Length; i++)
         {
