@@ -226,6 +226,7 @@ public class EggOnPath : MonoBehaviour
     {
         if (context.performed)
         {
+            Debug.Log("hello vro");
             int newIndex = index;
             newIndex = (index + 1) % targetSplines.Count; // Fixed to use .Count
             TriggerTransition(newIndex);
