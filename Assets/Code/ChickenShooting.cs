@@ -6,6 +6,7 @@ public class ChickenShooting : MonoBehaviour
 {
     public GameObject seedsPrefab;
     [SerializeField] float seedCooldown = 1.0f;
+    
     private float cooldownTimer = 0f;
 
     // select orbital ring -> shoot seed -> destroy when chicken seed hits the ring collider
@@ -25,14 +26,15 @@ public class ChickenShooting : MonoBehaviour
     [SerializeField] Material selectedRingMaterial;
 
     // POWERUPS
-    private float currentSeedCooldown;
+    private float currentSeedVelocity;
+    [SerializeField] float seedVelocityMultiplier = 1f;
     [SerializeField] bool multishotActive = false;
     [SerializeField] float multishotAngle = 15f;
     [SerializeField] bool eggReverseControl = false;
 
     void Start()
     {
-        currentSeedCooldown = seedCooldown;
+        //currentSeedVelocity = seedVelocity;
         UpdateSelectedRing();
     }
 
@@ -201,7 +203,7 @@ public class ChickenShooting : MonoBehaviour
         seedVelocityMultiplier = multiplier;
         Debug.Log("velocity increase activated");
     }
-    public void DeactivateCooldownDecrease()
+    public void DeactivateSeedVelocityIncrease()
     {
         seedVelocityMultiplier = 1f;
         Debug.Log("velocity increase deactivated");
@@ -210,7 +212,7 @@ public class ChickenShooting : MonoBehaviour
     {
         multishotActive = true;
 
-        Debug.Log("Multishot active: 1 -> 3 seeds");
+        //Debug.Log("Multishot active");
     }
     public void DeactivateMultishot()
     {
