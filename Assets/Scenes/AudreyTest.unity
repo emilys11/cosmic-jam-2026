@@ -957,6 +957,64 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2114534445}
   m_Mesh: {fileID: 3148208084576577523, guid: 20d86bd131cdd410e9cd29c3b4b2fc78, type: 3}
+--- !u!1001 &2140195095
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: cac0e869cbe18456880744ab0144257f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.7250524
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: cac0e869cbe18456880744ab0144257f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.7312927
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: cac0e869cbe18456880744ab0144257f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.24363053
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: cac0e869cbe18456880744ab0144257f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: cac0e869cbe18456880744ab0144257f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: cac0e869cbe18456880744ab0144257f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: cac0e869cbe18456880744ab0144257f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: cac0e869cbe18456880744ab0144257f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: cac0e869cbe18456880744ab0144257f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: cac0e869cbe18456880744ab0144257f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: cac0e869cbe18456880744ab0144257f, type: 3}
+      propertyPath: m_Name
+      value: whatsapp chicken
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects:
+    - {fileID: 65702495048144492, guid: cac0e869cbe18456880744ab0144257f, type: 3}
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: cac0e869cbe18456880744ab0144257f, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -968,3 +1026,4 @@ SceneRoots:
   - {fileID: 2114534444}
   - {fileID: 1775017948}
   - {fileID: 1494488279}
+  - {fileID: 2140195095}
