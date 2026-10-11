@@ -3,29 +3,36 @@ using UnityEngine;
 public class EggLives : MonoBehaviour
 {
     [SerializeField] GameObject eggIcon;
-
-    [SerializeField] int numOfEggs;
+    [SerializeField] EggHealth eggHealthScript;
     [SerializeField] EggLife[] eggs; //Handles up to how many slots are serialized
+    [SerializeField] int numOfEggIcons;
+
     void Awake()
     {
-        for(int i = numOfEggs; i < eggs.Length; i++)
+        numOfEggIcons = eggHealthScript.currentHealth;
+
+        for(int i = numOfEggIcons; i < eggs.Length; i++)
         {
             eggs[i].gameObject.SetActive(false);
         }
     }
-    public void ManageLives(float lives)
+
+    public void ManageLives()
     {
-        if(lives > 0)
+        int health = eggHealthScript.currentHealth;
+
+        if(health > numOfEggIcons)
         {
-            eggs[numOfEggs].gameObject.SetActive(true);
-            numOfEggs++;
+            eggs[numOfEggIcons].gameObject.SetActive(true);
+            numOfEggIcons++;
             //Add a new egg
         }
-        else if(lives < 0)
+        else if(health < numOfEggIcons)
         {
-            numOfEggs--;
-            eggs[numOfEggs].BreakEgg();
-            Debug.Log(numOfEggs);
+            numOfEggIcons--;
+            eggs[numOfEggIcons].BreakEgg();
+
+            //Debug.Log(numOfEggIcons);
 
             //Play shatter effect and destroy one of the eggs
         }
