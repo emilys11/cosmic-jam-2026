@@ -15,8 +15,9 @@ public class EggHealth : MonoBehaviour
 
     [Header("Particles Effect")]
     [SerializeField] ParticleSystem damageParticles;
+    [SerializeField] EggLives eggLives;
 
-    private int currentHealth;
+    public int currentHealth;
     private bool defeated;
 
     public event Action OnEggDied;
@@ -74,6 +75,7 @@ public class EggHealth : MonoBehaviour
     private void TakeDamage()
     {
         currentHealth--;
+        eggLives.ManageLives();
 
         Debug.Log("Egg HP: " + currentHealth);
 

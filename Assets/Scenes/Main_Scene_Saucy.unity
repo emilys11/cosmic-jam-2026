@@ -2132,13 +2132,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EggLives
   eggIcon: {fileID: 4644906763221030825, guid: fbf0eba7c98b156498e0cb78ed1ab2e8, type: 3}
-  numOfEggs: 3
+  eggHealthScript: {fileID: 1717852057}
   eggs:
   - {fileID: 882369902}
   - {fileID: 753178615}
   - {fileID: 1772401926}
   - {fileID: 2022550253}
   - {fileID: 1112228875}
+  numOfEggIcons: 0
 --- !u!1 &581319855
 GameObject:
   m_ObjectHideFlags: 0
@@ -9825,6 +9826,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: b9600fbe8269aff42b62a8289e1748d6, type: 3}
   - {fileID: 8300000, guid: 8c60fb3e77aa5e443a49bd58d1476fe4, type: 3}
   damageParticles: {fileID: 214460595}
+  eggLives: {fileID: 559471593}
+  currentHealth: 0
 --- !u!136 &1717852058
 CapsuleCollider:
   m_ObjectHideFlags: 0
