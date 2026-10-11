@@ -546,7 +546,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &333471768
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -559,8 +559,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0303e216d065f4adcb6485e13749b762, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EggOnPath
-  targetSplines: []
+  targetSplines:
+  - {fileID: 143062076}
+  - {fileID: 821384425}
   secretSpline: {fileID: 0}
+  eggHealth: {fileID: 0}
   progress: 0
   maxMoveSpeed: 0.5
   switchCooldown: 0.5
@@ -1685,6 +1688,8 @@ MonoBehaviour:
   seedsPrefab: {fileID: 4123111896536563332, guid: 74612feaa78754442913542aecac575f, type: 3}
   seedCooldown: 5
   lineRenderer: {fileID: 0}
+  audioSource: {fileID: 0}
+  fireClips: []
   rings: []
   normalRingMaterial: {fileID: 0}
   selectedRingMaterial: {fileID: 0}
@@ -2058,6 +2063,8 @@ MonoBehaviour:
   seedsPrefab: {fileID: 4123111896536563332, guid: 74612feaa78754442913542aecac575f, type: 3}
   seedCooldown: 0.5
   lineRenderer: {fileID: 1817084741}
+  audioSource: {fileID: 0}
+  fireClips: []
   rings:
   - {fileID: 143062076}
   - {fileID: 821384425}
