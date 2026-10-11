@@ -27,6 +27,11 @@ public class EggOnPath : MonoBehaviour
     public float switchCooldown = 0.5f;
     private float lastSwitchTime = -999f;
 
+    [Header("Dissolve Transition")]
+    public bool dissolveToJump;
+    public float vanishTime;
+    public float animationDuration;
+
     [Header("Acceleration & Deceleration")]
     public bool enableAcceleration = false;
     public float accelerationRate = 2f;
@@ -260,6 +265,12 @@ public class EggOnPath : MonoBehaviour
 
         if (newIndex == index) return;
 
+//     public IEnumerator DissolveCycleRoutine(GameObject targetObject, float disappearTime, float dissolveDuration, bool toDissolve)
+        if (dissolveToJump) {
+            StartCoroutine(DissolveTransition(newIndex));
+            return;
+        }
+
         lastSwitchTime = Time.time;
         if (enableSwitchLerp && switchDuration > 0f)
         {
@@ -272,6 +283,13 @@ public class EggOnPath : MonoBehaviour
         {
             index = newIndex;
         }
+    }
+
+    private IEnumerator DissolveTransition(int n)
+    {
+        StartCoroutine(DissolveCycleRoutine(gameObject, vanishTime, animationDuration, true));
+        yield return new WaitForSeconds(animationDuration);
+        index = n;
     }
 
     public void WormHole() 
