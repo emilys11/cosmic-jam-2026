@@ -11,25 +11,43 @@ public class PauseMenu : MonoBehaviour
         pauseMenuSticks.SetActive(false);
         // GetComponent<Canvas>().enabled = false;
     }
-    public void ManagePauseMenu(bool enable)
+
+    void OnEnable()
     {
-        pauseMenuSticks.SetActive(enable);
-        // GetComponent<Canvas>().enabled = enable;
-        if (enable == false)
+        pauseMenuSticks.SetActive(true);
+        for(int i = 0; i < pauseSticks.Length; i++)
         {
-            for(int i = 0; i < pauseSticks.Length; i++)
-            {
-                pauseSticks[i].Reset();
-            }
-        }
-        else
-        {
-            for(int i = 0; i < pauseSticks.Length; i++)
-            {
-                pauseSticks[i].startAnimation();
-            }
+            pauseSticks[i].startAnimation();
         }
     }
+
+    void OnDisable()
+    {
+        pauseMenuSticks.SetActive(false);
+        for(int i = 0; i < pauseSticks.Length; i++)
+        {
+            pauseSticks[i].Reset();
+        }
+    }
+    // public void ManagePauseMenu(bool enable)
+    // {
+    //     pauseMenuSticks.SetActive(enable);
+    //     // GetComponent<Canvas>().enabled = enable;
+    //     if (enable == false)
+    //     {
+    //         for(int i = 0; i < pauseSticks.Length; i++)
+    //         {
+    //             pauseSticks[i].Reset();
+    //         }
+    //     }
+    //     else
+    //     {
+    //         for(int i = 0; i < pauseSticks.Length; i++)
+    //         {
+    //             pauseSticks[i].startAnimation();
+    //         }
+    //     }
+    // }
 
     public void IncreaseScale(PauseSticks target)
     {
