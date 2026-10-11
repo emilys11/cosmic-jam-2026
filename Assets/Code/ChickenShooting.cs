@@ -7,7 +7,7 @@ public class ChickenShooting : MonoBehaviour
     public GameObject seedsPrefab;
     public GameObject[] seedPrefabs;
     [SerializeField] float seedCooldown = 1.0f;
-    
+    [SerializeField] private Animator animator;
     private float cooldownTimer = 0f;
 
     // select orbital ring -> shoot seed -> destroy when chicken seed hits the ring collider
@@ -53,7 +53,13 @@ public class ChickenShooting : MonoBehaviour
         if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
         {
             //Debug.Log("left mb pressed");
+            animator.SetBool ("isShooting", true);
             Fire();
+        }
+        else
+        {
+            animator.SetBool ("isShooting", false);
+
         }
         // left = move inward
         /*if (Keyboard.current != null && Keyboard.current.qKey.wasPressedThisFrame)
