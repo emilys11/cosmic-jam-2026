@@ -28,6 +28,7 @@ public class ChickenShooting : MonoBehaviour
     private float currentSeedCooldown;
     [SerializeField] bool multishotActive = false;
     [SerializeField] float multishotAngle = 15f;
+    [SerializeField] bool eggReverseControl = false;
 
     void Start()
     {
@@ -127,8 +128,12 @@ public class ChickenShooting : MonoBehaviour
             //Debug.LogError("Seed prefab does not have Seed.cs!");
             return;
         }
+<<<<<<< Updated upstream
         FireSound();
         seed.LaunchSeed(direction, transform, selectedRingRadius);
+=======
+        seed.LaunchSeed(direction, transform, selectedRingRadius, seedVelocityMultiplier);
+>>>>>>> Stashed changes
     }
 
     void UpdateSelectedRing()
@@ -191,13 +196,15 @@ public class ChickenShooting : MonoBehaviour
     }
 
     // POWER UP FUNCTIONS
-    public void ActivateCooldownDecrease(float multiplier)
+    public void ActivateSeedVelocityIncrease(float multiplier)
     {
-        currentSeedCooldown = seedCooldown * multiplier;
+        seedVelocityMultiplier = multiplier;
+        Debug.Log("velocity increase activated");
     }
     public void DeactivateCooldownDecrease()
     {
-        currentSeedCooldown = seedCooldown;
+        seedVelocityMultiplier = 1f;
+        Debug.Log("velocity increase deactivated");
     }
     public void ActivateMultishot()
     {
@@ -208,5 +215,17 @@ public class ChickenShooting : MonoBehaviour
     public void DeactivateMultishot()
     {
         multishotActive = false;
+        //Debug.Log("Multishot deactivated");
+    }
+    public void ActivateEggReverseControls()
+    {
+        eggReverseControl = true;
+
+        //Debug.Log("Multishot active");
+    }
+    public void DeactivateEggReverseControls()
+    {
+        eggReverseControl = false;
+        //Debug.Log("Multishot deactivated");
     }
 }
