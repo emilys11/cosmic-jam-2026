@@ -8,7 +8,7 @@ public class PowerupInventory : MonoBehaviour
         None,
         
         // chicken powerups
-        DecreaseCooldown,
+        IncreaseSeedVelocity,
         Multishot,
         EggReverseControls,
 
