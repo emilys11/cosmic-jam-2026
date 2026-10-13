@@ -10,7 +10,7 @@ public class PowerupInventory : MonoBehaviour
         // chicken powerups
         IncreaseSeedVelocity,
         Multishot,
-        EggReverseControls,
+        //EggReverseControls,
 
         // egg powerups
         SpeedUpEgg,

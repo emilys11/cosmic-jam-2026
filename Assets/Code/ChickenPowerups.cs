@@ -110,7 +110,7 @@ public class ChickenPowerups : MonoBehaviour
         {
             PowerupInventory.PowerupTypes.IncreaseSeedVelocity,
             PowerupInventory.PowerupTypes.Multishot,
-            PowerupInventory.PowerupTypes.EggReverseControls
+            //PowerupInventory.PowerupTypes.EggReverseControls
         };
 
         int randomIndex = Random.Range(0, chickenPowerups.Length);
@@ -156,9 +156,9 @@ public class ChickenPowerups : MonoBehaviour
                     ActivateMultishot();
                     break;
 
-                case PowerupInventory.PowerupTypes.EggReverseControls:
+                /*case PowerupInventory.PowerupTypes.EggReverseControls:
                     ActivateEggReverseControls();
-                    break;
+                    break;*/
 
             }
         }
