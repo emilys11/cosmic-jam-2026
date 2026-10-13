@@ -12,6 +12,7 @@ public class ChickenPowerups : MonoBehaviour
 
     [SerializeField] PowerupInventory inventory;
     [SerializeField] int requiredOrbs = 3;
+    [SerializeField] EggOnPath eggOnPath; //For reversing controls
     private int collectedOrbs = 0;
     [SerializeField] OrbUI orbUI;
 
@@ -20,8 +21,6 @@ public class ChickenPowerups : MonoBehaviour
         chickenShooting.DeactivateSeedVelocityIncrease();
         chickenShooting.DeactivateMultishot();
         chickenShooting.DeactivateEggReverseControls();
-
-        orbUI.ResetOrbs(); //restore 3 in ui again
     }
 
     public void ActivateSeedVelocityIncrease()
@@ -82,11 +81,11 @@ public class ChickenPowerups : MonoBehaviour
     }
     IEnumerator EggReverseControlTimer()
     {
-        Debug.Log("multishot activated");
-        chickenShooting.ActivateEggReverseControls();
+        Debug.Log("EggReverseControl activated");
+        eggOnPath.ActivateEggReverseControls();
         yield return new WaitForSeconds(powerupTimer);
-        Debug.Log("multishot timed out");
-        chickenShooting.DeactivateEggReverseControls();
+        Debug.Log("EggReverseControl timed out");
+        eggOnPath.DeactivateEggReverseControls();
         activePowerupCoroutine = null;
     }
 
@@ -100,6 +99,7 @@ public class ChickenPowerups : MonoBehaviour
         {
             AssignRandomPowerup();
             collectedOrbs = 0;
+            orbUI.ResetOrbs();
         }
     }
 

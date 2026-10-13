@@ -50,10 +50,13 @@ public class EggOnPath : MonoBehaviour
     [Header("Path Options")]
     public bool isLooping = true;
     public bool isClockwise = true;
+    
 
     // Index to change Splines.
     private int index = 0;
 
+    //For reverse powerup used by chicken
+    private bool isReversed = false;
     void Awake()
     {
         if (eggHealth == null)
@@ -245,7 +248,8 @@ public class EggOnPath : MonoBehaviour
         {
             Debug.Log("hello vro");
             int newIndex = index;
-            newIndex = (index + 1) % targetSplines.Count; // Fixed to use .Count
+            if(isReversed) newIndex = (index - 1 + targetSplines.Count) % targetSplines.Count; //Reversed so go down
+            else newIndex = (index + 1) % targetSplines.Count; // Fixed to use .Count
             TriggerTransition(newIndex);
         }
     }
@@ -255,7 +259,9 @@ public class EggOnPath : MonoBehaviour
         if (context.performed)
         {
             int newIndex = index;
-            newIndex = (index - 1 + targetSplines.Count) % targetSplines.Count; // Fixed to use .Count
+            if(isReversed) newIndex = (index + 1) % targetSplines.Count; //Reversed so go up
+            else newIndex = (index - 1 + targetSplines.Count) % targetSplines.Count; // Fixed to use .Count
+
             TriggerTransition(newIndex);
         }
     }
@@ -331,5 +337,14 @@ public class EggOnPath : MonoBehaviour
         }
 
         TriggerTransition(newIndex);
+    }
+
+    public void ActivateEggReverseControls()
+    {
+        isReversed = true;
+    }
+    public void DeactivateEggReverseControls()
+    {
+        isReversed = false;
     }
 }
