@@ -10,7 +10,7 @@
                     "name": "Aim",
                     "type": "Value",
                     "id": "b9bb3bfd-bd02-4ad1-bfcb-c0f6023361eb",
-                    "expectedControlType": "Axis",
+                    "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true,
@@ -94,7 +94,7 @@
                 {
                     "name": "",
                     "id": "f0c27b20-356c-4dca-be5f-2d23dc5ae839",
-                    "path": "<Gamepad>/rightStick/x",
+                    "path": "<Gamepad>/rightStick",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",

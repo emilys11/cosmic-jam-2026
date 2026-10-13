@@ -8,11 +8,16 @@ public class TESTAimGuide : MonoBehaviour
     private Camera mainCamera;
     private Vector3 aimDirection;
 
-    private float aimInput;
-    [SerializeField] private float aimSpeed = 90f;
     [SerializeField] private float aimDistance = 10f;
     [SerializeField] private Transform model;
     [SerializeField] private float turnSpeed = 720f; // chicken turning degrees per second
+
+    [Header("Stick Aiming")]
+    [SerializeField] private float stickDeadzone = 0.25f;
+    [Tooltip("Extra rotation (degrees) applied to the stick direction if the aim feels off.")]
+    [SerializeField] private float stickAngleOffset = 0f;
+
+    private Vector2 stickInput;
     private bool useMouseAim = true;
 
     void Awake()
@@ -28,86 +33,103 @@ public class TESTAimGuide : MonoBehaviour
         aimDirection.Normalize();
     }
 
-    
-
     void Update()
     {
         if (mainCamera == null) return;
 
+        // Moving the mouse switches back to mouse aiming
+        if (!useMouseAim && Mouse.current != null &&
+            Mouse.current.delta.ReadValue().sqrMagnitude > 1f)
+        {
+            useMouseAim = true;
+        }
+
         if (useMouseAim && Mouse.current != null)
         {
-            // mouse aiming
-            Ray ray = mainCamera.ScreenPointToRay(
-                Mouse.current.position.ReadValue()
-            );
-
-            Plane groundPlane = new Plane(Vector3.up, transform.position);
-
-            if (groundPlane.Raycast(ray, out float distance))
-            {
-                Vector3 target = ray.GetPoint(distance);
-                target.y = transform.position.y;
-
-                Vector3 direction = target - transform.position;
-
-                if (direction.sqrMagnitude > 0.001f)
-                {
-                    aimDirection = direction.normalized;
-                }
-            }
+            UpdateMouseAim();
         }
-        else if (aimInput != 0f)
+        else if (stickInput.magnitude > stickDeadzone)
         {
-            // keyboard/controller aiming
-            aimDirection = Quaternion.AngleAxis(
-                aimInput * aimSpeed * Time.deltaTime,
-                Vector3.up
-            ) * aimDirection;
-
-            aimDirection.y = 0f;
-
-            if (aimDirection.sqrMagnitude > 0.001f)
-                aimDirection.Normalize();
+            UpdateStickAim();
         }
+        // if the stick is released, the aim stays where it was
 
-    
         Vector3 start = transform.position;
         Vector3 end = start + aimDirection * aimDistance;
 
         lineRenderer.SetPosition(0, start);
         lineRenderer.SetPosition(1, end);
-        
-        //rotate model
+
+        // rotate model
         if (model != null)
         {
             Quaternion targetRot = Quaternion.LookRotation(aimDirection, Vector3.up);
-            model.rotation = Quaternion.RotateTowards(model.rotation, targetRot, turnSpeed * Time.deltaTime);
+            model.rotation = Quaternion.RotateTowards(
+                model.rotation, targetRot, turnSpeed * Time.deltaTime);
         }
     }
 
+    private void UpdateMouseAim()
+    {
+        Ray ray = mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
+        Plane groundPlane = new Plane(Vector3.up, transform.position);
 
+        if (groundPlane.Raycast(ray, out float distance))
+        {
+            Vector3 target = ray.GetPoint(distance);
+            target.y = transform.position.y;
+
+            Vector3 direction = target - transform.position;
+
+            if (direction.sqrMagnitude > 0.001f)
+                aimDirection = direction.normalized;
+        }
+    }
+
+    private void UpdateStickAim()
+    {
+        // Camera-relative axes flattened onto the ground plane,
+        // so "stick up" always means "toward the top of the screen"
+        Vector3 camForward = mainCamera.transform.forward;
+        camForward.y = 0f;
+
+        // fallback if the camera looks straight down
+        if (camForward.sqrMagnitude < 0.001f)
+        {
+            camForward = mainCamera.transform.up;
+            camForward.y = 0f;
+        }
+        camForward.Normalize();
+
+        Vector3 camRight = mainCamera.transform.right;
+        camRight.y = 0f;
+        camRight.Normalize();
+
+        Vector3 direction = camRight * stickInput.x + camForward * stickInput.y;
+        direction = Quaternion.AngleAxis(stickAngleOffset, Vector3.up) * direction;
+        direction.y = 0f;
+
+        if (direction.sqrMagnitude > 0.001f)
+            aimDirection = direction.normalized;
+    }
 
     public Vector3 TESTAimDirection()
     {
         return aimDirection;
-        
-        //Vector3 start = lineRenderer.GetPosition(0);
-        //Vector3 end = lineRenderer.GetPosition(1);
-
-        //return (end - start).normalized;
     }
 
     public void OnAim(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
-            aimInput = context.ReadValue<float>();
-            useMouseAim = false;
+            stickInput = context.ReadValue<Vector2>();
+
+            if (stickInput.magnitude > stickDeadzone)
+                useMouseAim = false;
         }
         else if (context.canceled)
         {
-            aimInput = 0f;
+            stickInput = Vector2.zero;
         }
     }
-
 }

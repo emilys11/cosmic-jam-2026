@@ -6307,7 +6307,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32d28db856eb23145a1df2f54e0e966c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TESTAimGuide
-  aimSpeed: 150
+  aimSpeed: 350
   aimDistance: 10
   model: {fileID: 697197411}
   turnSpeed: 720
