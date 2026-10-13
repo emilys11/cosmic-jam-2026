@@ -88,12 +88,9 @@ public class TESTAimGuide : MonoBehaviour
 
     private void UpdateStickAim()
     {
-        // Camera-relative axes flattened onto the ground plane,
-        // so "stick up" always means "toward the top of the screen"
         Vector3 camForward = mainCamera.transform.forward;
         camForward.y = 0f;
 
-        // fallback if the camera looks straight down
         if (camForward.sqrMagnitude < 0.001f)
         {
             camForward = mainCamera.transform.up;
