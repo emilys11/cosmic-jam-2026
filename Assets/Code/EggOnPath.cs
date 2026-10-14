@@ -56,6 +56,8 @@ public class EggOnPath : MonoBehaviour
     private int index = 0;
 
     //For reverse powerup used by chicken
+    [Header("UI")]
+    [SerializeField] UnityEngine.UI.Image reverseEffectIcon;
     private bool isReversed = false;
     void Awake()
     {
@@ -342,9 +344,11 @@ public class EggOnPath : MonoBehaviour
     public void ActivateEggReverseControls()
     {
         isReversed = true;
+        reverseEffectIcon.enabled = true;
     }
     public void DeactivateEggReverseControls()
     {
         isReversed = false;
+        reverseEffectIcon.enabled = false;
     }
 }
