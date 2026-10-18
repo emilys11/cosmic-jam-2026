@@ -351,4 +351,13 @@ public class EggOnPath : MonoBehaviour
         isReversed = false;
         reverseEffectIcon.enabled = false;
     }
+
+    public float SwitchCooldownProgress
+    {
+        get
+        {
+            if (switchCooldown <= 0f) return 1f;
+            return Mathf.Clamp01((Time.time - lastSwitchTime) / switchCooldown);
+        }
+    }
 }

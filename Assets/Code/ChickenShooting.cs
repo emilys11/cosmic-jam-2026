@@ -9,6 +9,7 @@ public class ChickenShooting : MonoBehaviour
     [SerializeField] float seedCooldown = 1.0f;
     [SerializeField] private Animator animator;
     private float cooldownTimer = 0f;
+    private bool fireHeld = false;
 
     // select orbital ring -> shoot seed -> destroy when chicken seed hits the ring collider
     [SerializeField] LineRenderer lineRenderer;
@@ -50,7 +51,9 @@ public class ChickenShooting : MonoBehaviour
         }
         
         // PLACEHOLDER FOR INPUT (lowk will keep this for people who prefer mouse)
-        if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
+        bool wantsToShoot = fireHeld || (Mouse.current != null && Mouse.current.leftButton.isPressed);
+
+        if (wantsToShoot && cooldownTimer <= 0f)
         {
             //Debug.Log("left mb pressed");
             animator.SetBool ("isShooting", true);
@@ -228,9 +231,13 @@ public class ChickenShooting : MonoBehaviour
 
     public void OnFire(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.started || context.performed)
         {
-            Fire();
+            fireHeld = true;
+        }
+        else if (context.canceled)
+        {
+            fireHeld = false;
         }
     }
 
